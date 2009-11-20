@@ -6,5 +6,6 @@
 	<classpathentry excluding="Model/Exceptions/" kind="src" path="src"/>
 	<classpathentry kind="src" path="src/Model/Exceptions"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3.8.1"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
