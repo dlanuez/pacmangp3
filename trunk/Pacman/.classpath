@@ -3,7 +3,8 @@
 	<classpathentry kind="src" path="Model"/>
 	<classpathentry kind="src" path="View"/>
 	<classpathentry kind="src" path="Controller"/>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry excluding="Model/Exceptions/" kind="src" path="src"/>
+	<classpathentry kind="src" path="src/Model/Exceptions"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
