@@ -2,6 +2,11 @@ package Model;
 
 import java.lang.Math;
 
+/* Clase utilizada para representar las posiciones de los objetos Vivientes en el tablero.
+ * Puede tomar valores negativos, por lo tanto la validación de las posiciones debe hacerse en la clase
+ * que lo utilice.
+ */
+
 public class Punto {
 	private int x;
 	private int y;
@@ -18,6 +23,22 @@ public class Punto {
 	}
 	public void y(int y) {
 		this.y = y;
+	}
+	
+	public void aumentarX(){
+		this.x =+ 1;
+	}
+	
+	public void disminuirX(){
+		this.x =- 1;
+	}
+	
+	public void aumentarY(){
+		this.y =+ 1;
+	}
+	
+	public void disminuirY(){
+		this.y =- 1;
 	}
 	
 	public double distanciaAOtroPunto(Punto otroPunto){
