@@ -8,7 +8,7 @@ public abstract class Viviente {
 	private Punto posicion;
 	private Juego juego;
 	private EstadoViviente estado;
-	private int turnosTranscurridos;
+	private int tiempoRestanteDeEstado;
 	
 	public void irAIzquierda(){
 		if(this.posicion.x() > 0)
@@ -71,7 +71,8 @@ public abstract class Viviente {
 		this.vivo = true;
 	}
 
-	public void fenecer(){	// (=D)
+	public void fenecer(){	
+		// Fenecer: Morir, fallecer. Poner fin a una cosa, concluirla. (=D)
 		this.vivo = false;
 	}
 	
