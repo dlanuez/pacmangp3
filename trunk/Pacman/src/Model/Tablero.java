@@ -1,7 +1,9 @@
 package Model;
 
-public class Tablero {
+import org.omg.CORBA.PRIVATE_MEMBER;
 
+public class Tablero {
+	
 	private final int MAX_POS_X;
 	private final int MAX_POS_Y;
 	private Casillero matriz[][];
@@ -19,6 +21,17 @@ public class Tablero {
 		fantasma[2] = new FantasmaNaranja();
 		fantasma[3] = new FantasmaAzul();
 		fantasma[4] = new FantasmaVerde();
+		
+	}
+	
+	public Casillero getCasillero(Punto punto){
+		return matriz[punto.x()][punto.y()];
+	}
+	
+	public void resetearPosiciones(){
+		final Punto punto;
+		punto = new Punto(5,5);
+		pacman.setPosicion(punto);
 		
 	}
 	
