@@ -18,9 +18,11 @@ public class Casillero {
 		return true;		
 	}
 	
-	//Devuelve el item que se encuentra en el casillero.
+	//Devuelve el item que se encuentra en el casillero y convierte el item en itemNulo.
 	public Item getItem() {
-		return this.item;
+		Item itemAux = this.item;
+		this.item = new ItemNulo();
+		return itemAux;
 	}	 
 }
  
