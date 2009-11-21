@@ -1,9 +1,11 @@
 package Model;
 
+import Model.excepciones.PosicionInvalidaException;
+
 public class FantasmaRosa extends Fantasma {
 
-	public FantasmaRosa(Juego juego) {
-		// TODO Auto-generated constructor stub
+	public FantasmaRosa(Punto posicionInicial, Juego juego) throws PosicionInvalidaException {
+		super(posicionInicial, juego);
 	}
 
 }

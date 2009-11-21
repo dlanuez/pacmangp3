@@ -8,6 +8,7 @@ package Model;
  *******************************************************/
 
 import Model.excepciones.PosicionInvalidaException;
+import Model.excepciones.VelocidadInvalidaException;
 
 public class Tablero {
 	
@@ -19,16 +20,30 @@ public class Tablero {
 	private Juego juego;
 	
 	public Tablero(){
-		pacman = new Pacman(juego);
+		Punto punto = new Punto(2,2);
+		try {
+			pacman = new Pacman(punto, juego);
+		} catch (PosicionInvalidaException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (VelocidadInvalidaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		MAX_POS_X = 8;
 		MAX_POS_Y = 8;
 		matriz = new Casillero[MAX_POS_X][MAX_POS_Y];
 		/*Modificar cada Fantasma() por el fantasma que corresponda*/
-		fantasmas[0] = new FantasmaRojo(juego);
-		fantasmas[1] = new FantasmaRosa(juego);
-		fantasmas[2] = new FantasmaNaranja(juego);
-		fantasmas[3] = new FantasmaAzul(juego);
-		fantasmas[4] = new FantasmaVerde(juego);		
+		punto = new Punto(1,1);
+		try{
+			fantasmas[0] = new FantasmaRojo(punto, juego);
+			fantasmas[1] = new FantasmaRosa(punto,juego);
+			fantasmas[2] = new FantasmaNaranja(punto, juego);
+			fantasmas[3] = new FantasmaAzul(punto, juego);
+			fantasmas[4] = new FantasmaVerde(punto, juego);
+		}catch(PosicionInvalidaException e){
+			e.printStackTrace();
+		}
 	}
 	
 	public Casillero getCasillero(Punto punto){
