@@ -1,5 +1,11 @@
 package Model;
-
+/*******************************************************
+ * TP 3 Algoritmos y Programación III
+ * Clase Tablero
+ * 
+ * 
+ * 
+ *******************************************************/
 
 import Model.excepciones.PosicionInvalidaException;
 
@@ -10,18 +16,19 @@ public class Tablero {
 	private Casillero matriz[][];
 	private Fantasma fantasmas[];
 	private Pacman pacman;
+	private Juego juego;
 	
 	public Tablero(){
-		pacman = new Pacman();
+		pacman = new Pacman(juego);
 		MAX_POS_X = 8;
 		MAX_POS_Y = 8;
 		matriz = new Casillero[MAX_POS_X][MAX_POS_Y];
 		/*Modificar cada Fantasma() por el fantasma que corresponda*/
-		fantasmas[0] = new FantasmaRojo();
-		fantasmas[1] = new FantasmaRosa();
-		fantasmas[2] = new FantasmaNaranja();
-		fantasmas[3] = new FantasmaAzul();
-		fantasmas[4] = new FantasmaVerde();
+		fantasmas[0] = new FantasmaRojo(juego);
+		fantasmas[1] = new FantasmaRosa(juego);
+		fantasmas[2] = new FantasmaNaranja(juego);
+		fantasmas[3] = new FantasmaAzul(juego);
+		fantasmas[4] = new FantasmaVerde(juego);
 		
 	}
 	
