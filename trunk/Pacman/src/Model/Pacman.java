@@ -1,9 +1,14 @@
 package Model;
 
+import Model.excepciones.PosicionInvalidaException;
+import Model.excepciones.VelocidadInvalidaException;
+
 public class Pacman extends Viviente {
 
-	public Pacman(Juego juego) {
-		// TODO Auto-generated constructor stub
+	public Pacman(Punto posicionInicial, Juego juego) throws PosicionInvalidaException, VelocidadInvalidaException {
+		super(posicionInicial, juego);
+		this.setVelocidad(5); //???
+		this.setEstado(EstadoViviente.PRESA);
 	}
 
 }
