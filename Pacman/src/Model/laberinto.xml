@@ -1,0 +1,22 @@
+<tablero>
+	<casillero>
+		<posicionX>1</posicionX>
+		<posicionY>1</posicionY>
+		<item>1</item>
+	</casillero>
+	<casillero>
+		<posicionX>1</posicionX>
+		<posicionY>2</posicionY>
+		<item>1</item>
+	</casillero>
+	<casillero>
+		<posicionX>2</posicionX>
+		<posicionY>1</posicionY>
+		<item>1</item>
+	</casillero>
+	<casillero>
+		<posicionX>2</posicionX>
+		<posicionY>2</posicionY>
+		<item>2</item>
+	</casillero>
+</tablero>
