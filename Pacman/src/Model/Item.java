@@ -6,26 +6,27 @@ public abstract class Item {
 	 
 	private int puntosOtorgados;
 	
+	//Configura la referencia al juego por la que se pasa por argumento.
 	protected void setJuego(Juego juego){
 		this.juego = juego;
 	}
 	
+	//Devuelve la referencia al juego.
 	protected Juego getJuego(){
 		return this.juego;
 	}
 	
+	//Configura los puntos otorgados del item.
 	protected void setPuntosOtorgados(int puntos){
 		this.puntosOtorgados = puntos;
 	}
 	
+	//Devuelve los puntos otorgados del item.
 	protected int getPuntosOtorgados(){
 		return this.puntosOtorgados;
 	}
-		
 	
-	public void hacerEfecto() {
-	 
-	}
-	 
+	//Metodo abstracto.
+	public abstract void hacerEfecto();
 }
  
