@@ -87,6 +87,9 @@ public abstract class Viviente {
 		else throw new PosicionInvalidaException();
 	}
 	
+	public void setEstado(EstadoViviente estado){
+		this.estado = estado;
+	}
 	
 	public EstadoViviente getEstado(){
 		return this.estado;
