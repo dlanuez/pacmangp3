@@ -4,18 +4,21 @@ public class Tablero {
 
 	private final int MAX_POS_X;
 	private final int MAX_POS_Y;
-	private Casillero matriz[MAX_POS_X, MAX_POS_Y];
-	private Fantasma fantasma[5];
+	private Casillero matriz[][];
+	private Fantasma fantasma[];
 	private Pacman pacman;
 	
-	public Tablero (){
+	public Tablero(){
 		pacman = new Pacman();
+		MAX_POS_X = 8;
+		MAX_POS_Y = 8;
+		matriz = new Casillero[MAX_POS_X][MAX_POS_Y];
 		/*Modificar cada Fantasma() por el fantasma que corresponda*/
-		fantasma[0] = new Fantasma();
-		fantasma[1] = new Fantasma();
-		fantasma[2] = new Fantasma();
-		fantasma[3] = new Fantasma();
-		fantasma[4] = new Fantasma();
+		fantasma[0] = new FantasmaRojo();
+		fantasma[1] = new FantasmaRosa();
+		fantasma[2] = new FantasmaNaranja();
+		fantasma[3] = new FantasmaAzul();
+		fantasma[4] = new FantasmaVerde();
 		
 	}
 	
