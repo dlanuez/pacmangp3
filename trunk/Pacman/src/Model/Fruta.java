@@ -10,6 +10,7 @@ public class Fruta extends Item {
 		this.tiempoActivo = tiempoActivo;
 	}
 	
+	//Suma la cantidad de puntos otorgados por comer una fruta a los puntos del jugador.
 	public void hacerEfecto(){
 		this.getJuego().getJugador().sumarPuntos(this.getPuntosOtorgados());
 	}
