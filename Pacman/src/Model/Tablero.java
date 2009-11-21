@@ -28,8 +28,7 @@ public class Tablero {
 		fantasmas[1] = new FantasmaRosa(juego);
 		fantasmas[2] = new FantasmaNaranja(juego);
 		fantasmas[3] = new FantasmaAzul(juego);
-		fantasmas[4] = new FantasmaVerde(juego);
-		
+		fantasmas[4] = new FantasmaVerde(juego);		
 	}
 	
 	public Casillero getCasillero(Punto punto){
@@ -60,4 +59,11 @@ public class Tablero {
 		return this.MAX_POS_X;
 	}
 
+	public Pacman getPacman(){
+		return pacman;
+	}
+	
+	public Fantasma[] getFantasmas(){
+		return fantasmas;
+	}
 }
