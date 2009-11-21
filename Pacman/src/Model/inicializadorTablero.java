@@ -16,18 +16,23 @@ import org.w3c.dom.NodeList;
 
 public class inicializadorTablero {
 	private File archivo;
-	private Casillero[][] casilleros;
-	public inicializadorTablero(String archivo){
+	private Casillero casilleros[][];
+	private Juego juego;
+	
+	public inicializadorTablero(String archivo, Juego juego){
 		this.archivo = new File(archivo);
+		this.juego = juego;
+		casilleros = new Casillero[2][2];
 	}
 	
 	public Casillero[][] generarTablero(){
 		int posX,posY, itemValor;
-		Punto punto;
+
 		try{
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db = dbf.newDocumentBuilder();
 			Document doc = db.parse(archivo);
+			doc.getDocumentElement().normalize();
 			NodeList listaDeNodos = doc.getElementsByTagName("casillero");
 			for(int i = 0; i < listaDeNodos.getLength(); i++){
 				Node nodo = listaDeNodos.item(i);
@@ -36,34 +41,32 @@ public class inicializadorTablero {
 					NodeList posicionX = getXmlTag(elemento,"posicionX");
 					NodeList posicionY = getXmlTag(elemento, "posicionY");
 					NodeList item = getXmlTag(elemento, "item");
-					posX = convertirAEntero(posicionX);
-					posY = convertirAEntero(posicionY);	
-					itemValor = convertirAEntero(item);
-					punto = new Punto(posX,posY);
-					casilleros[punto.x()][punto.y()] = getTipoCasillero(itemValor);
+					posX = convertirAEntero((Node)posicionX.item(0)) - 1;
+					posY = convertirAEntero((Node)posicionY.item(0)) - 1;	
+					itemValor = convertirAEntero((Node)item.item(0));					
+					casilleros[posX][posY] = getTipoCasillero(itemValor);
 				}
 			}
 		}catch(ParserConfigurationException e){
 			
 		}catch(IOException e){
-			
+			e.printStackTrace();
 		}catch(Exception e){
-			
+			e.printStackTrace();
 		}
 		return casilleros;
 	}
 
 	private Casillero getTipoCasillero(int item) {
-		// TODO Auto-generated method stub
 		Casillero casillero;
 		if(item == 1){
 			casillero = new Casillero(EstadoCasillero.PISO);
-			casillero.setItem(new Bolita());
+			casillero.setItem(new Bolita(this.juego, 500));
 			return casillero;
 		}
 		if(item == 2){
 			casillero = new Casillero(EstadoCasillero.PISO);
-			casillero.setItem(new Pastilla());
+			casillero.setItem(new Pastilla(this.juego, 1000,50));
 			return casillero;
 		}
 		if(item == 0){
@@ -73,8 +76,8 @@ public class inicializadorTablero {
 		return null;
 	}
 
-	private int convertirAEntero(NodeList nodo) {
-		return Integer.parseInt(nodo.item(0).getNodeValue());
+	private int convertirAEntero(Node nodo) {	
+		return Integer.parseInt(nodo.getNodeValue());
 	}
 	
 	private NodeList getXmlTag(Element elemento, String tag){
