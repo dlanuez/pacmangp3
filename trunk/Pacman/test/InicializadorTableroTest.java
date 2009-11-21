@@ -7,7 +7,7 @@ public class InicializadorTableroTest extends TestCase {
 	public void testGenerarTablero(){
 		Casillero casilleros[][];
 		Juego juego = new Juego();
-		inicializadorTablero inicializador = new inicializadorTablero("c:\\prueba\\laberinto.xml", juego);
+		inicializadorTablero inicializador = new inicializadorTablero("src/Model/laberinto.xml", juego);
 		casilleros = inicializador.generarTablero();
 		assertEquals(2,casilleros.length);		
 		assertEquals("Bolita", casilleros[0][0].getItem().getClass().getSimpleName());
