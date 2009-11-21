@@ -60,17 +60,15 @@ public class inicializadorTablero {
 	private Casillero getTipoCasillero(int item) {
 		Casillero casillero;
 		if(item == 1){
-			casillero = new Casillero(EstadoCasillero.PISO);
-			casillero.setItem(new Bolita(this.juego, 500));
+			casillero = new Casillero(EstadoCasillero.PISO, new Bolita(this.juego,500));
 			return casillero;
 		}
 		if(item == 2){
-			casillero = new Casillero(EstadoCasillero.PISO);
-			casillero.setItem(new Pastilla(this.juego, 1000,50));
+			casillero = new Casillero(EstadoCasillero.PISO, new Pastilla(this.juego, 1000,50));
 			return casillero;
 		}
 		if(item == 0){
-			casillero = new Casillero(EstadoCasillero.PARED);
+			casillero = new Casillero(EstadoCasillero.PARED, null);
 			return casillero;
 		}
 		return null;
