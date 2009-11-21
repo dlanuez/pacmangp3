@@ -11,14 +11,20 @@ public class Casillero {
 	}
 	 
 	public boolean casilleroHabilitado() {
-		if (this.estadoCasillero == PARED)
+		if (this.estadoCasillero == EstadoCasillero.PARED)
 			return false;
-		else if (this.estadoCasillero == PISO)
-			return true;			
+		//Si no es pared devuelve true.
+		return true;		
 	}
 	 
 	public Item getItem() {
-		return this.item;
+		if (this.item != null){
+			Item itemAux = this.item;
+			this.item = null;
+			return itemAux;
+		}
+		else
+			return null;
 	}
 	 
 	public void setItem(Item item) {
