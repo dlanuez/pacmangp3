@@ -63,7 +63,11 @@ public class Tablero {
 		return pacman;
 	}
 	
-	public Fantasma[] getFantasmas(){
+	public Fantasma[] getFantasmasArray(){
 		return fantasmas;
+	}
+	
+	public Fantasma getFantasma(int posicion){
+		return fantasmas[posicion];
 	}
 }
