@@ -1,5 +1,7 @@
 package Model;
 
+import Model.excepciones.tiempoDeEstadoInvalidoException;
+
 public class Pastilla extends Item {
 	private int tiempoDeEstado;
 
@@ -13,9 +15,19 @@ public class Pastilla extends Item {
 	//y le cambia el estadoViviente al pacman y a los fantasmas.
 	public void hacerEfecto(){
 		this.getJuego().getJugador().sumarPuntos(this.getPuntosOtorgados());
-		this.getJuego().getTablero().getPacman().cambiarEstado(this.tiempoDeEstado);
+		try {
+			this.getJuego().getTablero().getPacman().cambiarEstado(this.tiempoDeEstado);
+		} catch (tiempoDeEstadoInvalidoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		for(int i = 0; i < 5; i++)
-			this.getJuego().getTablero().getFantasma(i).cambiarEstado(this.tiempoDeEstado);
+			try {
+				this.getJuego().getTablero().getFantasma(i).cambiarEstado(this.tiempoDeEstado);
+			} catch (tiempoDeEstadoInvalidoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 }
  
