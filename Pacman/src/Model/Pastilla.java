@@ -11,7 +11,9 @@ public class Pastilla extends Item {
 	
 	public void hacerEfecto(){
 		this.getJuego().getJugador().sumarPuntos(this.getPuntosOtorgados());
-		//this.getJuego().getTablero().getPacman()
+		this.getJuego().getTablero().getPacman().cambiarEstado(this.tiempoDeEstado);
+		for(int i = 0; i < 5; i++)
+			this.getJuego().getTablero().getFantasma(i).cambiarEstado(this.tiempoDeEstado);
 	}
 }
  
