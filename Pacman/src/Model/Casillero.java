@@ -12,10 +12,7 @@ public class Casillero {
 	
 	//Devuelve true si el casillero no es una pared y false si es una pared.
 	public boolean casilleroHabilitado() {
-		if (this.estadoCasillero == EstadoCasillero.PARED)
-			return false;
-		//Si no es pared devuelve true.
-		return true;		
+		return this.estadoCasillero.estaHabilitado();	
 	}
 	
 	//Devuelve el item que se encuentra en el casillero y convierte el item en itemNulo.

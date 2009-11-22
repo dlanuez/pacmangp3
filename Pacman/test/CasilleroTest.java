@@ -16,7 +16,7 @@ public class CasilleroTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		this.juego = new Juego();
-		this.bolita = new Bolita(juego, 10);
+		this.bolita = new Bolita(juego);
 		this.estadoCasillero = EstadoCasillero.PISO;
 		this.casillero = new Casillero(this.estadoCasillero, this.bolita);		
 	}
@@ -26,7 +26,7 @@ public class CasilleroTest extends TestCase {
 	}
 	
 	public void testCasilleroHabilitadoParedOK(){
-		this.bolita = new Bolita(juego, 10);
+		this.bolita = new Bolita(juego);
 		this.estadoCasillero = EstadoCasillero.PARED;
 		this.casillero = new Casillero(this.estadoCasillero, this.bolita);
 		assertFalse(this.casillero.casilleroHabilitado());
