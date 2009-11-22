@@ -1,5 +1,7 @@
 package Model;
 
+import Model.excepciones.tiempoDeEstadoInvalidoException;
+
 public abstract class Item {
  
 	private Juego juego;
@@ -27,6 +29,6 @@ public abstract class Item {
 	}
 	
 	//Metodo abstracto.
-	public abstract void hacerEfecto();
+	public abstract void hacerEfecto() throws tiempoDeEstadoInvalidoException;
 }
  
