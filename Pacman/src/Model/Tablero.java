@@ -1,6 +1,6 @@
 package Model;
 /*******************************************************
- * TP 3 Algoritmos y Programación III
+ * TP 3 Algoritmos y Programaciï¿½n III
  * Clase Tablero
  * 
  * 
