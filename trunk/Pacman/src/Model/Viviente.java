@@ -11,17 +11,22 @@ public abstract class Viviente {
 	private Punto posicion;
 	private Juego juego;
 	private EstadoViviente estado;
-		
-	/* La velocidad inicial y el EstadiViviente del objeto deben
+	private int tiempoRestanteDeEstado;
+	
+    /* Se inicializa el tiempo restante de estado en -1. La velocidad inicial y el EstadiViviente del objeto deben
 	 * inicializarse en el constructor de la clase descendiente.
 	 */
 	Viviente(Punto posicionInicial, Juego juego) throws PosicionInvalidaException{
 		this.setPosicion(posicionInicial);
 		this.juego = juego;
-		this.vivir();
+		this.setVivo();
 		this.velocidad = 0;
+		this.tiempoRestanteDeEstado = -1;
 	}
 	
+	public void vivir(){
+		this.decrementarTiempoRestanteDeEstado();
+	}
 	
 	public void irAIzquierda(){
 		if(this.posicion.x() > 0)
@@ -45,11 +50,31 @@ public abstract class Viviente {
 	}
 	
 	public void toggleState(){
-		if(this.estado == EstadoViviente.CAZADOR)
-			this.estado = EstadoViviente.PRESA;
-		else this.estado = EstadoViviente.CAZADOR;
+		this.estado.toggleState();
+	}
+		
+	/* Con cada turno se decrementa el tiempo restante del estado. En caso de ser -1,
+	 * no sucede nada.
+	 */
+	
+	private void decrementarTiempoRestanteDeEstado(){
+		if(this.tiempoRestanteDeEstado > 0) this.tiempoRestanteDeEstado =- 1;
+		
+		if(this.tiempoRestanteDeEstado == 0){
+			this.toggleState();
+			this.tiempoRestanteDeEstado = -1;
+		}
+	}
+
+	public void cambiarEstado(int tiempoDeEstado) throws tiempoDeEstadoInvalidoException{
+		if(tiempoDeEstado > 0){	
+			this.tiempoRestanteDeEstado = tiempoDeEstado;
+			this.toggleState();
+		}
+		else throw new tiempoDeEstadoInvalidoException();
 	}
 	
+		
 	public void setPosicion(Punto nuevaPosicion) throws PosicionInvalidaException{
 		if( (nuevaPosicion.x() >= 0) && (nuevaPosicion.y() >= 0)){
 			if(	(nuevaPosicion.x() <= this.juego.getTablero().getMaxPosX()) && 
@@ -78,7 +103,7 @@ public abstract class Viviente {
 		else throw new VelocidadInvalidaException();
 	}
 	
-	public void vivir(){
+	public void setVivo(){
 		this.vivo = true;
 	}
 
