@@ -14,12 +14,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-public class inicializadorTablero {
+public class InicializadorTablero {
 	private File archivo;
 	private Casillero casilleros[][];
 	private Juego juego;
 	
-	public inicializadorTablero(String archivo, Juego juego){
+	public InicializadorTablero(String archivo, Juego juego){
 		this.archivo = new File(archivo);
 		this.juego = juego;
 		casilleros = new Casillero[2][2];
