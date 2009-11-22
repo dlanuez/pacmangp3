@@ -2,14 +2,22 @@ package Model;
 
 public class Bolita extends Item {
 
-	public Bolita(Juego juego, int puntosBolita){
+	private static int puntosOtorgados;
+
+	//El puntaje otorgado por defecto es 10.
+	public Bolita(Juego juego){
 		this.setJuego(juego);
-		this.setPuntosOtorgados(puntosBolita);
+		Bolita.puntosOtorgados = 10;
+	}
+	
+	//Configura los puntos otorgados de la clase Bolita.
+	public final void setPuntosOtorgados(int puntos){
+		Bolita.puntosOtorgados = puntos;
 	}
 	
 	//Suma la cantidad de puntos otorgados por comer una bolita a los puntos del jugador.
 	public void hacerEfecto(){
-		this.getJuego().getJugador().sumarPuntos(this.getPuntosOtorgados());
+		this.getJuego().getJugador().sumarPuntos(Bolita.puntosOtorgados);
 	}
 }
  

@@ -11,7 +11,7 @@ public class PastillaTest extends TestCase {
 	
 	public void testHacerEfectoOK(){
 		this.juego = new Juego();
-		this.pastilla = new Pastilla(this.juego, 10, 10);
+		this.pastilla = new Pastilla(this.juego, 10);
 		try{
 			this.pastilla.hacerEfecto();
 		}
@@ -22,7 +22,7 @@ public class PastillaTest extends TestCase {
 	
 	public void testHacerEfectoErroneo(){
 		this.juego = new Juego();
-		this.pastilla = new Pastilla(this.juego, 10, -5);
+		this.pastilla = new Pastilla(this.juego, -5);
 		try{
 			this.pastilla.hacerEfecto();
 			fail("Permitio hacer efecto con tiempo invalido (negativo)");
