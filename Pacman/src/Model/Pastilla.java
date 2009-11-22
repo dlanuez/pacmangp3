@@ -13,21 +13,11 @@ public class Pastilla extends Item {
 	
 	//Suma la cantidad de puntos otorgados por comer una bolita a los puntos del jugador
 	//y le cambia el estadoViviente al pacman y a los fantasmas.
-	public void hacerEfecto(){
+	public void hacerEfecto()throws tiempoDeEstadoInvalidoException{
 		this.getJuego().getJugador().sumarPuntos(this.getPuntosOtorgados());
-		try {
-			this.getJuego().getTablero().getPacman().cambiarEstado(this.tiempoDeEstado);
-		} catch (tiempoDeEstadoInvalidoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.getJuego().getTablero().getPacman().cambiarEstado(this.tiempoDeEstado);
 		for(int i = 0; i < 5; i++)
-			try {
-				this.getJuego().getTablero().getFantasma(i).cambiarEstado(this.tiempoDeEstado);
-			} catch (tiempoDeEstadoInvalidoException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			this.getJuego().getTablero().getFantasma(i).cambiarEstado(this.tiempoDeEstado);
 	}
 }
  
