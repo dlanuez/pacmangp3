@@ -31,19 +31,19 @@ public class Punto {
 	}
 	
 	public void aumentarX(){
-		this.x =+ 1;
+		this.x++;
 	}
 	
 	public void disminuirX(){
-		this.x =- 1;
+		this.x--;
 	}
 	
 	public void aumentarY(){
-		this.y =+ 1;
+		this.y++;
 	}
 	
 	public void disminuirY(){
-		this.y =- 1;
+		this.y--;
 	}
 	
 	public double distanciaAOtroPunto(Punto otroPunto){
