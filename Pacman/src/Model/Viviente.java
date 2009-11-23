@@ -59,7 +59,9 @@ public abstract class Viviente {
 	}
 	
 	public void toggleState(){
-		this.estado = estado.toggleState();
+		if(this.estado != null)
+			this.estado = estado.toggleState();
+		else throw new EstadoNoInicializadoExeption();
 	}
 		
 
@@ -85,6 +87,10 @@ public abstract class Viviente {
 		else throw new tiempoDeEstadoInvalidoException();
 	}
 	
+	public void setPosicion(int x, int y) throws PosicionInvalidaException{
+		Punto posicion = new Punto(x, y);
+		this.setPosicion(posicion);
+	}
 		
 	public void setPosicion(Punto nuevaPosicion) throws PosicionInvalidaException{
 		if( this.validarPosicion(nuevaPosicion) ){
