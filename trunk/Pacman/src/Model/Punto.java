@@ -49,6 +49,14 @@ public class Punto {
 	public double distanciaAOtroPunto(Punto otroPunto){
 		return Math.sqrt(Math.pow(this.x()+otroPunto.x(), 2) + Math.pow(this.y()+otroPunto.y(), 2));
 	}
+	
+	@Override
+	public boolean equals(Object unPunto){
+		Punto elPunto = (Punto)unPunto;
+		if( (this.x() == elPunto.x()) && (this.y() == elPunto.y()) )
+				return true;
+		return false;		
+	}
 
 
 }
