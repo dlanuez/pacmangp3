@@ -39,7 +39,8 @@ public class Tablero {
 		
 		/*Modificar cada Fantasma() por el fantasma que corresponda*/
 		punto = new Punto(1,1);
-		try{
+		/*TODO Modificar para que ande! Hay un error no sé en qué. JP
+	 	try{
 			fantasmas[0] = new FantasmaRojo(punto, juego);
 			fantasmas[1] = new FantasmaRosa(punto,juego);
 			fantasmas[2] = new FantasmaNaranja(punto, juego);
@@ -47,7 +48,7 @@ public class Tablero {
 			fantasmas[4] = new FantasmaVerde(punto, juego);
 		}catch(PosicionInvalidaException e){
 			e.printStackTrace();
-		}
+		}*/
 	}
 	
 	public Casillero getCasillero(Punto punto){
