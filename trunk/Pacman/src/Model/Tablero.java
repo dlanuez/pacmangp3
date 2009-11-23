@@ -49,6 +49,8 @@ public class Tablero {
 			fantasmas[4] = new FantasmaVerde(punto, juego);
 		}catch(PosicionInvalidaException e){
 			e.printStackTrace();
+		} catch (VelocidadInvalidaException e) {
+			e.printStackTrace();
 		}
 	}
 	
