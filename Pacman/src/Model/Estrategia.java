@@ -7,34 +7,33 @@ public abstract class Estrategia {
 	
 	//Devuelve una direccion de movimiento hacia el proximo casillero.
 	//La direccion es hacia un casillero cuya validez ya esta chequeada.
-	public abstract Movimiento calcularNuevoMovimiento(Punto posicionYo,
-			Punto posicionEl, Movimiento movActual, Tablero tablero);
+	public abstract Direcciones calcularNuevaDireccion(Punto posicionYo,
+			Punto posicionEl, Direcciones dirActual, Tablero tablero);
 	
-	protected ArrayList<Movimiento> movimientosPosibles(Punto posicionYo, Tablero tablero){
+	protected ArrayList<Direcciones> direccionesPosibles(Punto posicionYo, Tablero tablero){
 		
-		ArrayList<Movimiento> movPosibles = new ArrayList<Movimiento>();
-		Punto posicion;
+		ArrayList<Direcciones> dirPosibles = new ArrayList<Direcciones>();
 		
-		//Agregar a movPosibles los movimientos que correspondan
-		probarDerecha(posicionYo, tablero, movPosibles);
-		probarIzquierda(posicionYo, tablero, movPosibles);
-		probarAbajo(posicionYo, tablero, movPosibles);
-		probarArriba(posicionYo, tablero, movPosibles);
-		return movPosibles;
+		//Agregar a dirPosibles las direcciones que correspondan
+		probarDerecha(posicionYo, tablero, dirPosibles);
+		probarIzquierda(posicionYo, tablero, dirPosibles);
+		probarAbajo(posicionYo, tablero, dirPosibles);
+		probarArriba(posicionYo, tablero, dirPosibles);
+		return dirPosibles;
 		
 	}
 	
-	protected boolean puedeDoblar(Movimiento movActual,
-			ArrayList<Movimiento> movPosibles){
+	protected boolean puedeDoblar(Direcciones dirActual,
+			ArrayList<Direcciones> dirPosibles){
 		
 		boolean puedeDoblar = false;
-		Movimiento unaPosibilidad;
-		Iterator<Movimiento> i = movPosibles.iterator();
+		Direcciones unaPosibilidad;
+		Iterator<Direcciones> i = dirPosibles.iterator();
 		
 		while (i.hasNext()){
 			unaPosibilidad = i.next();
-			if ( (unaPosibilidad == movActual.menosNoventaAntiHorario())
-				|| (unaPosibilidad == movActual.masNoventaAntiHorario()) )
+			if ( (unaPosibilidad == dirActual.menosNoventaAntiHorario())
+				|| (unaPosibilidad == dirActual.masNoventaAntiHorario()) )
 				puedeDoblar = true;
 		}
 		return puedeDoblar;
@@ -42,43 +41,55 @@ public abstract class Estrategia {
 	}
 
 	private void probarArriba(Punto posicionYo, Tablero tablero,
-			ArrayList<Movimiento> movPosibles) {
+			ArrayList<Direcciones> dirPosibles) {
+		
 		Punto posicion;
+		
 		posicion = posicionYo;
 		posicion.disminuirY();
 		if (posicion.x() >= 0)
 			if(tablero.getCasillero(posicion).casilleroHabilitado())
-				movPosibles.add(Movimiento.ARRIBA);
+				dirPosibles.add(Direcciones.ARRIBA);
+		
 	}
 
 	private void probarAbajo(Punto posicionYo, Tablero tablero,
-			ArrayList<Movimiento> movPosibles) {
+			ArrayList<Direcciones> dirPosibles) {
+		
 		Punto posicion;
+		
 		posicion = posicionYo;
 		posicion.aumentarY();
 		if (posicion.x() <= tablero.getMaxPosY())
 			if(tablero.getCasillero(posicion).casilleroHabilitado())
-				movPosibles.add(Movimiento.ABAJO);
+				dirPosibles.add(Direcciones.ABAJO);
+		
 	}
 
 	private void probarIzquierda(Punto posicionYo, Tablero tablero,
-			ArrayList<Movimiento> movPosibles) {
+			ArrayList<Direcciones> dirPosibles) {
+		
 		Punto posicion;
+		
 		posicion = posicionYo;
 		posicion.disminuirX();
 		if (posicion.x() >= 0)
 			if(tablero.getCasillero(posicion).casilleroHabilitado())
-				movPosibles.add(Movimiento.IZQUIERDA);
+				dirPosibles.add(Direcciones.IZQUIERDA);
+		
 	}
 
 	private void probarDerecha(Punto posicionYo, Tablero tablero,
-			ArrayList<Movimiento> movPosibles) {
+			ArrayList<Direcciones> dirPosibles) {
+		
 		Punto posicion;
+		
 		posicion = posicionYo;
 		posicion.aumentarX();
 		if (posicion.x() <= tablero.getMaxPosX())
 			if(tablero.getCasillero(posicion).casilleroHabilitado())
-				movPosibles.add(Movimiento.DERECHA);
+				dirPosibles.add(Direcciones.DERECHA);
+		
 	}
 	
 }
