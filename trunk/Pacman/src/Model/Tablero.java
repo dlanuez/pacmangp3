@@ -36,11 +36,11 @@ public class Tablero {
 		MAX_POS_Y = 8;
 		
 		matriz = new Casillero[MAX_POS_X][MAX_POS_Y];
+		fantasmas = new Fantasma[5];
 		
 		/*Modificar cada Fantasma() por el fantasma que corresponda*/
 		punto = new Punto(1,1);
-		fantasmas = new Fantasma[5];
-		/*TODO Modificar para que ande! Hay un error no sé en qué. JP*/
+		
 	 	try{
 			fantasmas[0] = new FantasmaRojo(punto, juego);
 			fantasmas[1] = new FantasmaRosa(punto,juego);
