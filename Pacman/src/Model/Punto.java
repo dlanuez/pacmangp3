@@ -17,14 +17,14 @@ public class Punto {
 	}
 	
 	public int x() {
-		return x;
+		return this.x;
 	}
 	public void x(int x) {
 		this.x = x;
 	}
 	
 	public int y() {
-		return y;
+		return this.y;
 	}
 	public void y(int y) {
 		this.y = y;

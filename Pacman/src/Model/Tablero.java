@@ -21,6 +21,7 @@ public class Tablero {
 	
 	public Tablero(){
 		Punto punto = new Punto(2,2);
+		
 		try {
 			pacman = new Pacman(punto, juego);
 		} catch (PosicionInvalidaException e1) {
@@ -30,9 +31,12 @@ public class Tablero {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		MAX_POS_X = 8;
 		MAX_POS_Y = 8;
+		
 		matriz = new Casillero[MAX_POS_X][MAX_POS_Y];
+		
 		/*Modificar cada Fantasma() por el fantasma que corresponda*/
 		punto = new Punto(1,1);
 		try{
@@ -62,16 +66,15 @@ public class Tablero {
 			}
 		}catch(PosicionInvalidaException e){
 			throw new PosicionInvalidaException();
-		}
-		
+		}		
 	}
 	
-	public final int getMaxPosX() {
+	public int getMaxPosX() {
 		return this.MAX_POS_X;
 	}
 	
-	public final int getMaxPosY() {
-		return this.MAX_POS_X;
+	public int getMaxPosY() {
+		return this.MAX_POS_Y;
 	}
 
 	public Pacman getPacman(){

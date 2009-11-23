@@ -9,18 +9,20 @@ public abstract class Viviente {
 	private boolean vivo;
 	private double velocidad;
 	private Punto posicion;
+	private Direcciones direccionActual;
 	private Juego juego;
 	private EstadoViviente estado;
 	private int tiempoRestanteDeEstado;
 	
-    /* Se inicializa el tiempo restante de estado en -1. La velocidad inicial y el EstadiViviente del objeto deben
+    /* Se inicializa el tiempo restante de estado en -1. La velocidad inicial y el EstadoViviente del objeto deben
 	 * inicializarse en el constructor de la clase descendiente.
 	 */
 	Viviente(Punto posicionInicial, Juego juego) throws PosicionInvalidaException{
-		this.setPosicion(posicionInicial);
+		this.posicion = posicionInicial;
 		this.juego = juego;
 		this.setVivo();
 		this.velocidad = 0;
+		this.direccionActual = null;
 		this.tiempoRestanteDeEstado = -1;
 	}
 	
@@ -29,29 +31,38 @@ public abstract class Viviente {
 	}
 	
 	public void irAIzquierda(){
-		if(this.posicion.x() > 0)
+		if(this.posicion.x() > 0){
 			this.posicion.disminuirX();
+			this.setDireccionActual(Direcciones.IZQUIERDA);
+		}
 	}
 	
 	public void irADerecha(){
-		if(this.posicion.x() < this.juego.getTablero().getMaxPosX())
+		if(this.posicion.x() < this.juego.getTablero().getMaxPosX()){
 			this.posicion.aumentarX();
-		
+			this.setDireccionActual(Direcciones.DERECHA);
+		}		
 	}
 	
 	public void irArriba(){
-		if(this.posicion.y() > 0)
-			this.posicion.disminuirY();		
+		if(this.posicion.y() > 0){
+			this.posicion.disminuirY();
+			this.setDireccionActual(Direcciones.ARRIBA);
+		}
 	}
 	
 	public void irAbajo(){
-		if(this.posicion.y() < this.juego.getTablero().getMaxPosY())
+		if(this.posicion.y() < this.juego.getTablero().getMaxPosY()){
 			this.posicion.aumentarY();
+			this.setDireccionActual(Direcciones.ABAJO);
+		}
 	}
 	
 	public void toggleState(){
-		this.estado.toggleState();
+		this.estado = estado.toggleState();
 	}
+		
+
 		
 	/* Con cada turno se decrementa el tiempo restante del estado. En caso de ser -1,
 	 * no sucede nada.
@@ -76,14 +87,32 @@ public abstract class Viviente {
 	
 		
 	public void setPosicion(Punto nuevaPosicion) throws PosicionInvalidaException{
-		if( (nuevaPosicion.x() >= 0) && (nuevaPosicion.y() >= 0)){
-			if(	(nuevaPosicion.x() <= this.juego.getTablero().getMaxPosX()) && 
-				(nuevaPosicion.y() <= this.juego.getTablero().getMaxPosY())){
+		if( this.validarPosicion(nuevaPosicion) ){
 				this.posicion.x(nuevaPosicion.x());
 				this.posicion.y(nuevaPosicion.y());
-			}
 		}
 		else throw new PosicionInvalidaException();
+	}
+	
+	private boolean validarPosicion(Punto posicion){
+		if( (posicion.x() >= 0) && (posicion.y() >= 0)){
+			if(	(posicion.x() <= this.juego.getTablero().getMaxPosX() ) && 
+				(posicion.y() <= this.juego.getTablero().getMaxPosY() ) )
+				return true;
+		}
+		return false;
+	}
+	
+	public Punto getPosicion(){
+		return this.posicion;
+	}
+	
+	public void setDireccionActual(Direcciones direccionActual){
+		this.direccionActual = direccionActual;
+	}
+	
+	public Direcciones getDireccionActual(){
+		return this.direccionActual;
 	}
 	
 	public void setEstado(EstadoViviente estado){
@@ -115,4 +144,13 @@ public abstract class Viviente {
 	public boolean estaVivo(){
 		return this.vivo;
 	}
+
+	public Juego getJuego() {
+		return juego;
+	}
+
+	public void setJuego(Juego juego) {
+		this.juego = juego;
+	}
+	
 }
