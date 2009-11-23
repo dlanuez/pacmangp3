@@ -68,10 +68,9 @@ public abstract class Viviente {
 		
 	/* Con cada turno se decrementa el tiempo restante del estado. En caso de ser -1,
 	 * no sucede nada.
-	 */
-	
+	 */	
 	private void decrementarTiempoRestanteDeEstado(){
-		if(this.tiempoRestanteDeEstado > 0) this.tiempoRestanteDeEstado =- 1;
+		if(this.tiempoRestanteDeEstado > 0) this.tiempoRestanteDeEstado--;
 		
 		if(this.tiempoRestanteDeEstado == 0){
 			this.toggleState();
