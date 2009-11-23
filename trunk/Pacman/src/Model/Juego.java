@@ -11,7 +11,7 @@ public class Juego {
 	}
 
 	public Tablero getTablero() {
-		return tablero;
+		return this.tablero;
 	}
 
 	public Jugador getJugador() {

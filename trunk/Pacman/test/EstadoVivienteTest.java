@@ -8,15 +8,25 @@ public class EstadoVivienteTest extends TestCase {
 		super.setUp();
 	}
 
-	public void testSetValue() {
-		EstadoViviente miEstado = null;
-		miEstado.setValue(EstadoViviente.PRESA);
-		fail("Not yet implemented");
+	public void testToggleState() {
+		EstadoViviente miEstado;
+		
+		miEstado = EstadoViviente.PRESA;
+		
+		assertTrue(miEstado == EstadoViviente.PRESA);
+		
+		miEstado.toggleState();
+		assertEquals(EstadoViviente.CAZADOR, miEstado.toggleState());
+		
+		
+		miEstado = EstadoViviente.CAZADOR;
+		
+		assertTrue(miEstado == EstadoViviente.CAZADOR);
+		
+		miEstado.toggleState();
+		assertEquals(EstadoViviente.PRESA, miEstado.toggleState());
 		
 	}
-
-	public void testToggleState() {
-		fail("Not yet implemented");
-	}
-
+	
+	
 }
