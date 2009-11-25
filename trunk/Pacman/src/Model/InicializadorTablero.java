@@ -19,14 +19,15 @@ public class InicializadorTablero {
 	private Casillero casilleros[][];
 	private Juego juego;
 	
-	public InicializadorTablero(String archivo, Juego juego){
+	public InicializadorTablero(String archivo, Juego juego, int maxX, int maxY){
 		this.archivo = new File(archivo);
 		this.juego = juego;
-		casilleros = new Casillero[2][2];
+		casilleros = new Casillero[maxX][maxY];
 	}
 	
 	public Casillero[][] generarTablero(){
-		int posX,posY, itemValor;
+		int posX,posY;
+		String itemValor;
 
 		try{
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -43,7 +44,7 @@ public class InicializadorTablero {
 					NodeList item = getXmlTag(elemento, "item");
 					posX = convertirAEntero((Node)posicionX.item(0)) - 1;
 					posY = convertirAEntero((Node)posicionY.item(0)) - 1;	
-					itemValor = convertirAEntero((Node)item.item(0));					
+					itemValor = (String)item.item(0).getNodeValue();					
 					casilleros[posX][posY] = getTipoCasillero(itemValor);
 				}
 			}
@@ -57,18 +58,22 @@ public class InicializadorTablero {
 		return casilleros;
 	}
 
-	private Casillero getTipoCasillero(int item) {
+	private Casillero getTipoCasillero(String item) {
 		Casillero casillero;
-		if(item == 1){
+		if(item.equals("1")){
 			casillero = new Casillero(EstadoCasillero.PISO, new Bolita(this.juego));
 			return casillero;
 		}
-		if(item == 2){
+		if(item.equals("2")){
 			casillero = new Casillero(EstadoCasillero.PISO, new Pastilla(this.juego,50));
 			return casillero;
 		}
-		if(item == 0){
+		if(item.equals("P")){
 			casillero = new Casillero(EstadoCasillero.PARED, null);
+			return casillero;
+		}
+		if(item.equals(" ")){
+			casillero = new Casillero(EstadoCasillero.PISO, null);
 			return casillero;
 		}
 		return null;

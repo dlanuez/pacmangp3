@@ -11,7 +11,8 @@ import Model.excepciones.PosicionInvalidaException;
 import Model.excepciones.VelocidadInvalidaException;
 
 public class Tablero {
-	
+	private String nivel;
+	private int cantidadDeBolitas;
 	private final int MAX_POS_X;
 	private final int MAX_POS_Y;
 	private Casillero matriz[][];
@@ -19,7 +20,26 @@ public class Tablero {
 	private Pacman pacman;
 	private Juego juego;
 	
-	public Tablero(){
+	public Tablero(String nivel, Juego juego){
+		this.juego = juego;
+		MAX_POS_X = 16;
+		MAX_POS_Y = 16;
+		this.nivel = nivel;
+		this.cantidadDeBolitas = 0;
+	}
+	
+	public Tablero(String nivel, Juego juego, int maxX, int maxY){
+		this.juego=juego;
+		MAX_POS_X = maxX;
+		MAX_POS_Y = maxY;
+		this.nivel = nivel;
+		this.cantidadDeBolitas = 0;
+	}
+
+	public void inicializar() {
+		InicializadorTablero inicializador = new InicializadorTablero(nivel, juego, MAX_POS_X, MAX_POS_Y);
+		matriz = inicializador.generarTablero();
+		this.cantidadDeBolitas = calcularCantidadDeBolitas();
 		Punto punto = new Punto(2,2);
 		
 		try {
@@ -32,13 +52,9 @@ public class Tablero {
 			e.printStackTrace();
 		}
 		
-		MAX_POS_X = 8;
-		MAX_POS_Y = 8;
 		
-		matriz = new Casillero[MAX_POS_X][MAX_POS_Y];
 		fantasmas = new Fantasma[5];
-		
-		/*Modificar cada Fantasma() por el fantasma que corresponda*/
+				
 		punto = new Punto(1,1);
 		
 	 	try{
@@ -54,6 +70,7 @@ public class Tablero {
 		}
 	}
 	
+
 	public Casillero getCasillero(Punto punto){
 		return matriz[punto.x()][punto.y()];
 	}
@@ -91,5 +108,25 @@ public class Tablero {
 	
 	public Fantasma getFantasma(int posicion){
 		return fantasmas[posicion];
+	}
+	
+
+	public void decrementarContadorBolitas(){
+		this.cantidadDeBolitas--;
+	}
+
+	public int getCantidadDeBolitas() {
+		return cantidadDeBolitas;
+	}
+	
+	private int calcularCantidadDeBolitas() {
+		for(int i = 0; i < MAX_POS_X; i++){
+			for(int k = 0; k < MAX_POS_Y; k++){
+				if(matriz[i][k].getItem() != null){
+					this.cantidadDeBolitas++;
+				}
+			}
+		}
+		return 0;
 	}
 }
