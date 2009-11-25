@@ -7,6 +7,8 @@ package Model;
  * 
  *******************************************************/
 
+import java.util.ArrayList;
+
 import Model.excepciones.PosicionInvalidaException;
 import Model.excepciones.VelocidadInvalidaException;
 
@@ -54,7 +56,7 @@ public class Tablero {
 		
 		
 		fantasmas = new Fantasma[5];
-				
+		ArrayList<Punto> listaDePuntos = averiguarPuntosFantasma();
 		punto = new Punto(1,1);
 		
 	 	try{
@@ -70,6 +72,19 @@ public class Tablero {
 		}
 	}
 	
+
+	private ArrayList<Punto> averiguarPuntosFantasma() {
+		ArrayList<Punto> listaAuxiliar = new ArrayList<Punto>();
+		for(int i = 0; i < MAX_POS_X; i++){
+			for(int k = 0; k < MAX_POS_Y; k++){
+				if((matriz[i][k].casilleroHabilitado()) && (matriz[i][k].getItem() == null)){
+					Punto punto = new Punto(i,k);
+					listaAuxiliar.add(punto);
+				}
+			}
+		}
+		return null;
+	}
 
 	public Casillero getCasillero(Punto punto){
 		return matriz[punto.x()][punto.y()];
