@@ -7,7 +7,7 @@ public class Juego {
 		
 	public Juego() {
 		this.jugador = new Jugador();
-		this.tablero = new Tablero();
+		this.tablero = new Tablero("nivel1.xml", this);
 	}
 
 	public Tablero getTablero() {
