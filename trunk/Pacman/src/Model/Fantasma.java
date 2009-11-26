@@ -31,24 +31,6 @@ public class Fantasma extends Viviente {
 		//return Cabu;
 	}
 		
-	private void irEnDireccion(Direcciones direccion){
-		
-		switch(direccion){
-		case ARRIBA:
-			this.irArriba();
-			break;				
-		case ABAJO:
-			this.irAbajo();
-			break;
-		case IZQUIERDA:
-			this.irAIzquierda();
-			break;
-		case DERECHA:
-			this.irADerecha();
-			break;
-		}		
-	}
-
 	@Override
 	public void vivir(){
 		if (!this.estaVivo()){
@@ -70,6 +52,24 @@ public class Fantasma extends Viviente {
 		
 	}
 
+	private void irEnDireccion(Direcciones direccion){
+			
+			switch(direccion){
+			case ARRIBA:
+				this.irArriba();
+				break;				
+			case ABAJO:
+				this.irAbajo();
+				break;
+			case IZQUIERDA:
+				this.irAIzquierda();
+				break;
+			case DERECHA:
+				this.irADerecha();
+				break;
+			}		
+		}
+	
 	private void encontrePacman() {
 		
 		if(this.getEstado() == EstadoViviente.CAZADOR){
