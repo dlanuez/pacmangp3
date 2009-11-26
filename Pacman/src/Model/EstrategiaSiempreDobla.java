@@ -1,6 +1,8 @@
 package Model;
 
-public class EstrategiaEscapadora extends EstrategiaUnoAUno {
+public class EstrategiaSiempreDobla extends Estrategia {
+	
+	
 
 	@Override
 	public Direcciones calcularNuevaDireccion(Punto posicionYo,
@@ -15,9 +17,7 @@ public class EstrategiaEscapadora extends EstrategiaUnoAUno {
 		if (tablero == null)
 			throw new NullPointerException();
 		
-		return calcularNuevaDireccion(posicionYo, posicionEl, dirActual,
-				tablero, EstadoViviente.PRESA);
-		
+		return null;
 	}
 
 }
