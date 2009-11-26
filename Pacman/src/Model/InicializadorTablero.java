@@ -73,10 +73,10 @@ public class InicializadorTablero {
 			casillero = new Casillero(EstadoCasillero.PISO, new Pastilla(this.juego,50));
 			return casillero;
 		}else if(item.equals("P")){
-			casillero = new Casillero(EstadoCasillero.PARED, null);
+			casillero = new Casillero(EstadoCasillero.PARED, new ItemNulo());
 			return casillero;
 		}else if(item.equals(" ")){
-			casillero = new Casillero(EstadoCasillero.PISO, null);
+			casillero = new Casillero(EstadoCasillero.PISO, new ItemNulo());
 			return casillero;
 		}else{
 			throw new TipoDeCasilleroInexistenteException();
