@@ -1,5 +1,4 @@
 import Model.*;
-import Model.excepciones.EstadoNoInicializadoExeption;
 import Model.excepciones.PosicionInvalidaException;
 import Model.excepciones.VelocidadInvalidaException;
 import Model.excepciones.tiempoDeEstadoInvalidoException;
