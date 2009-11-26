@@ -74,6 +74,7 @@ public class Fantasma extends Viviente {
 		
 		if(this.getEstado() == EstadoViviente.CAZADOR){
 			this.getJuego().pacmanComido();
+			this.getJuego().getTablero().getPacman().fenecer();
 			try {
 				this.getJuego().getTablero().resetearPosiciones();
 			} catch (PosicionInvalidaException e) {

@@ -86,10 +86,6 @@ public class Pacman extends Viviente {
 			}
 		return null;
 	}
-
-	public Punto getPosicionDeRespawn(){
-		return this.posicionDeRespawn;
-	}
 	
 	private boolean validarMovimiento(Punto posicionNueva) {
 		if (this.getJuego().getTablero().getCasillero(posicionNueva)
@@ -109,6 +105,15 @@ public class Pacman extends Viviente {
 		}
 		this.setEstado(EstadoViviente.PRESA);
 
+	}
+	
+	public void reEspawnear(){
+		try {
+			this.setPosicion(this.posicionDeRespawn);
+		} catch (PosicionInvalidaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
