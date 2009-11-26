@@ -31,29 +31,29 @@ public abstract class Viviente {
 	}
 	
 	public void irAIzquierda(){
-		if(this.posicion.x() > 0){
-			this.posicion.disminuirX();
+		if(this.posicion.y() > 0){
+			this.posicion.disminuirY();
 			this.setDireccionActual(Direcciones.IZQUIERDA);
 		}
 	}
 	
 	public void irADerecha(){
-		if(this.posicion.x() < this.juego.getTablero().getMaxPosX()){
-			this.posicion.aumentarX();
+		if(this.posicion.y() < this.juego.getTablero().getMaxPosY()){
+			this.posicion.aumentarY();
 			this.setDireccionActual(Direcciones.DERECHA);
 		}		
 	}
 	
 	public void irArriba(){
-		if(this.posicion.y() > 0){
-			this.posicion.disminuirY();
+		if(this.posicion.x() > 0){
+			this.posicion.disminuirX();
 			this.setDireccionActual(Direcciones.ARRIBA);
 		}
 	}
 	
 	public void irAbajo(){
-		if(this.posicion.y() < this.juego.getTablero().getMaxPosY()){
-			this.posicion.aumentarY();
+		if(this.posicion.x() < this.juego.getTablero().getMaxPosX()){
+			this.posicion.aumentarX();
 			this.setDireccionActual(Direcciones.ABAJO);
 		}
 	}

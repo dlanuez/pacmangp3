@@ -45,22 +45,22 @@ public class VivienteTest extends TestCase {
 
 	public void testIrAIzquierda() {
 		viviente.irAIzquierda();
-		assertEquals(viviente.getPosicion(), new Punto(0,1));
+		assertEquals(viviente.getPosicion(), new Punto(1,0));
 		assertEquals(viviente.getDireccionActual(), Direcciones.IZQUIERDA);
 		//si es cero no debe poder moverse más a la izquierda
 		viviente.irAIzquierda();
-		assertEquals(viviente.getPosicion(), new Punto(0,1));
+		assertEquals(viviente.getPosicion(), new Punto(1,0));
 		assertEquals(viviente.getDireccionActual(), Direcciones.IZQUIERDA);
 	}
 		
 	public void testIrADerecha() {
 		viviente.irADerecha();
-		assertEquals(viviente.getPosicion(), new Punto(2,1));
+		assertEquals(viviente.getPosicion(), new Punto(1,2));
 		assertEquals(viviente.getDireccionActual(), Direcciones.DERECHA);
 		
 		//si está en el límite derecho del tablero, no debe poder moverse más a la derecha
 		try {
-			viviente.setPosicion(viviente.getJuego().getTablero().getMaxPosX(), 1);
+			viviente.setPosicion(1, viviente.getJuego().getTablero().getMaxPosY());
 			//la última dirección debe seguir almacenada.
 			assertEquals(viviente.getDireccionActual(), Direcciones.DERECHA); 
 		} 
@@ -69,28 +69,28 @@ public class VivienteTest extends TestCase {
 		}
 		
 		viviente.irADerecha();
-		assertEquals(viviente.getPosicion(), new Punto(viviente.getJuego().getTablero().getMaxPosX(),1));
+		assertEquals(viviente.getPosicion(), new Punto(1,viviente.getJuego().getTablero().getMaxPosY()));
 		assertEquals(viviente.getDireccionActual(), Direcciones.DERECHA); 
 	}
 
 	public void testIrArriba() {
 		viviente.irArriba();
-		assertEquals(viviente.getPosicion(), new Punto(1,0));
+		assertEquals(viviente.getPosicion(), new Punto(0,1));
 		assertEquals(viviente.getDireccionActual(), Direcciones.ARRIBA); 
 		//si es cero no debe poder moverse más a hacia arriba
 		viviente.irArriba();
-		assertEquals(viviente.getPosicion(), new Punto(1,0));
+		assertEquals(viviente.getPosicion(), new Punto(0,1));
 		assertEquals(viviente.getDireccionActual(), Direcciones.ARRIBA); 
 	}
 
 	public void testIrAbajo() {
 		viviente.irAbajo();
-		assertEquals(viviente.getPosicion(), new Punto(1,2));
+		assertEquals(viviente.getPosicion(), new Punto(2,1));
 		assertEquals(viviente.getDireccionActual(), Direcciones.ABAJO); 
 		
 		//si está en el límite inferior del tablero, no debe poder moverse más hacia abajo
 		try {
-			viviente.setPosicion(1, viviente.getJuego().getTablero().getMaxPosY());
+			viviente.setPosicion(viviente.getJuego().getTablero().getMaxPosX(), 1);
 			//la última dirección debe seguir almacenada.
 			assertEquals(viviente.getDireccionActual(), Direcciones.ABAJO); 
 		} 
@@ -99,7 +99,7 @@ public class VivienteTest extends TestCase {
 		}
 		
 		viviente.irAbajo();
-		assertEquals(viviente.getPosicion(), new Punto(1, viviente.getJuego().getTablero().getMaxPosY()));
+		assertEquals(viviente.getPosicion(), new Punto(viviente.getJuego().getTablero().getMaxPosX(), 1));
 		assertEquals(viviente.getDireccionActual(), Direcciones.ABAJO); 
 	}
 
