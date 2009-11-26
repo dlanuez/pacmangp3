@@ -1,7 +1,5 @@
 import Model.*;
 import Model.excepciones.PosicionInvalidaException;
-import Model.excepciones.VelocidadInvalidaException;
-import Model.excepciones.tiempoDeEstadoInvalidoException;
 import junit.framework.TestCase;
 
 
@@ -20,294 +18,6 @@ public class PacmanTest extends TestCase {
 		this.pacman.setEstado(null);
 		this.pacman.setPosicion(this.punto);
 	}
-
-	// Controla que todo se inicialice correctamente
-	public void testPacmanOK() {
-		assertTrue(pacman.estaVivo());
-		assertTrue(pacman.getVelocidad() == 1);
-		assertTrue(pacman.getDireccionActual() == Direcciones.IZQUIERDA);
-		assertTrue(pacman.getJuego() == this.juego);
-		assertEquals(pacman.getPosicion(), this.punto);
-	}
-	
-	// Controla que si se inicializa un objeto con una posición inválida, se lance una exepción
-	public void testPacmanERROR() {		
-		try{
-			pacman = new Pacman(new Punto(-1,0), null);
-		}
-		catch(PosicionInvalidaException e){
-			assertTrue(true);
-		}
-		catch(VelocidadInvalidaException e){
-			fail("La velocidad con la que se inicializa el Pacman debería ser válida.");
-		}
-				
-	}
-
-	public void testIrAIzquierda() {
-		pacman.irAIzquierda();
-		assertEquals(pacman.getPosicion(), new Punto(1,0));
-		assertEquals(pacman.getDireccionActual(), Direcciones.IZQUIERDA);
-		//si es cero no debe poder moverse más a la izquierda
-		pacman.irAIzquierda();
-		assertEquals(pacman.getPosicion(), new Punto(1,0));
-		assertEquals(pacman.getDireccionActual(), Direcciones.IZQUIERDA);
-	}
-		
-	public void testIrADerecha() {
-		try {
-			pacman.setPosicion(new Punto(2,1));
-		} catch (PosicionInvalidaException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		pacman.irADerecha();
-		assertEquals(pacman.getPosicion(), new Punto(2,2));
-		assertEquals(pacman.getDireccionActual(), Direcciones.DERECHA);
-		
-		//si está en el límite derecho del tablero, no debe poder moverse más a la derecha
-		try {
-			pacman.setPosicion(2, pacman.getJuego().getTablero().getMaxPosY());
-			//la última dirección debe seguir almacenada.
-			assertEquals(pacman.getDireccionActual(), Direcciones.DERECHA); 
-		} 
-		catch (PosicionInvalidaException e) {
-			fail("El límite en X del tablero se considera una posición válida.");
-		}
-		
-		pacman.irADerecha();
-		assertEquals(pacman.getPosicion(), new Punto(2,pacman.getJuego().getTablero().getMaxPosY()));
-		assertEquals(pacman.getDireccionActual(), Direcciones.DERECHA); 
-	}
-
-	public void testIrArriba() {
-		
-		pacman.irArriba();
-		assertEquals(pacman.getPosicion(), new Punto(0,1));
-		assertEquals(pacman.getDireccionActual(), Direcciones.ARRIBA); 
-		//si es cero no debe poder moverse más a hacia arriba
-		pacman.irArriba();
-		assertEquals(pacman.getPosicion(), new Punto(0,1));
-		assertEquals(pacman.getDireccionActual(), Direcciones.ARRIBA); 
-	}
-
-	public void testIrAbajo() {
-		pacman.irAbajo();
-		assertEquals(pacman.getPosicion(), new Punto(2,1));
-		assertEquals(pacman.getDireccionActual(), Direcciones.ABAJO); 
-		
-		//si está en el límite inferior del tablero, no debe poder moverse más hacia abajo
-		try {
-			pacman.setPosicion(pacman.getJuego().getTablero().getMaxPosX(), 1);
-			//la última dirección debe seguir almacenada.
-			assertEquals(pacman.getDireccionActual(), Direcciones.ABAJO); 
-		} 
-		catch (PosicionInvalidaException e) {
-			fail("El límite en X del tablero se considera una posición válida.");
-		}
-		
-		pacman.irAbajo();
-		assertEquals(pacman.getPosicion(), new Punto(pacman.getJuego().getTablero().getMaxPosX(), 1));
-		assertEquals(pacman.getDireccionActual(), Direcciones.ABAJO); 
-	}
-
-	// Verifica que se lance una excepción cuando el estado no esta inicializado
-	/*public void testToggleStateERROR() {
-		try{
-			viviente.toggleState();
-			fail("El estado no estaba inicializado y no lanza excepción.");
-		}
-		catch(EstadoNoInicializadoExeption e){
-			assertTrue(true);
-		}
-	}
-
-	public void testToggleStateOK() {
-		viviente.setEstado(EstadoViviente.PRESA);
-		
-		viviente.toggleState();
-		assertTrue(viviente.getEstado() == EstadoViviente.CAZADOR);
-		viviente.toggleState();
-		assertTrue(viviente.getEstado() == EstadoViviente.PRESA);
-	}*/
-	
-	public void testCambiarEstadoERROR(){
-		pacman.setEstado(EstadoViviente.PRESA);
-		
-		try{
-			pacman.cambiarEstado(0);
-			fail("El tiempo de estado no es válido, y no arroja excepción.");
-		}
-		catch(tiempoDeEstadoInvalidoException e){
-			assertTrue(true);
-		}
-		try{
-			pacman.cambiarEstado(-1);
-			fail("El tiempo de estado no es válido, y no arroja excepción.");
-		}
-		catch(tiempoDeEstadoInvalidoException e){
-			assertTrue(true);
-		}
-		
-	}
-	
-	/*public void testCambiarEstadoOK(){
-		pacman.setEstado(EstadoViviente.PRESA);
-		
-		try{
-			pacman.cambiarEstado(10);
-		}
-		catch(tiempoDeEstadoInvalidoException e){
-			fail("El tiempo de estado es válido y arroja excepción.");
-		}
-		
-		assertTrue(pacman.getEstado() == EstadoViviente.CAZADOR);
-		
-		for( int i = 10; i > 1; i--){
-			pacman.vivir();
-			assertTrue(pacman.getEstado() == EstadoViviente.CAZADOR);
-		}
-		
-		pacman.vivir();
-		assertTrue(pacman.getEstado() == EstadoViviente.PRESA);
-		pacman.vivir();
-		assertTrue(pacman.getEstado() == EstadoViviente.PRESA);
-	}*/
-
-	public void testSetPosicionOK() {
-		try{
-			pacman.setPosicion(new Punto(2,2));
-			pacman.setPosicion(new Punto(0,0));
-			pacman.setPosicion(new Punto(pacman.getJuego().getTablero().getMaxPosX(),0));
-			pacman.setPosicion(new Punto(0,pacman.getJuego().getTablero().getMaxPosY()));
-			pacman.setPosicion(new Punto(pacman.getJuego().getTablero().getMaxPosX(),
-										   pacman.getJuego().getTablero().getMaxPosY()));
-		}
-		catch(PosicionInvalidaException e){
-			fail("Las posiciones son válidas, y arroja una excepción de posición inválida");
-		}
-	}
-	
-
-	public void testSetPosicionERROR() {
-		try{
-			pacman.setPosicion(new Punto(-1,0));
-			fail("La posición es inválida, debería arrojar una excepción.");
-		}
-		catch(PosicionInvalidaException e){
-			assertTrue(true);
-		}
-		try{
-			pacman.setPosicion(new Punto(0,-1));
-			fail("La posición es inválida, debería arrojar una excepción.");
-		}
-		catch(PosicionInvalidaException e){
-			assertTrue(true);
-		}
-		try{
-			pacman.setPosicion(new Punto(pacman.getJuego().getTablero().getMaxPosX()+1,0));
-			fail("La posición es inválida, debería arrojar una excepción.");
-		}
-		catch(PosicionInvalidaException e){
-			assertTrue(true);
-		}
-		try{
-			pacman.setPosicion(new Punto(0,pacman.getJuego().getTablero().getMaxPosY()+1));
-			fail("La posición es inválida, debería arrojar una excepción.");
-		}
-		catch(PosicionInvalidaException e){
-			assertTrue(true);
-		}
-	}
-
-	public void testSetPosicionINT_OK(){
-		try{
-			pacman.setPosicion(2,2);
-			pacman.setPosicion(0,0);
-			pacman.setPosicion(pacman.getJuego().getTablero().getMaxPosX(),0);
-			pacman.setPosicion(0,pacman.getJuego().getTablero().getMaxPosY());
-			pacman.setPosicion(pacman.getJuego().getTablero().getMaxPosX(),
-										   pacman.getJuego().getTablero().getMaxPosY());
-		}
-		catch(PosicionInvalidaException e){
-			fail("Las posiciones son válidas, y arroja una excepción de posición inválida");
-		}
-	}
-	
-	public void testSetPosicionINT_ERROR(){
-		try{
-			pacman.setPosicion(-1,0);
-			fail("La posición es inválida, debería arrojar una excepción.");
-		}
-		catch(PosicionInvalidaException e){
-			assertTrue(true);
-		}
-		try{
-			pacman.setPosicion(0,-1);
-			fail("La posición es inválida, debería arrojar una excepción.");
-		}
-		catch(PosicionInvalidaException e){
-			assertTrue(true);
-		}
-		try{
-			pacman.setPosicion(pacman.getJuego().getTablero().getMaxPosX()+1,0);
-			fail("La posición es inválida, debería arrojar una excepción.");
-		}
-		catch(PosicionInvalidaException e){
-			assertTrue(true);
-		}
-		try{
-			pacman.setPosicion(0,pacman.getJuego().getTablero().getMaxPosY()+1);
-			fail("La posición es inválida, debería arrojar una excepción.");
-		}
-		catch(PosicionInvalidaException e){
-			assertTrue(true);
-		}
-	}
-	
-	public void testSetEstado() {
-		pacman.setEstado(EstadoViviente.CAZADOR);
-		assertTrue(pacman.getEstado() == EstadoViviente.CAZADOR);
-		
-		pacman.setEstado(EstadoViviente.PRESA);
-		assertTrue(pacman.getEstado() == EstadoViviente.PRESA);
-		
-		pacman.setEstado(null);
-		assertTrue(pacman.getEstado() == null);
-	}
-
-	public void testSetVelocidadOK() {
-		try{
-			pacman.setVelocidad(2);
-			pacman.setVelocidad(0);
-			pacman.setVelocidad(5.31);
-		}
-		catch(VelocidadInvalidaException e){
-			fail("Las velocidades son válidas, y arroja una excepción de velocidad inválida");
-		}
-	}
-
-	public void testSetVelocidadERROR() {
-		try{
-			pacman.setVelocidad(-1);
-			fail("Debería arrojar una exepción: por convención las velocidades sólo pueden ser positivas o nulas.");
-		}
-		catch(VelocidadInvalidaException e){
-			assertTrue(true);
-		}
-	}
-	
-	public void testFenecer(){		
-		assertTrue(pacman.estaVivo() == true);
-		pacman.fenecer();
-		assertTrue(pacman.estaVivo() == false);		
-	}
-	
-	public void testSetVivo(){
-		pacman.fenecer();
-		pacman.setVivo();
-		assertTrue(pacman.estaVivo() == true);
-	}
 	
 	public void testVivir(){
 		Punto puntoAuxiliar = pacman.getPosicion();
@@ -324,6 +34,35 @@ public class PacmanTest extends TestCase {
 		assertFalse(pacman.estaVivo());		
 		pacman.vivir();
 		//Ahora pacman deberia reespawnearse a su posicion inicial
+		assertEquals(puntoAuxiliar, pacman.getPosicion());
+	}
+	
+	public void testRevivir(){
+		Punto puntoAuxiliar = pacman.getPosicion();
+		try {
+			pacman.setPosicion(new Punto(2,1));
+		} catch (PosicionInvalidaException e) {
+			// TODO Auto-generated catch block
+			fail("tiro excepcion");
+		}
+		pacman.fenecer();
+		assertFalse(pacman.estaVivo());
+		pacman.revivir();
+		assertTrue(pacman.estaVivo());
+		assertEquals(pacman.getEstado(), EstadoViviente.PRESA);
+		//Chequeo que se resetee la posicion
+		assertEquals(puntoAuxiliar, pacman.getPosicion());
+	}
+	
+	public void testReEspawnear(){
+		Punto puntoAuxiliar = pacman.getPosicion();
+		try {
+			pacman.setPosicion(new Punto(2,1));
+		} catch (PosicionInvalidaException e) {
+			// TODO Auto-generated catch block
+			fail("Tiro excepcion");
+		}
+		pacman.reEspawnear();
 		assertEquals(puntoAuxiliar, pacman.getPosicion());
 	}
 }
