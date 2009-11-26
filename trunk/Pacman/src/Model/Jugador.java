@@ -17,6 +17,7 @@ public class Jugador {
 		if(cantidadDeVidas > 0)
 			this.vidas = cantidadDeVidas;
 		else throw new cantidadDeVidasInvalidaExeption();
+		this.puntos = 0;
 	}
 	
 	//Le suma los puntos otorgados a los puntos del jugador.

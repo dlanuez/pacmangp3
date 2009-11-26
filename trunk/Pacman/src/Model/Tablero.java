@@ -42,7 +42,7 @@ public class Tablero {
 	public void inicializar() {
 		InicializadorTablero inicializador = new InicializadorTablero(nivel, juego, MAX_POS_X, MAX_POS_Y);
 		matriz = inicializador.generarTablero();
-		this.cantidadDeBolitas = calcularCantidadDeBolitas();
+		calcularCantidadDeBolitas();
 		Punto punto = new Punto(2,2);
 		
 		try {
@@ -135,7 +135,7 @@ public class Tablero {
 		return this.cueva;
 	}
 	
-	private int calcularCantidadDeBolitas() {
+	private void calcularCantidadDeBolitas() {
 		for(int i = 0; i < MAX_POS_X; i++){
 			for(int k = 0; k < MAX_POS_Y; k++){
 				if(matriz[i][k].getItem() != null){
@@ -143,7 +143,6 @@ public class Tablero {
 				}
 			}
 		}
-		return 0;
 	}
 	
 }
