@@ -25,8 +25,8 @@ public class Tablero {
 	
 	public Tablero(String nivel, Juego juego){
 		this.juego = juego;
-		MAX_POS_X = 16;
-		MAX_POS_Y = 16;
+		MAX_POS_X = 4;
+		MAX_POS_Y = 2;
 		this.nivel = nivel;
 		this.cantidadDeBolitas = 0;
 	}
@@ -75,7 +75,7 @@ public class Tablero {
 		ArrayList<Punto> puntoAuxiliar = new ArrayList<Punto>();
 		for(int i = 0; i < MAX_POS_X; i++){
 			for(int k = 0; k < MAX_POS_Y; k++){
-				if((matriz[i][k].casilleroHabilitado()) && (matriz[i][k].getItem() == null)){
+				if((matriz[i][k].casilleroHabilitado()) && (matriz[i][k].obtenerItem().getClass().getSimpleName().equals("ItemNulo"))){
 					puntoAuxiliar.add(new Punto(i,k));				
 				}
 			}
@@ -138,7 +138,7 @@ public class Tablero {
 	private void calcularCantidadDeBolitas() {
 		for(int i = 0; i < MAX_POS_X; i++){
 			for(int k = 0; k < MAX_POS_Y; k++){
-				if(matriz[i][k].getItem() != null){
+				if(!(matriz[i][k].obtenerItem().getClass().getSimpleName().equals("ItemNulo"))){
 					this.cantidadDeBolitas++;
 				}
 			}
