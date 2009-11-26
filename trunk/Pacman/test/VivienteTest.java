@@ -1,5 +1,4 @@
 import Model.*;
-import Model.excepciones.EstadoNoInicializadoExeption;
 import Model.excepciones.PosicionInvalidaException;
 import Model.excepciones.VelocidadInvalidaException;
 import Model.excepciones.tiempoDeEstadoInvalidoException;
@@ -16,6 +15,7 @@ public class VivienteTest extends TestCase {
 		super.setUp();
 		this.punto = new Punto(1,1);
 		this.juego = new Juego();
+		this.juego.getTablero().inicializar();
 		this.viviente = new Pacman(this.punto, this.juego);
 		this.viviente.setEstado(null);
 		this.juego.getTablero().inicializar();
