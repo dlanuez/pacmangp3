@@ -10,6 +10,7 @@ public class FantasmaVerde extends Fantasma {
 	public FantasmaVerde(Punto posicionInicial, Juego juego) throws PosicionInvalidaException, VelocidadInvalidaException {
 		super(posicionInicial, juego);
 		this.setVelocidad(1); //TODO poner una velocidad real.
+		this.setEstrategia(new EstrategiaPerseguidora());
 	}
 	
 	@Override
