@@ -19,9 +19,17 @@ public class Fantasma extends Viviente {
 		
 		Punto posicionPacman = this.getJuego().getTablero().getPacman().getPosicion();
 		
-		this.irEnDireccion(
-			this.estrategia.calcularNuevaDireccion(
-				this.getPosicion(), posicionPacman, this.getDireccionActual(), this.getJuego().getTablero()));
+		if (this.getEstado() == EstadoViviente.CAZADOR)
+			this.irEnDireccion(
+					this.estrategia.calcularNuevaDireccion( this.getPosicion(),
+									posicionPacman, this.getDireccionActual(),
+									this.getJuego().getTablero()));
+		else
+			this.irEnDireccion(
+					(new EstrategiaEscapadora()).calcularNuevaDireccion(
+								this.getPosicion(), posicionPacman,
+								this.getDireccionActual(),
+								this.getJuego().getTablero()));
 		
 		this.buscarPacman(posicionPacman);
 	}
@@ -133,6 +141,10 @@ public class Fantasma extends Viviente {
 		}
 		
 		return null;
+	}
+	
+	public void setEstrategia(Estrategia e){
+		this.estrategia = e;
 	}
 	
 }
