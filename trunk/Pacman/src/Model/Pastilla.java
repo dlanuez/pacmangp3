@@ -3,7 +3,7 @@ package Model;
 import Model.excepciones.tiempoDeEstadoInvalidoException;
 
 public class Pastilla extends Item {
-	private static final int cantidadDeFantasmas = 5;
+	
 	private int tiempoDeEstado;
 	private static int puntosOtorgados;
 
@@ -24,6 +24,7 @@ public class Pastilla extends Item {
 		this.getJuego().getJugador().sumarPuntos(Pastilla.puntosOtorgados);
 		this.getJuego().getTablero().decrementarContadorBolitas();
 		this.getJuego().getTablero().getPacman().cambiarEstado(this.tiempoDeEstado);
+		int cantidadDeFantasmas = this.getJuego().getTablero().getFantasmasArray().length;
 		for(int i = 0; i < cantidadDeFantasmas; i++)
 			this.getJuego().getTablero().getFantasma(i).cambiarEstado(this.tiempoDeEstado);
 	}

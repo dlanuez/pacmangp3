@@ -1,5 +1,7 @@
 package Model;
 
+import Model.excepciones.cantidadDeVidasInvalidaExeption;
+
 public class Jugador {
 	private int puntos;
 	private int vidas;
@@ -10,6 +12,13 @@ public class Jugador {
 		this.vidas = 3;
 	}
 		
+		
+	public Jugador(int cantidadDeVidas) throws cantidadDeVidasInvalidaExeption {
+		if(cantidadDeVidas > 0)
+			this.vidas = cantidadDeVidas;
+		else throw new cantidadDeVidasInvalidaExeption();
+	}
+	
 	//Le suma los puntos otorgados a los puntos del jugador.
 	public void sumarPuntos(int puntosOtorgados) {
 		this.puntos += puntosOtorgados;		
@@ -17,7 +26,7 @@ public class Jugador {
 	
 	//Le quita una vida al jugador y devuelve true si el jugador se quedo sin vidas.
 	public boolean restarVida(){
-		this.vidas --;
+		this.vidas--;
 		if (this.vidas <= 0){
 			return true;
 		}
