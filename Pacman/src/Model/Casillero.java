@@ -17,6 +17,9 @@ public class Casillero {
 	
 	//Devuelve el item que se encuentra en el casillero y convierte el item en itemNulo.
 	public Item getItem() {
+		if (this.item instanceof Fruta)
+			if (!((Fruta)this.item).activado())
+				return new ItemNulo();
 		Item itemAux = this.item;
 		this.item = new ItemNulo();
 		return itemAux;
