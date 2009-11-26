@@ -95,6 +95,7 @@ public class Tablero {
 			int i = 0;
 			for (Fantasma f : fantasmas){				
 				f.setPosicion(cueva.get(i));
+				f.revivir();
 				i++;
 			}
 		}catch(PosicionInvalidaException e){
