@@ -7,6 +7,8 @@ package Model;
  * 
  *******************************************************/
 
+import java.util.ArrayList;
+
 import Model.excepciones.PosicionInvalidaException;
 import Model.excepciones.VelocidadInvalidaException;
 
@@ -19,6 +21,7 @@ public class Tablero {
 	private Fantasma fantasmas[];
 	private Pacman pacman;
 	private Juego juego;
+	private ArrayList<Punto> cueva;
 	
 	public Tablero(String nivel, Juego juego){
 		this.juego = juego;
@@ -44,24 +47,22 @@ public class Tablero {
 		
 		try {
 			pacman = new Pacman(punto, juego);
-		} catch (PosicionInvalidaException e1) {
-			// TODO Auto-generated catch block
+		} catch (PosicionInvalidaException e1) {			
 			e1.printStackTrace();
 		} catch (VelocidadInvalidaException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		
 		fantasmas = new Fantasma[5];
-		Punto puntoInicialFantasma = averiguarPuntosFantasma();		
+		cueva = averiguarPuntosFantasma();		
 		
 	 	try{
-			fantasmas[0] = new FantasmaRojo(puntoInicialFantasma, juego);
-			fantasmas[1] = new FantasmaRosa(puntoInicialFantasma,juego);
-			fantasmas[2] = new FantasmaNaranja(puntoInicialFantasma, juego);
-			fantasmas[3] = new FantasmaAzul(puntoInicialFantasma, juego);
-			fantasmas[4] = new FantasmaVerde(puntoInicialFantasma, juego);
+			fantasmas[0] = new FantasmaRojo(this.cueva.get(0), juego);
+			fantasmas[1] = new FantasmaRosa(this.cueva.get(1),juego);
+			fantasmas[2] = new FantasmaNaranja(this.cueva.get(2), juego);
+			fantasmas[3] = new FantasmaAzul(this.cueva.get(3), juego);
+			fantasmas[4] = new FantasmaVerde(this.cueva.get(4), juego);
 		}catch(PosicionInvalidaException e){
 			e.printStackTrace();
 		} catch (VelocidadInvalidaException e) {
@@ -70,12 +71,12 @@ public class Tablero {
 	}
 	
 
-	private Punto averiguarPuntosFantasma() {
-		Punto puntoAuxiliar = null;
+	private ArrayList<Punto> averiguarPuntosFantasma() {
+		ArrayList<Punto> puntoAuxiliar = new ArrayList<Punto>();
 		for(int i = 0; i < MAX_POS_X; i++){
 			for(int k = 0; k < MAX_POS_Y; k++){
 				if((matriz[i][k].casilleroHabilitado()) && (matriz[i][k].getItem() == null)){
-					puntoAuxiliar = new Punto(i,k);				
+					puntoAuxiliar.add(new Punto(i,k));				
 				}
 			}
 		}
@@ -89,12 +90,12 @@ public class Tablero {
 	public void resetearPosiciones() throws PosicionInvalidaException{		
 		try{
 			final Punto punto;
-			punto = new Punto(5,5);
+			punto = new Punto(2,2);
 			pacman.setPosicion(punto);
-			punto.x(4);
-			punto.y(4);
-			for (Fantasma f : fantasmas){
-				f.setPosicion(punto);
+			int i = 0;
+			for (Fantasma f : fantasmas){				
+				f.setPosicion(cueva.get(i));
+				i++;
 			}
 		}catch(PosicionInvalidaException e){
 			throw new PosicionInvalidaException();
@@ -130,6 +131,10 @@ public class Tablero {
 		return cantidadDeBolitas;
 	}
 	
+	public ArrayList<Punto> getPosicionesCueva(){
+		return this.cueva;
+	}
+	
 	private int calcularCantidadDeBolitas() {
 		for(int i = 0; i < MAX_POS_X; i++){
 			for(int k = 0; k < MAX_POS_Y; k++){
@@ -140,4 +145,5 @@ public class Tablero {
 		}
 		return 0;
 	}
+	
 }

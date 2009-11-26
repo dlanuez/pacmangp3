@@ -3,6 +3,7 @@ package Model;
 import Model.Bolita;
 import Model.Pastilla;
 import Model.excepciones.ArchivoInvalidoException;
+import Model.excepciones.TipoDeCasilleroInexistenteException;
 
 import java.io.File;
 import java.io.IOException;
@@ -68,20 +69,18 @@ public class InicializadorTablero {
 		if(item.equals("1")){
 			casillero = new Casillero(EstadoCasillero.PISO, new Bolita(this.juego));
 			return casillero;
-		}
-		if(item.equals("2")){
+		}else if(item.equals("2")){
 			casillero = new Casillero(EstadoCasillero.PISO, new Pastilla(this.juego,50));
 			return casillero;
-		}
-		if(item.equals("P")){
+		}else if(item.equals("P")){
 			casillero = new Casillero(EstadoCasillero.PARED, null);
 			return casillero;
-		}
-		if(item.equals(" ")){
+		}else if(item.equals(" ")){
 			casillero = new Casillero(EstadoCasillero.PISO, null);
 			return casillero;
+		}else{
+			throw new TipoDeCasilleroInexistenteException();
 		}
-		return null;
 	}
 
 	private int convertirAEntero(Node nodo) {	
