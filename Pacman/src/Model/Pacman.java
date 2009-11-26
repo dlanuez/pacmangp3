@@ -79,8 +79,8 @@ public class Pacman extends Viviente {
 		int cantidadDeFantasmas = this.getJuego().getTablero()
 				.getFantasmasArray().length;
 		for (int i = 0; i < cantidadDeFantasmas; i++)
-			if (this.getPosicion() == this.getJuego().getTablero().getFantasma(
-					i).getPosicion()) {
+			if (this.getPosicion().equals(this.getJuego().getTablero().getFantasma(
+					i).getPosicion())) {
 				return this.getJuego().getTablero().getFantasma(i);
 			}
 		return null;

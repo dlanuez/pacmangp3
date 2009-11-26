@@ -82,7 +82,7 @@ public class Fantasma extends Viviente {
 			}
 		}
 		else{
-			this.getJuego().fantasmaComido(puntosPorEsteFantasma);
+			this.getJuego().fantasmaComido(this.puntosPorEsteFantasma);
 			try {
 				this.setPosicion(this.getPosicionDeRespawn());
 			} catch (PosicionInvalidaException e) {
