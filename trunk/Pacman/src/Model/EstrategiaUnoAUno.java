@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public abstract class EstrategiaUnoAUno extends Estrategia {
 	
-	public Direcciones calcularNuevaDireccion(Punto posicionYo, Punto posicionEl,
+	protected Direcciones calcularNuevaDireccion(Punto posicionYo, Punto posicionEl,
 			Direcciones dirActual, Tablero tablero, EstadoViviente estado) {
 		
 		ArrayList<Direcciones> dirPosibles = new ArrayList<Direcciones>();
