@@ -17,7 +17,7 @@ public class Pacman extends Viviente {
 
 	public void vivir() {
 		
-		Punto posicionActual = this.getPosicion();
+		Punto posicionActual =new Punto(this.getPosicion().x(), this.getPosicion().y());
 		Fantasma fantasma;
 
 		if (!this.estaVivo()) {
@@ -89,8 +89,8 @@ public class Pacman extends Viviente {
 	}
 	
 	private boolean validarMovimiento(Punto posicionNueva) {
-		if((posicionNueva.x() < 0) || (posicionNueva.x() > this.getJuego().getTablero().getMaxPosX())
-				|| (posicionNueva.y() <0) || (posicionNueva.y()>this.getJuego().getTablero().getMaxPosY())){
+		if((posicionNueva.x() < 0) || (posicionNueva.x() >= this.getJuego().getTablero().getMaxPosX())
+				|| (posicionNueva.y() <0) || (posicionNueva.y()>=this.getJuego().getTablero().getMaxPosY())){
 			return false;
 		}else if (this.getJuego().getTablero().getCasillero(posicionNueva)
 				.casilleroHabilitado()){
