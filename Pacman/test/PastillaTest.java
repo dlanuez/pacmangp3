@@ -11,6 +11,7 @@ public class PastillaTest extends TestCase {
 	
 	public void testHacerEfectoOK(){
 		this.juego = new Juego();
+		this.juego.getTablero().inicializar();
 		this.pastilla = new Pastilla(this.juego, 10);
 		try{
 			this.pastilla.hacerEfecto();
@@ -22,6 +23,7 @@ public class PastillaTest extends TestCase {
 	
 	public void testHacerEfectoErroneo(){
 		this.juego = new Juego();
+		this.juego.getTablero().inicializar();
 		this.pastilla = new Pastilla(this.juego, -5);
 		try{
 			this.pastilla.hacerEfecto();
