@@ -13,6 +13,6 @@ public class InicializadorTableroTest extends TestCase {
 		assertEquals("Bolita", casilleros[0][0].getItem().getClass().getSimpleName());
 		assertEquals("Pastilla", casilleros[0][1].getItem().getClass().getSimpleName());
 		assertFalse(casilleros[1][0].casilleroHabilitado());
-		assertNull(casilleros[1][1].getItem());
+		assertEquals("ItemNulo",casilleros[1][1].getItem().getClass().getSimpleName());
 	}
 }
