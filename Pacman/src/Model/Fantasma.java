@@ -50,11 +50,17 @@ public class Fantasma extends Viviente {
 
 	@Override
 	public void vivir(){
+		if (!this.estaVivo()){
+			this.revivir();
+		}
 		super.vivir();
 		this.mover();
 	}
 	
-	
+	public void revivir(){
+		this.setVivo();
+		this.setEstado(EstadoViviente.CAZADOR);
+	}
 	
 	private void buscarPacman(Punto posicionPacman) {
 		
@@ -67,7 +73,12 @@ public class Fantasma extends Viviente {
 		
 		if(this.getEstado() == EstadoViviente.CAZADOR){
 			this.getJuego().pacmanComido();
-			this.getJuego().getTablero().getPacman().respawn();
+			try {
+				this.getJuego().getTablero().resetearPosiciones();
+			} catch (PosicionInvalidaException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		else{
 			this.getJuego().fantasmaComido(puntosPorEsteFantasma);

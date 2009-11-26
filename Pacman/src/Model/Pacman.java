@@ -6,11 +6,8 @@ import Model.excepciones.tiempoDeEstadoInvalidoException;
 
 public class Pacman extends Viviente {
 	
-	private Punto posicionDeRespawn;
-	
 	public Pacman(Punto posicionInicial, Juego juego) throws PosicionInvalidaException, VelocidadInvalidaException {
 		super(posicionInicial, juego);
-		this.posicionDeRespawn = posicionInicial;
 		this.setVelocidad(1); //TODO poner una velocidad real.
 		this.setEstado(EstadoViviente.PRESA);
 	}
@@ -53,11 +50,11 @@ public class Pacman extends Viviente {
 		if (fantasma != null){
 			if (this.getEstado() == EstadoViviente.CAZADOR){
 				fantasma.fenecer();
-				this.getJuego().getJugador().sumarPuntos(fantasma.getPuntosPorEsteFantasmaConCarinioParaCabu());
+				this.getJuego().fantasmaComido(fantasma.getPuntosPorEsteFantasmaConCarinioParaCabu());
 			}
 			else{
 				this.fenecer();
-				this.getJuego().getJugador().restarVida();
+				this.getJuego().pacmanComido();
 			}
 		}
 	}
@@ -81,7 +78,7 @@ public class Pacman extends Viviente {
 	public void revivir() {
 		this.setVivo();
 		try {
-			this.setPosicion(this.posicionDeRespawn);
+			this.getJuego().getTablero().resetearPosiciones();
 		} catch (PosicionInvalidaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
