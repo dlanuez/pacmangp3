@@ -89,11 +89,15 @@ public class Pacman extends Viviente {
 	}
 	
 	private boolean validarMovimiento(Punto posicionNueva) {
-		if (this.getJuego().getTablero().getCasillero(posicionNueva)
-				.casilleroHabilitado())
-			return true;
-		else
+		if((posicionNueva.x() < 0) || (posicionNueva.x() > this.getJuego().getTablero().getMaxPosX())
+				|| (posicionNueva.y() <0) || (posicionNueva.y()>this.getJuego().getTablero().getMaxPosY())){
 			return false;
+		}else if (this.getJuego().getTablero().getCasillero(posicionNueva)
+				.casilleroHabilitado()){
+				return true;
+		}else{
+				return false;
+		}
 	}
 
 	public void revivir() {
