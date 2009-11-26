@@ -23,6 +23,11 @@ public class Casillero {
 		Item itemAux = this.item;
 		this.item = new ItemNulo();
 		return itemAux;
-	}	 
+	}	
+	
+	//Devuelve el item sin modificarlo
+	public Item obtenerItem(){
+		return this.item;
+	}
 }
  
