@@ -58,26 +58,6 @@ public abstract class Viviente {
 		}
 	}
 	
-	public void toggleState(){
-		if(this.estado != null)
-			this.estado = estado.toggleState();
-		else throw new EstadoNoInicializadoExeption();
-	}
-		
-
-		
-	/* Con cada turno se decrementa el tiempo restante del estado. En caso de ser -1,
-	 * no sucede nada.
-	 */	
-	private void decrementarTiempoRestanteDeEstado(){
-		if(this.tiempoRestanteDeEstado > 0) this.tiempoRestanteDeEstado--;
-		
-		if(this.tiempoRestanteDeEstado == 0){
-			this.toggleState();
-			this.tiempoRestanteDeEstado = -1;
-		}
-	}
-
 	public void cambiarEstado(int tiempoDeEstado) throws tiempoDeEstadoInvalidoException{
 		if(tiempoDeEstado > 0){	
 			this.tiempoRestanteDeEstado = tiempoDeEstado;
@@ -99,6 +79,30 @@ public abstract class Viviente {
 		else throw new PosicionInvalidaException();
 	}
 	
+	public Punto getPosicion(){
+		return this.posicion;
+	}
+	
+		
+	private void toggleState(){
+		if(this.estado != null)
+			this.estado = estado.toggleState();
+		else throw new EstadoNoInicializadoExeption();
+	}
+		
+
+	/* Con cada turno se decrementa el tiempo restante del estado. En caso de ser -1,
+	 * no sucede nada.
+	 */	
+	private void decrementarTiempoRestanteDeEstado(){
+		if(this.tiempoRestanteDeEstado > 0) this.tiempoRestanteDeEstado--;
+		
+		if(this.tiempoRestanteDeEstado == 0){
+			this.toggleState();
+			this.tiempoRestanteDeEstado = -1;
+		}
+	}
+	
 	private boolean validarPosicion(Punto posicion){
 		if( (posicion.x() >= 0) && (posicion.y() >= 0)){
 			if(	(posicion.x() <= this.juego.getTablero().getMaxPosX() ) && 
@@ -106,10 +110,6 @@ public abstract class Viviente {
 				return true;
 		}
 		return false;
-	}
-	
-	public Punto getPosicion(){
-		return this.posicion;
 	}
 	
 	public void setDireccionActual(Direcciones direccionActual){
