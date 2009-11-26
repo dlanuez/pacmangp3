@@ -2,7 +2,7 @@ import Model.*;
 import junit.framework.TestCase;
 
 
-public class EstrategiaImpredecibleTest extends TestCase {
+public class EstrategiaSiempreDoblaTest extends TestCase {
 	
 	EstrategiaPerseguidora estrategia;
 	Juego juego;

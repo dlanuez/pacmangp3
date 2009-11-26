@@ -69,9 +69,9 @@ public class EstrategiaPerseguidoraTest extends TestCase {
 		try{
 			estrategia.calcularNuevaDireccion(fantasma.getPosicion(),
 					pacman.getPosicion(), null, tablero);
-			fail("Deberia lanzar exepcion por elemento nulo");
-		}catch(NullPointerException e){
 			assertTrue(true);
+		}catch(NullPointerException e){
+			fail("No deberia lanzar exepcion por elemento nulo");
 		}
 		
 	}
@@ -85,6 +85,7 @@ public class EstrategiaPerseguidoraTest extends TestCase {
 		}catch(NullPointerException e){
 			assertTrue(true);
 		}
+		
 	}
 	
 	public void testCalcularNuevaDireccionPosicionElNula() {
@@ -96,6 +97,7 @@ public class EstrategiaPerseguidoraTest extends TestCase {
 		}catch(NullPointerException e){
 			assertTrue(true);
 		}
+		
 	}
 
 }
