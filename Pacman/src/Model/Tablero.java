@@ -7,8 +7,6 @@ package Model;
  * 
  *******************************************************/
 
-import java.util.ArrayList;
-
 import Model.excepciones.PosicionInvalidaException;
 import Model.excepciones.VelocidadInvalidaException;
 
@@ -56,15 +54,14 @@ public class Tablero {
 		
 		
 		fantasmas = new Fantasma[5];
-		ArrayList<Punto> listaDePuntos = averiguarPuntosFantasma();
-		punto = new Punto(1,1);
+		Punto puntoInicialFantasma = averiguarPuntosFantasma();		
 		
 	 	try{
-			fantasmas[0] = new FantasmaRojo(punto, juego);
-			fantasmas[1] = new FantasmaRosa(punto,juego);
-			fantasmas[2] = new FantasmaNaranja(punto, juego);
-			fantasmas[3] = new FantasmaAzul(punto, juego);
-			fantasmas[4] = new FantasmaVerde(punto, juego);
+			fantasmas[0] = new FantasmaRojo(puntoInicialFantasma, juego);
+			fantasmas[1] = new FantasmaRosa(puntoInicialFantasma,juego);
+			fantasmas[2] = new FantasmaNaranja(puntoInicialFantasma, juego);
+			fantasmas[3] = new FantasmaAzul(puntoInicialFantasma, juego);
+			fantasmas[4] = new FantasmaVerde(puntoInicialFantasma, juego);
 		}catch(PosicionInvalidaException e){
 			e.printStackTrace();
 		} catch (VelocidadInvalidaException e) {
@@ -73,17 +70,16 @@ public class Tablero {
 	}
 	
 
-	private ArrayList<Punto> averiguarPuntosFantasma() {
-		ArrayList<Punto> listaAuxiliar = new ArrayList<Punto>();
+	private Punto averiguarPuntosFantasma() {
+		Punto puntoAuxiliar = null;
 		for(int i = 0; i < MAX_POS_X; i++){
 			for(int k = 0; k < MAX_POS_Y; k++){
 				if((matriz[i][k].casilleroHabilitado()) && (matriz[i][k].getItem() == null)){
-					Punto punto = new Punto(i,k);
-					listaAuxiliar.add(punto);
+					puntoAuxiliar = new Punto(i,k);				
 				}
 			}
 		}
-		return null;
+		return puntoAuxiliar;
 	}
 
 	public Casillero getCasillero(Punto punto){

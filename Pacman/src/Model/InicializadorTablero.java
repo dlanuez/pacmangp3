@@ -2,6 +2,8 @@ package Model;
 
 import Model.Bolita;
 import Model.Pastilla;
+import Model.excepciones.ArchivoInvalidoException;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -20,6 +22,9 @@ public class InicializadorTablero {
 	private Juego juego;
 	
 	public InicializadorTablero(String archivo, Juego juego, int maxX, int maxY){
+		if((archivo == "") || (archivo == null)){			
+				throw new ArchivoInvalidoException();
+		}
 		this.archivo = new File(archivo);
 		this.juego = juego;
 		casilleros = new Casillero[maxX][maxY];
