@@ -46,7 +46,7 @@ public abstract class Estrategia {
 		Punto posicion;
 		
 		posicion = posicionYo;
-		posicion.disminuirY();
+		posicion.disminuirX();
 		if (posicion.x() >= 0)
 			if(tablero.getCasillero(posicion).casilleroHabilitado())
 				dirPosibles.add(Direcciones.ARRIBA);
@@ -59,8 +59,8 @@ public abstract class Estrategia {
 		Punto posicion;
 		
 		posicion = posicionYo;
-		posicion.aumentarY();
-		if (posicion.x() <= tablero.getMaxPosY())
+		posicion.aumentarX();
+		if (posicion.x() < tablero.getMaxPosX())
 			if(tablero.getCasillero(posicion).casilleroHabilitado())
 				dirPosibles.add(Direcciones.ABAJO);
 		
@@ -72,8 +72,8 @@ public abstract class Estrategia {
 		Punto posicion;
 		
 		posicion = posicionYo;
-		posicion.disminuirX();
-		if (posicion.x() >= 0)
+		posicion.disminuirY();
+		if (posicion.y() >= 0)
 			if(tablero.getCasillero(posicion).casilleroHabilitado())
 				dirPosibles.add(Direcciones.IZQUIERDA);
 		
@@ -85,8 +85,8 @@ public abstract class Estrategia {
 		Punto posicion;
 		
 		posicion = posicionYo;
-		posicion.aumentarX();
-		if (posicion.x() <= tablero.getMaxPosX())
+		posicion.aumentarY();
+		if (posicion.y() < tablero.getMaxPosY())
 			if(tablero.getCasillero(posicion).casilleroHabilitado())
 				dirPosibles.add(Direcciones.DERECHA);
 		

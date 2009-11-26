@@ -10,10 +10,11 @@ public class EstrategiaPerseguidora extends EstrategiaUnoAUno {
 			throw new NullPointerException();
 		if (posicionEl == null)
 			throw new NullPointerException();
-		if (dirActual == null)
-			throw new NullPointerException();
 		if (tablero == null)
 			throw new NullPointerException();
+		if (dirActual == null){
+			return direccionesPosibles(posicionYo, tablero).get(0);
+		}
 
 		return calcularNuevaDireccion(posicionYo, posicionEl, dirActual,
 				tablero, EstadoViviente.CAZADOR);
