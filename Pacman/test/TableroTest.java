@@ -37,7 +37,7 @@ public class TableroTest extends TestCase {
 			// TODO Auto-generated catch block
 			fail("Tiro excepcion");
 		}
-		this.punto = new Punto(2,2);
+		this.punto = new Punto(1,1);
 		Pacman pacman = this.tablero.getPacman();
 		assertEquals(this.punto,pacman.getPosicion());
 		ArrayList<Punto> listaDePuntos = this.tablero.getPosicionesCueva();
