@@ -28,8 +28,9 @@ public class Fantasma extends Viviente {
 
 	public int getPuntosPorEsteFantasmaConCarinioParaCabu(){
 		return this.puntosPorEsteFantasma;
+		//return Cabu;
 	}
-	
+		
 	private void irEnDireccion(Direcciones direccion){
 		
 		switch(direccion){
