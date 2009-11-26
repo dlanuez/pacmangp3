@@ -26,6 +26,9 @@ public class Fantasma extends Viviente {
 		this.buscarPacman(posicionPacman);
 	}
 
+	public int getPuntosPorEsteFantasmaConCarinioParaCabu(){
+		return this.puntosPorEsteFantasma;
+	}
 	
 	private void irEnDireccion(Direcciones direccion){
 		
@@ -45,6 +48,7 @@ public class Fantasma extends Viviente {
 		}		
 	}
 
+	@Override
 	public void vivir(){
 		super.vivir();
 		this.mover();
