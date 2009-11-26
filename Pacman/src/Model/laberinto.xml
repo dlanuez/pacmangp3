@@ -19,4 +19,24 @@
 		<posicionY>2</posicionY>
 		<item> </item>
 	</casillero>
+	<casillero>
+		<posicionX>3</posicionX>
+		<posicionY>1</posicionY>
+		<item> </item>
+	</casillero>
+	<casillero>
+		<posicionX>3</posicionX>
+		<posicionY>2</posicionY>
+		<item> </item>
+	</casillero>
+	<casillero>
+		<posicionX>4</posicionX>
+		<posicionY>1</posicionY>
+		<item> </item>
+	</casillero>
+	<casillero>
+		<posicionX>4</posicionX>
+		<posicionY>2</posicionY>
+		<item> </item>
+	</casillero>
 </tablero>
