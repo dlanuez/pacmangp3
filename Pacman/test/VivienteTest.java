@@ -18,6 +18,7 @@ public class VivienteTest extends TestCase {
 		this.juego = new Juego();
 		this.viviente = new Pacman(this.punto, this.juego);
 		this.viviente.setEstado(null);
+		this.juego.getTablero().inicializar();
 	}
 
 	// Controla que todo se inicialice correctamente
