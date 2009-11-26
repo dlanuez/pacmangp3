@@ -20,14 +20,7 @@ public class Pacman extends Viviente {
 		Fantasma fantasma;
 		
 		if (!this.estaVivo()){
-			this.setVivo();
-			try {
-				this.setPosicion(this.posicionDeRespawn);
-			} catch (PosicionInvalidaException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			this.setEstado(EstadoViviente.PRESA);
+			this.revivir();
 		}
 		
 		super.vivir();
@@ -85,13 +78,15 @@ public class Pacman extends Viviente {
 			return false;
 	}
 
-	public void respawn() {
+	public void revivir() {
+		this.setVivo();
 		try {
 			this.setPosicion(this.posicionDeRespawn);
 		} catch (PosicionInvalidaException e) {
-			// la posicionDeRespawn ya fue chequeada en el constructor, y no puede ser cambiada.
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		this.setEstado(EstadoViviente.PRESA);
 		
 	}
 
