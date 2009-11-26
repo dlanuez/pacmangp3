@@ -12,6 +12,7 @@ public class Pacman extends Viviente {
 		this.setVelocidad(1); // TODO poner una velocidad real.
 		this.setEstado(EstadoViviente.PRESA);
 		this.posicionDeRespawn = posicionInicial;
+		this.setDireccionActual(Direcciones.IZQUIERDA);
 	}
 
 	public void vivir() {
