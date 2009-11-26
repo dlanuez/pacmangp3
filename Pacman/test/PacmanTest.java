@@ -12,26 +12,26 @@ public class PacmanTest extends TestCase {
 	private Punto punto;
 			
 	protected void setUp() throws Exception {
-		super.setUp();
-		this.punto = new Punto(1,1);
+		super.setUp();		
 		this.juego = new Juego();
+		this.punto = new Punto(1,1);
 		this.juego.getTablero().inicializar();
-		this.pacman = new Pacman(this.punto, this.juego);
+		this.pacman = this.juego.getTablero().getPacman();
 		this.pacman.setEstado(null);
-		this.juego.getTablero().inicializar();
+		this.pacman.setPosicion(this.punto);
 	}
 
 	// Controla que todo se inicialice correctamente
-	public void testVivienteOK() {
+	public void testPacmanOK() {
 		assertTrue(pacman.estaVivo());
 		assertTrue(pacman.getVelocidad() == 1);
-		assertTrue(pacman.getDireccionActual() == null);
+		assertTrue(pacman.getDireccionActual() == Direcciones.IZQUIERDA);
 		assertTrue(pacman.getJuego() == this.juego);
-		assertTrue(pacman.getPosicion() == this.punto);
+		assertEquals(pacman.getPosicion(), this.punto);
 	}
 	
 	// Controla que si se inicializa un objeto con una posición inválida, se lance una exepción
-	public void testVivienteERROR() {		
+	public void testPacmanERROR() {		
 		try{
 			pacman = new Pacman(new Punto(-1,0), null);
 		}
@@ -55,13 +55,19 @@ public class PacmanTest extends TestCase {
 	}
 		
 	public void testIrADerecha() {
+		try {
+			pacman.setPosicion(new Punto(2,1));
+		} catch (PosicionInvalidaException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		pacman.irADerecha();
-		assertEquals(pacman.getPosicion(), new Punto(1,2));
+		assertEquals(pacman.getPosicion(), new Punto(2,2));
 		assertEquals(pacman.getDireccionActual(), Direcciones.DERECHA);
 		
 		//si está en el límite derecho del tablero, no debe poder moverse más a la derecha
 		try {
-			pacman.setPosicion(1, pacman.getJuego().getTablero().getMaxPosY());
+			pacman.setPosicion(2, pacman.getJuego().getTablero().getMaxPosY());
 			//la última dirección debe seguir almacenada.
 			assertEquals(pacman.getDireccionActual(), Direcciones.DERECHA); 
 		} 
@@ -70,11 +76,12 @@ public class PacmanTest extends TestCase {
 		}
 		
 		pacman.irADerecha();
-		assertEquals(pacman.getPosicion(), new Punto(1,pacman.getJuego().getTablero().getMaxPosY()));
+		assertEquals(pacman.getPosicion(), new Punto(2,pacman.getJuego().getTablero().getMaxPosY()));
 		assertEquals(pacman.getDireccionActual(), Direcciones.DERECHA); 
 	}
 
 	public void testIrArriba() {
+		
 		pacman.irArriba();
 		assertEquals(pacman.getPosicion(), new Punto(0,1));
 		assertEquals(pacman.getDireccionActual(), Direcciones.ARRIBA); 
@@ -144,7 +151,7 @@ public class PacmanTest extends TestCase {
 		
 	}
 	
-	public void testCambiarEstadoOK(){
+	/*public void testCambiarEstadoOK(){
 		pacman.setEstado(EstadoViviente.PRESA);
 		
 		try{
@@ -165,7 +172,7 @@ public class PacmanTest extends TestCase {
 		assertTrue(pacman.getEstado() == EstadoViviente.PRESA);
 		pacman.vivir();
 		assertTrue(pacman.getEstado() == EstadoViviente.PRESA);
-	}
+	}*/
 
 	public void testSetPosicionOK() {
 		try{
@@ -302,4 +309,21 @@ public class PacmanTest extends TestCase {
 		assertTrue(pacman.estaVivo() == true);
 	}
 	
+	public void testVivir(){
+		Punto puntoAuxiliar = pacman.getPosicion();
+		try {
+			this.pacman.setPosicion(new Punto(2,1));
+		} catch (PosicionInvalidaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		pacman.setDireccionActual(Direcciones.DERECHA);
+		pacman.vivir();
+		//Como en el laberinto de prueba en esa posicion hay un fantasma me come
+		assertFalse(pacman.estaVivo());		
+		pacman.vivir();
+		//Ahora pacman deberia reespawnearse a su posicion inicial
+		assertEquals(puntoAuxiliar, pacman.getPosicion());
+	}
 }
