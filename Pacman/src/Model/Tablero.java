@@ -89,9 +89,7 @@ public class Tablero {
 	
 	public void resetearPosiciones() throws PosicionInvalidaException{		
 		try{
-			final Punto punto;
-			punto = new Punto(2,2);
-			pacman.setPosicion(punto);
+			pacman.setPosicion(pacman.getPosicionDeRespawn());
 			int i = 0;
 			for (Fantasma f : fantasmas){				
 				f.setPosicion(cueva.get(i));
