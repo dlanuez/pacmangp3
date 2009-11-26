@@ -5,12 +5,13 @@ import Model.excepciones.VelocidadInvalidaException;
 import Model.excepciones.tiempoDeEstadoInvalidoException;
 
 public class Pacman extends Viviente {
-
+	private Punto posicionDeRespawn;
 	public Pacman(Punto posicionInicial, Juego juego)
 			throws PosicionInvalidaException, VelocidadInvalidaException {
 		super(posicionInicial, juego);
 		this.setVelocidad(1); // TODO poner una velocidad real.
 		this.setEstado(EstadoViviente.PRESA);
+		this.posicionDeRespawn = posicionInicial;
 	}
 
 	public void vivir() {
@@ -86,6 +87,10 @@ public class Pacman extends Viviente {
 		return null;
 	}
 
+	public Punto getPosicionDeRespawn(){
+		return this.posicionDeRespawn;
+	}
+	
 	private boolean validarMovimiento(Punto posicionNueva) {
 		if (this.getJuego().getTablero().getCasillero(posicionNueva)
 				.casilleroHabilitado())
