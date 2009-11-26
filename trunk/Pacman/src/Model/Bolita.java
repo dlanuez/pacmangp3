@@ -18,6 +18,7 @@ public class Bolita extends Item {
 	//Suma la cantidad de puntos otorgados por comer una bolita a los puntos del jugador.
 	public void hacerEfecto(){
 		this.getJuego().getJugador().sumarPuntos(Bolita.puntosOtorgados);
+		this.getJuego().getTablero().decrementarContadorBolitas();
 	}
 }
  

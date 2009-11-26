@@ -22,6 +22,7 @@ public class Pastilla extends Item {
 	//y le cambia el estadoViviente al pacman y a los fantasmas.
 	public void hacerEfecto()throws tiempoDeEstadoInvalidoException{
 		this.getJuego().getJugador().sumarPuntos(Pastilla.puntosOtorgados);
+		this.getJuego().getTablero().decrementarContadorBolitas();
 		this.getJuego().getTablero().getPacman().cambiarEstado(this.tiempoDeEstado);
 		for(int i = 0; i < cantidadDeFantasmas; i++)
 			this.getJuego().getTablero().getFantasma(i).cambiarEstado(this.tiempoDeEstado);
