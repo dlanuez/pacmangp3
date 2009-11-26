@@ -16,7 +16,7 @@ public class Juego {
 		catch(cantidadDeVidasInvalidaExeption e){
 			e.printStackTrace();
 		}
-		this.tablero = new Tablero("nivel1.xml", this);
+		this.tablero = new Tablero("laberinto.xml", this);
 	}
 
 	public Tablero getTablero() {
@@ -29,7 +29,7 @@ public class Juego {
 	}
 
 	public void pacmanComido() {
-		this.getJugador().perderVida();
+		this.getJugador().restarVida();
 	}
 
 	public void fantasmaComido(int puntosPorEsteFantasma) {
