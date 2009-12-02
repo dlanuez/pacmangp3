@@ -8,6 +8,7 @@ package Model;
  *******************************************************/
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import Model.excepciones.PosicionInvalidaException;
 import Model.excepciones.VelocidadInvalidaException;
@@ -18,7 +19,7 @@ public class Tablero {
 	private final int MAX_POS_X;
 	private final int MAX_POS_Y;
 	private Casillero matriz[][];
-	private Fantasma fantasmas[];
+	private ArrayList<Fantasma> fantasmas;
 	private Pacman pacman;
 	private Juego juego;
 	private ArrayList<Punto> cueva;
@@ -54,15 +55,15 @@ public class Tablero {
 		}
 		
 		
-		fantasmas = new Fantasma[5];
+		fantasmas = new ArrayList<Fantasma>();
 		cueva = averiguarPuntosFantasma();		
 		
 	 	try{
-			fantasmas[0] = new FantasmaRojo(this.cueva.get(0), juego);
-			fantasmas[1] = new FantasmaRosa(this.cueva.get(1),juego);
-			fantasmas[2] = new FantasmaNaranja(this.cueva.get(2), juego);
-			fantasmas[3] = new FantasmaAzul(this.cueva.get(3), juego);
-			fantasmas[4] = new FantasmaVerde(this.cueva.get(4), juego);
+			fantasmas.add(new FantasmaRojo(this.cueva.get(0), juego));
+			fantasmas.add(new FantasmaRosa(this.cueva.get(1),juego));
+			fantasmas.add(new FantasmaNaranja(this.cueva.get(2), juego));
+			fantasmas.add(new FantasmaAzul(this.cueva.get(3), juego));
+			fantasmas.add(new FantasmaVerde(this.cueva.get(4), juego));
 		}catch(PosicionInvalidaException e){
 			e.printStackTrace();
 		} catch (VelocidadInvalidaException e) {
@@ -113,12 +114,16 @@ public class Tablero {
 		return pacman;
 	}
 	
-	public Fantasma[] getFantasmasArray(){
-		return fantasmas;
+	public int getCantidadDeFantasmas(){
+		return fantasmas.size();
+	}
+	
+	public Iterator<Fantasma> getFantasmasIterador(){
+		return fantasmas.iterator();
 	}
 	
 	public Fantasma getFantasma(int posicion){
-		return fantasmas[posicion];
+		return fantasmas.get(posicion);
 	}
 	
 
@@ -130,8 +135,8 @@ public class Tablero {
 		return cantidadDeBolitas;
 	}
 	
-	public ArrayList<Punto> getPosicionesCueva(){
-		return this.cueva;
+	public Iterator<Punto> getPosicionesCuevaIterador(){
+		return this.cueva.iterator();
 	}
 	
 	private void calcularCantidadDeBolitas() {

@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Iterator;
+
 import Model.excepciones.PosicionInvalidaException;
 import Model.excepciones.VelocidadInvalidaException;
 import Model.excepciones.tiempoDeEstadoInvalidoException;
@@ -59,8 +61,7 @@ public class Pacman extends Viviente {
 		try {
 			this.getJuego().getTablero().getCasillero(this.getPosicion())
 					.getItem().hacerEfecto();
-		} catch (tiempoDeEstadoInvalidoException e) {
-			// TODO Auto-generated catch block
+		} catch (tiempoDeEstadoInvalidoException e) {			
 			e.printStackTrace();
 		}
 
@@ -77,15 +78,18 @@ public class Pacman extends Viviente {
 		}
 	}
 
+	/*Metedo que recorre la coleccion de fantasmas con un iterador provisto por el tablero para averiguar 
+	 *si hay algun fantasma en la posicion del pacman
+	 */
 	private Fantasma fantasmaEnMiPosicion() {
-		int cantidadDeFantasmas = this.getJuego().getTablero()
-				.getFantasmasArray().length;
-		for (int i = 0; i < cantidadDeFantasmas; i++)
-			if (this.getPosicion().equals(this.getJuego().getTablero().getFantasma(
-					i).getPosicion())) {
-				return this.getJuego().getTablero().getFantasma(i);
-			}
-		return null;
+		
+		Iterator<Fantasma> fantasmas = this.getJuego().getTablero().getFantasmasIterador();
+		while(fantasmas.hasNext()){
+			Fantasma fantasmaAuxiliar = fantasmas.next();
+			if(this.getPosicion().equals(fantasmaAuxiliar.getPosicion()))
+				return fantasmaAuxiliar;
+		}
+		return null;		
 	}
 	
 	private boolean validarMovimiento(Punto posicionNueva) {
@@ -105,18 +109,17 @@ public class Pacman extends Viviente {
 		try {
 			this.getJuego().getTablero().resetearPosiciones();
 		} catch (PosicionInvalidaException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		this.setEstado(EstadoViviente.PRESA);
 
 	}
+	//Metodo que reposiciona al PacMan en su posicion inicial.
 	
 	public void reEspawnear(){
 		try {
 			this.setPosicion(this.posicionDeRespawn);
 		} catch (PosicionInvalidaException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
