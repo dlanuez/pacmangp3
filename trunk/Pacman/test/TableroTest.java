@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Iterator;
 
 import Model.*;
@@ -39,10 +38,9 @@ public class TableroTest extends TestCase {
 		}
 		this.punto = new Punto(1,1);
 		Pacman pacman = this.tablero.getPacman();
-		assertEquals(this.punto,pacman.getPosicion());
-		ArrayList<Punto> listaDePuntos = this.tablero.getPosicionesCueva();
+		assertEquals(this.punto,pacman.getPosicion());		
 		Fantasma fantasma;
-		Iterator<Punto> it = listaDePuntos.iterator();
+		Iterator<Punto> it = this.tablero.getPosicionesCuevaIterador();
 		int i = 0;
 		while(it.hasNext()){
 			fantasma = this.tablero.getFantasma(i);
@@ -59,18 +57,29 @@ public class TableroTest extends TestCase {
 		assertEquals("Pacman", this.tablero.getPacman().getClass().getSimpleName());
 	}
 
-	public void testGetFantasmasArray() {
-		Fantasma fantasma[] = this.tablero.getFantasmasArray();
-		assertEquals(5, fantasma.length);
-		assertEquals("FantasmaRojo", fantasma[0].getClass().getSimpleName());
-		assertEquals("FantasmaRosa", fantasma[1].getClass().getSimpleName());
-		assertEquals("FantasmaNaranja", fantasma[2].getClass().getSimpleName());
-		assertEquals("FantasmaAzul", fantasma[3].getClass().getSimpleName());
-		assertEquals("FantasmaVerde", fantasma[4].getClass().getSimpleName());		
+	public void testGetFantasmasIterador() {
+		Iterator<Fantasma> fantasmas = this.tablero.getFantasmasIterador();		
+		assertEquals("FantasmaRojo", fantasmas.next().getClass().getSimpleName());
+		assertEquals("FantasmaRosa", fantasmas.next().getClass().getSimpleName());
+		assertEquals("FantasmaNaranja", fantasmas.next().getClass().getSimpleName());
+		assertEquals("FantasmaAzul", fantasmas.next().getClass().getSimpleName());
+		assertEquals("FantasmaVerde", fantasmas.next().getClass().getSimpleName());		
 	}
 
 	public void testGetFantasma() {
 		assertEquals("FantasmaRojo", this.tablero.getFantasma(0).getClass().getSimpleName());
 	}
-
+	
+	/*
+	 *
+	 *Este test es para probar si el tablero se inicializa bien con 
+	 *el diseño definitivo del laberinto para el Nivel1 
+	 *
+	*/
+	
+	public void testTableroConNivel(){
+		Tablero otroTablero = new Tablero("src/Model/nivel1.xml", juego, 16,16);
+		otroTablero.inicializar();
+		
+	}
 }
