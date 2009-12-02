@@ -86,7 +86,6 @@ public class Fantasma extends Viviente {
 			try {
 				this.getJuego().getTablero().resetearPosiciones();
 			} catch (PosicionInvalidaException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -113,20 +112,20 @@ public class Fantasma extends Viviente {
 	private Punto getPosicionDeRespawn() {
 		
 		//lista con las posiciones de la cueva
-		ArrayList<Punto> posicionesCueva = this.getJuego().getTablero().getPosicionesCueva();
 
-		Fantasma[] fantasmas = this.getJuego().getTablero().getFantasmasArray();
-		int cantidadDeFantasmas = fantasmas.length;
+		Iterator<Fantasma> fantasmas = this.getJuego().getTablero().getFantasmasIterador();
 		
 		//lista con las posiciones de los fantasmas
 		ArrayList<Punto> posicionesFantasmas = new ArrayList<Punto>();
-		for(int i = 0; i < cantidadDeFantasmas; i++)
-				posicionesFantasmas.add(fantasmas[i].getPosicion());
+		
+		while(fantasmas.hasNext()){
+			posicionesFantasmas.add(fantasmas.next().getPosicion());
+		}		
 		
 		
 		//-----------------------------------------------
 		
-		Iterator<Punto> itPC = posicionesCueva.iterator();
+		Iterator<Punto> itPC =this.getJuego().getTablero().getPosicionesCuevaIterador();
 		
 		while(itPC.hasNext()){
 			int valorDeRetorno = 0;

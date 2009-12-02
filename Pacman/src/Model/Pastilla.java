@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Iterator;
+
 import Model.excepciones.tiempoDeEstadoInvalidoException;
 
 public class Pastilla extends Item {
@@ -24,9 +26,10 @@ public class Pastilla extends Item {
 		this.getJuego().getJugador().sumarPuntos(Pastilla.puntosOtorgados);
 		this.getJuego().getTablero().decrementarContadorBolitas();
 		this.getJuego().getTablero().getPacman().cambiarEstado(this.tiempoDeEstado);
-		int cantidadDeFantasmas = this.getJuego().getTablero().getFantasmasArray().length;
-		for(int i = 0; i < cantidadDeFantasmas; i++)
-			this.getJuego().getTablero().getFantasma(i).cambiarEstado(this.tiempoDeEstado);
+		Iterator<Fantasma> fantasmas = this.getJuego().getTablero().getFantasmasIterador();
+		while(fantasmas.hasNext()){
+			fantasmas.next().cambiarEstado(this.tiempoDeEstado);
+		}	
 	}
 }
  

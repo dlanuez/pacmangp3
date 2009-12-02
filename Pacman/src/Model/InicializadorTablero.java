@@ -75,7 +75,7 @@ public class InicializadorTablero {
 		}else if(item.equals("P")){
 			casillero = new Casillero(EstadoCasillero.PARED, new ItemNulo());
 			return casillero;
-		}else if(item.equals(" ")){
+		}else if(item.equals("0")){
 			casillero = new Casillero(EstadoCasillero.PISO, new ItemNulo());
 			return casillero;
 		}else{
