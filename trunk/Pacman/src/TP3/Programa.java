@@ -1,12 +1,13 @@
 package TP3;
 
 import ar.uba.fi.algo3.titiritero.ControladorJuego;
+import ar.uba.fi.algo3.titiritero.Posicionable;
 import Model.Punto;
 import Model.excepciones.PosicionInvalidaException;
 import Model.juego.Juego;
 import Model.tablero.Casillero;
-import Model.viviente.Pacman;
 import View.Mesa;
+import View.PosicionableLaberinto;
 import View.VentanaPrincipal;
 import View.VistaLaberinto;
 import View.Pelota;
@@ -78,31 +79,45 @@ public class Programa {
 				posY = 32 * i;
 				if(!casillero.casilleroHabilitado()){
 					if(esCruz(juego,k,i)){
-						vistaLaberinto = new VistaLaberinto(posX,posY,"cruz.jpg");
+						vistaLaberinto = new VistaLaberinto("cruz.jpg");
+						Posicionable posicionable = new PosicionableLaberinto(posX,posY);
+						vistaLaberinto.setPosicionable(posicionable);
 						controlador.agregarDibujable(vistaLaberinto);
 					}
 					if(esHorizontal(juego,k,i)){
-						vistaLaberinto = new VistaLaberinto(posX,posY, "horizontal.jpg");
+						vistaLaberinto = new VistaLaberinto("horizontal.jpg");
+						Posicionable posicionable = new PosicionableLaberinto(posX,posY);
+						vistaLaberinto.setPosicionable(posicionable);
 						controlador.agregarDibujable(vistaLaberinto);
 					}
 					if(esVertical(juego,k,i)){
-						vistaLaberinto = new VistaLaberinto(posX,posY, "vertical.jpg");
+						vistaLaberinto = new VistaLaberinto("vertical.jpg");
+						Posicionable posicionable = new PosicionableLaberinto(posX,posY);
+						vistaLaberinto.setPosicionable(posicionable);
 						controlador.agregarDibujable(vistaLaberinto);
 					}
 					if((i==0) && (k==0)){
-						vistaLaberinto = new VistaLaberinto(posX,posY,"borde-izquierdo.jpg");
+						vistaLaberinto = new VistaLaberinto("borde-izquierdo.jpg");
+						Posicionable posicionable = new PosicionableLaberinto(posX,posY);
+						vistaLaberinto.setPosicionable(posicionable);
 						controlador.agregarDibujable(vistaLaberinto);
 					}
 					if((i==(maxX-1)) && (k==0)){
-						vistaLaberinto = new VistaLaberinto(posX,posY,"borde-inferior-izquierdo.jpg");
+						vistaLaberinto = new VistaLaberinto("borde-inferior-izquierdo.jpg");
+						Posicionable posicionable = new PosicionableLaberinto(posX,posY);
+						vistaLaberinto.setPosicionable(posicionable);
 						controlador.agregarDibujable(vistaLaberinto);
 					}
 					if((i==0) && (k==(maxY-1))){
-						vistaLaberinto = new VistaLaberinto(posX,posY,"borde-derecho.jpg");
+						vistaLaberinto = new VistaLaberinto("borde-derecho.jpg");
+						Posicionable posicionable = new PosicionableLaberinto(posX,posY);
+						vistaLaberinto.setPosicionable(posicionable);
 						controlador.agregarDibujable(vistaLaberinto);
 					}
 					if((i==(maxX-1)) && (k==(maxY-1))){
-						vistaLaberinto = new VistaLaberinto(posX,posY,"borde-inferior-derecho.jpg");
+						vistaLaberinto = new VistaLaberinto("borde-inferior-derecho.jpg");
+						Posicionable posicionable = new PosicionableLaberinto(posX,posY);
+						vistaLaberinto.setPosicionable(posicionable);
 						controlador.agregarDibujable(vistaLaberinto);
 					}	
 					
