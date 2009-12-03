@@ -1,8 +1,8 @@
-import Model.Bolita;
-import Model.Casillero;
 import Model.EstadoCasillero;
-import Model.ItemNulo;
-import Model.Juego;
+import Model.item.Bolita;
+import Model.item.ItemNulo;
+import Model.juego.Juego;
+import Model.tablero.Casillero;
 import junit.framework.TestCase;
 
 
@@ -15,7 +15,7 @@ public class CasilleroTest extends TestCase {
 	
 	protected void setUp() throws Exception {
 		super.setUp();
-		this.juego = new Juego();
+		this.juego = new Juego("src/Model/nivel1.xml");
 		this.bolita = new Bolita(juego);
 		this.estadoCasillero = EstadoCasillero.PISO;
 		this.casillero = new Casillero(this.estadoCasillero, this.bolita);		

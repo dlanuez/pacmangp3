@@ -1,4 +1,9 @@
 import Model.*;
+import Model.estrategia.EstrategiaPerseguidora;
+import Model.juego.Juego;
+import Model.tablero.Tablero;
+import Model.viviente.Fantasma;
+import Model.viviente.Pacman;
 import junit.framework.TestCase;
 
 
@@ -13,7 +18,7 @@ public class EstrategiaEscapadoraTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		estrategia = new EstrategiaPerseguidora();
-		juego = new Juego();
+		juego = new Juego("src/Model/nivel1.xml");
 		tablero = juego.getTablero();
 		tablero.inicializar();
 		pacman = tablero.getPacman();

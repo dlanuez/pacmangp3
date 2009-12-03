@@ -2,6 +2,10 @@ import java.util.Iterator;
 
 import Model.*;
 import Model.excepciones.PosicionInvalidaException;
+import Model.juego.Juego;
+import Model.tablero.Tablero;
+import Model.viviente.Fantasma;
+import Model.viviente.Pacman;
 import junit.framework.TestCase;
 
 
@@ -12,7 +16,7 @@ public class TableroTest extends TestCase {
 
 	protected void setUp() throws Exception{
 		super.setUp();
-		this.juego = new Juego();
+		this.juego = new Juego("src/Model/laberinto.xml");
 		this.tablero = new Tablero("src/Model/laberinto.xml",juego, 4,2);	
 		this.tablero.inicializar();
 	}

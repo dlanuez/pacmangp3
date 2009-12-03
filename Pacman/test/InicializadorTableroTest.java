@@ -1,12 +1,12 @@
 import junit.framework.TestCase;
-import Model.Casillero;
-import Model.Juego;
-import Model.InicializadorTablero;
+import Model.juego.Juego;
+import Model.tablero.Casillero;
+import Model.tablero.InicializadorTablero;
 
 public class InicializadorTableroTest extends TestCase {
 	public void testGenerarTablero(){
 		Casillero casilleros[][];
-		Juego juego = new Juego();
+		Juego juego = new Juego("src/Model/nivel1.xml");
 		InicializadorTablero inicializador = new InicializadorTablero("src/Model/laberinto.xml", juego, 4, 2);
 		casilleros = inicializador.generarTablero();
 		assertEquals(4,casilleros.length);		

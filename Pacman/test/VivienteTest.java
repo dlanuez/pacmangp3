@@ -2,6 +2,9 @@ import Model.*;
 import Model.excepciones.PosicionInvalidaException;
 import Model.excepciones.VelocidadInvalidaException;
 import Model.excepciones.tiempoDeEstadoInvalidoException;
+import Model.juego.Juego;
+import Model.viviente.Pacman;
+import Model.viviente.Viviente;
 import junit.framework.TestCase;
 
 
@@ -14,7 +17,7 @@ public class VivienteTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		this.punto = new Punto(1,1);
-		this.juego = new Juego();
+		this.juego = new Juego("src/Model/nivel1.xml");
 		this.viviente = new Pacman(this.punto, this.juego);
 		this.viviente.setEstado(null);
 		this.juego.getTablero().inicializar();
