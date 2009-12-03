@@ -39,10 +39,7 @@ public class VivienteTest extends TestCase {
 		}
 		catch(PosicionInvalidaException e){
 			assertTrue(true);
-		}
-		catch(VelocidadInvalidaException e){
-			fail("La velocidad con la que se inicializa el Pacman debería ser válida.");
-		}
+		}		
 				
 	}
 
