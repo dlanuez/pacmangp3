@@ -78,19 +78,19 @@ public class Programa {
 				posX = 32 * k;
 				posY = 32 * i;
 				if(!casillero.casilleroHabilitado()){
-					if(esCruz(juego,k,i)){
+					if(esCruz(juego,i,k)){
 						vistaLaberinto = new VistaLaberinto("cruz.jpg");
 						Posicionable posicionable = new PosicionableLaberinto(posX,posY);
 						vistaLaberinto.setPosicionable(posicionable);
 						controlador.agregarDibujable(vistaLaberinto);
 					}
-					if(esHorizontal(juego,k,i)){
+					if(esHorizontal(juego,i,k)){
 						vistaLaberinto = new VistaLaberinto("horizontal.jpg");
 						Posicionable posicionable = new PosicionableLaberinto(posX,posY);
 						vistaLaberinto.setPosicionable(posicionable);
 						controlador.agregarDibujable(vistaLaberinto);
 					}
-					if(esVertical(juego,k,i)){
+					if(esVertical(juego,i,k)){
 						vistaLaberinto = new VistaLaberinto("vertical.jpg");
 						Posicionable posicionable = new PosicionableLaberinto(posX,posY);
 						vistaLaberinto.setPosicionable(posicionable);
@@ -120,6 +120,30 @@ public class Programa {
 						vistaLaberinto.setPosicionable(posicionable);
 						controlador.agregarDibujable(vistaLaberinto);
 					}	
+					if(esBordeIzquierdo(juego, i,k)){
+						vistaLaberinto = new VistaLaberinto("borde-izquierdo.jpg");
+						Posicionable posicionable = new PosicionableLaberinto(posX,posY);
+						vistaLaberinto.setPosicionable(posicionable);
+						controlador.agregarDibujable(vistaLaberinto);
+					}
+					if(esBordeDerechoInferior(juego,i,k)){
+						vistaLaberinto = new VistaLaberinto("borde-inferior-derecho.jpg");
+						Posicionable posicionable = new PosicionableLaberinto(posX,posY);
+						vistaLaberinto.setPosicionable(posicionable);
+						controlador.agregarDibujable(vistaLaberinto);
+					}
+					if(esBordeDerecho(juego,i,k)){
+						vistaLaberinto = new VistaLaberinto("borde-derecho.jpg");
+						Posicionable posicionable = new PosicionableLaberinto(posX,posY);
+						vistaLaberinto.setPosicionable(posicionable);
+						controlador.agregarDibujable(vistaLaberinto);
+					}
+					if(esBordeIzquierdoInferior(juego,i,k)){
+						vistaLaberinto = new VistaLaberinto("borde-inferior-izquierdo.jpg");
+						Posicionable posicionable = new PosicionableLaberinto(posX,posY);
+						vistaLaberinto.setPosicionable(posicionable);
+						controlador.agregarDibujable(vistaLaberinto);
+					}
 					
 				}
 			}
@@ -128,58 +152,60 @@ public class Programa {
 	
 	
 	
+	
+
 	private static boolean esHorizontal(Juego juego, int x, int y){
 		boolean bandera = false;
 		if(x-1 >= 0){
 			if(!juego.getTablero().getCasillero(new Punto(x-1,y)).casilleroHabilitado()){
-				bandera = true;
+				bandera = false;
 			}			
 		}		
 		if(y-1 >= 0){
 			if(!juego.getTablero().getCasillero(new Punto(x,y-1)).casilleroHabilitado()){
-				bandera = false;
+				bandera = true;
 			}
 		}		
 		if(x+1 < juego.getTablero().getMaxPosX()){
 			if(!juego.getTablero().getCasillero(new Punto(x+1,y)).casilleroHabilitado()){
-				bandera = true;
+				bandera = false;
 			}
 		}		
 		if(y + 1 < juego.getTablero().getMaxPosY()){
 			if(!juego.getTablero().getCasillero(new Punto(x,y+1)).casilleroHabilitado()){
-				bandera = false;
+				bandera = true;
 			}
 		}		
 		return bandera;
 	}
 	
 	private static boolean esVertical(Juego juego, int x, int y){
-		boolean bandera = false;
+		boolean bandera = true;
 		if(x-1 >= 0){
 			if(!juego.getTablero().getCasillero(new Punto(x-1,y)).casilleroHabilitado()){
-				bandera = false;
+				bandera = true;
 			}			
 		}		
 		if(y-1 >= 0){
 			if(!juego.getTablero().getCasillero(new Punto(x,y-1)).casilleroHabilitado()){
-				bandera = true;
+				bandera = false;
 			}
 		}		
 		if(x+1 < juego.getTablero().getMaxPosX()){
 			if(!juego.getTablero().getCasillero(new Punto(x+1,y)).casilleroHabilitado()){
-				bandera = false;
+				bandera = true;
 			}
 		}		
 		if(y + 1 < juego.getTablero().getMaxPosY()){
 			if(!juego.getTablero().getCasillero(new Punto(x,y+1)).casilleroHabilitado()){
-				bandera = true;
+				bandera = false;
 			}
 		}		
 		return bandera;
 	}
 	
 	private static boolean esCruz(Juego juego, int x, int y){
-		boolean bandera = true;
+		boolean bandera = false;
 		if(x-1 >= 0){
 			if(!juego.getTablero().getCasillero(new Punto(x-1,y)).casilleroHabilitado()){
 				bandera &= true;
@@ -196,7 +222,7 @@ public class Programa {
 		}
 		if(x+1 < juego.getTablero().getMaxPosX()){
 			if(!juego.getTablero().getCasillero(new Punto(x+1,y)).casilleroHabilitado()){
-				bandera &= true;
+				bandera = true;
 			}
 		}else{
 			bandera = false;
@@ -210,4 +236,115 @@ public class Programa {
 		}
 		return bandera;
 	}
+	
+	private static boolean esBordeIzquierdo(Juego juego, int x, int y){
+		boolean bandera = false;
+		if(x+1 < juego.getTablero().getMaxPosX()){
+			if(!juego.getTablero().getCasillero(new Punto(x+1,y)).casilleroHabilitado()){
+				bandera = true;
+			}
+		}		
+		if(y + 1 < juego.getTablero().getMaxPosY()){
+			if(!juego.getTablero().getCasillero(new Punto(x,y+1)).casilleroHabilitado()){
+				bandera &= true;
+			}else{
+				bandera &=false;
+			}
+		}		
+		if(x-1 >= 0){
+			if(!juego.getTablero().getCasillero(new Punto(x-1,y)).casilleroHabilitado()){
+				bandera &= false;
+			}			
+		}		
+		if(y-1 >= 0){
+			if(!juego.getTablero().getCasillero(new Punto(x,y-1)).casilleroHabilitado()){
+				bandera &= false;
+			}
+		}				
+		return bandera;
+	}
+	
+	private static boolean esBordeDerecho(Juego juego, int x, int y) {
+		boolean bandera = false;
+		if(x-1 >= 0){
+			if(!juego.getTablero().getCasillero(new Punto(x-1,y)).casilleroHabilitado()){
+				bandera &= false;
+			}			
+		}		
+		if(y-1 >= 0){
+			if(!juego.getTablero().getCasillero(new Punto(x,y-1)).casilleroHabilitado()){
+				bandera = true;
+			}
+		}		
+		if(x+1 < juego.getTablero().getMaxPosX()){
+			if(!juego.getTablero().getCasillero(new Punto(x+1,y)).casilleroHabilitado()){
+				bandera &= true;
+			}else{
+				bandera &= false;
+			}
+		}else{
+			bandera &= false;
+		}		
+		if(y + 1 < juego.getTablero().getMaxPosY()){
+			if(!juego.getTablero().getCasillero(new Punto(x,y+1)).casilleroHabilitado()){
+				bandera &= false;
+			}
+		}		
+		return bandera;
+	}
+	
+	private static boolean esBordeDerechoInferior(Juego juego, int x, int y) {
+		boolean bandera = false;
+		if(x-1 >= 0){
+			if(!juego.getTablero().getCasillero(new Punto(x-1,y)).casilleroHabilitado()){
+				bandera = true;
+			}			
+		}		
+		if(y-1 >= 0){
+			if(!juego.getTablero().getCasillero(new Punto(x,y-1)).casilleroHabilitado()){
+				bandera &= true;
+			}else{
+				bandera &= false;
+			}
+		}		
+		if(x+1 < juego.getTablero().getMaxPosX()){
+			if(!juego.getTablero().getCasillero(new Punto(x+1,y)).casilleroHabilitado()){
+				bandera &= false;
+			}
+		}		
+		if(y + 1 < juego.getTablero().getMaxPosY()){
+			if(!juego.getTablero().getCasillero(new Punto(x,y+1)).casilleroHabilitado()){
+				bandera &= false;
+			}
+		}		
+		return bandera;
+	}
+	
+	private static boolean esBordeIzquierdoInferior(Juego juego, int x, int y) {
+		boolean bandera = false;
+		if(x-1 >= 0){
+			if(!juego.getTablero().getCasillero(new Punto(x-1,y)).casilleroHabilitado()){
+				bandera = true;
+			}			
+		}		
+		if(y + 1 < juego.getTablero().getMaxPosY()){
+			if(!juego.getTablero().getCasillero(new Punto(x,y+1)).casilleroHabilitado()){
+				bandera &= true;
+			}else{
+				bandera &= false;
+			}
+		}		
+		if(x+1 < juego.getTablero().getMaxPosX()){
+			if(!juego.getTablero().getCasillero(new Punto(x+1,y)).casilleroHabilitado()){
+				bandera &= false;
+			}
+		}		
+		if(y -1 >= 0){
+			if(!juego.getTablero().getCasillero(new Punto(x,y-1)).casilleroHabilitado()){
+				bandera &= false;
+			}
+		}		
+		return bandera;
+	}
+	
 }
