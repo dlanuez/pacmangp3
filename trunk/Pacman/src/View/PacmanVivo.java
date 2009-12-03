@@ -6,8 +6,6 @@ import Model.excepciones.PosicionInvalidaException;
 import Model.juego.Juego;
 import Model.viviente.Pacman;
 import Model.Punto;
-import java.awt.Color;
-import ar.uba.fi.algo3.titiritero.vista.Circulo;
 
 
 public class PacmanVivo implements ObjetoVivo, Posicionable{
