@@ -16,7 +16,7 @@ public class Juego {
 		catch(cantidadDeVidasInvalidaExeption e){
 			e.printStackTrace();
 		}
-		this.tablero = new Tablero("src/Model/laberinto.xml", this);
+		this.tablero = new Tablero("src/Model/nivel1.xml", this);
 	}
 
 	public Tablero getTablero() {

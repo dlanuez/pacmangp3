@@ -26,8 +26,8 @@ public class Tablero {
 	
 	public Tablero(String nivel, Juego juego){
 		this.juego = juego;
-		MAX_POS_X = 4;
-		MAX_POS_Y = 2;
+		MAX_POS_X = 16;
+		MAX_POS_Y = 16;
 		this.nivel = nivel;
 		this.cantidadDeBolitas = 0;
 	}
