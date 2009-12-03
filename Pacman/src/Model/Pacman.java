@@ -8,6 +8,7 @@ import Model.excepciones.tiempoDeEstadoInvalidoException;
 
 public class Pacman extends Viviente {
 	private Punto posicionDeRespawn;
+	
 	public Pacman(Punto posicionInicial, Juego juego)
 			throws PosicionInvalidaException, VelocidadInvalidaException {
 		super(posicionInicial, juego);
