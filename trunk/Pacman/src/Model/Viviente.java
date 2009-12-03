@@ -22,7 +22,7 @@ public abstract class Viviente {
 		this.juego = juego;
 		this.setVivo();
 		this.velocidad = 0;
-		this.direccionActual = null;
+		this.direccionActual = Direcciones.IZQUIERDA;
 		this.tiempoRestanteDeEstado = -1;
 	}
 	
