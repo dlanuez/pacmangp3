@@ -1,6 +1,6 @@
-import Model.Fantasma;
-import Model.Juego;
 import Model.Punto;
+import Model.juego.Juego;
+import Model.viviente.Fantasma;
 import junit.framework.TestCase;
 
 
@@ -11,7 +11,7 @@ public class FantasmaTest extends TestCase {
 	
 	protected void setUp() throws Exception {
 		super.setUp();		
-		this.juego = new Juego();
+		this.juego = new Juego("src/Model/nivel1.xml");
 		this.juego.getTablero().inicializar();
 		this.fantasma = this.juego.getTablero().getFantasma(0);
 	}

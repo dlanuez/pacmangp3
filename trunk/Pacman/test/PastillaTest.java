@@ -1,6 +1,6 @@
-import Model.Juego;
-import Model.Pastilla;
 import Model.excepciones.tiempoDeEstadoInvalidoException;
+import Model.item.Pastilla;
+import Model.juego.Juego;
 import junit.framework.TestCase;
 
 
@@ -10,7 +10,7 @@ public class PastillaTest extends TestCase {
 	private Juego juego;
 	
 	public void testHacerEfectoOK(){
-		this.juego = new Juego();
+		this.juego = new Juego("src/Model/nivel1.xml");
 		this.juego.getTablero().inicializar();
 		this.pastilla = new Pastilla(this.juego, 10);
 		try{
@@ -22,7 +22,7 @@ public class PastillaTest extends TestCase {
 	}
 	
 	public void testHacerEfectoErroneo(){
-		this.juego = new Juego();
+		this.juego = new Juego("src/Model/nivel1.xml");
 		this.juego.getTablero().inicializar();
 		this.pastilla = new Pastilla(this.juego, -5);
 		try{
