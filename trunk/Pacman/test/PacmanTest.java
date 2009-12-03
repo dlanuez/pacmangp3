@@ -32,9 +32,17 @@ public class PacmanTest extends TestCase {
 		
 		pacman.setDireccionActual(Direcciones.DERECHA);
 		pacman.vivir();
-		//Como en el laberinto de prueba en esa posicion hay un fantasma me come
-		assertFalse(pacman.estaVivo());		
+	
+		assertTrue(pacman.estaVivo());		
 		pacman.vivir();
+		try{//Se coloca al pacman en la misma posicion que un fantasma
+			pacman.setPosicion(this.juego.getTablero().getFantasma(1).getPosicion());
+		}
+		catch(PosicionInvalidaException e){
+			e.printStackTrace();
+		}
+		pacman.vivir();
+		assertFalse(pacman.estaVivo());
 		//Ahora pacman deberia reespawnearse a su posicion inicial
 		assertEquals(puntoAuxiliar, pacman.getPosicion());
 	}
