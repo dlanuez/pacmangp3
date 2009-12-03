@@ -2,6 +2,9 @@ package Model.viviente;
 
 import java.util.Iterator;
 
+import ar.uba.fi.algo3.titiritero.ObjetoVivo;
+import ar.uba.fi.algo3.titiritero.Posicionable;
+
 import Model.Direcciones;
 import Model.EstadoViviente;
 import Model.Punto;
@@ -11,11 +14,18 @@ import Model.excepciones.tiempoDeEstadoInvalidoException;
 import Model.juego.Juego;
 
 public class Pacman extends Viviente {
+	
 	private Punto posicionDeRespawn;
+	
 	public Pacman(Punto posicionInicial, Juego juego)
-			throws PosicionInvalidaException, VelocidadInvalidaException {
+			throws PosicionInvalidaException {
 		super(posicionInicial, juego);
-		this.setVelocidad(1); // TODO poner una velocidad real.
+		try{
+			this.setVelocidad(1); // TODO poner una velocidad real.
+		}
+		catch(VelocidadInvalidaException e){
+			System.out.print(e.toString());
+		}
 		this.setEstado(EstadoViviente.PRESA);
 		this.posicionDeRespawn = posicionInicial;
 		this.setDireccionActual(Direcciones.IZQUIERDA);
@@ -63,8 +73,7 @@ public class Pacman extends Viviente {
 		}
 		
 		try {
-			this.getJuego().getTablero().getCasillero(this.getPosicion())
-					.getItem().hacerEfecto();
+			this.getJuego().getTablero().getCasillero(this.getPosicion()).getItem().hacerEfecto();
 		} catch (tiempoDeEstadoInvalidoException e) {			
 			e.printStackTrace();
 		}

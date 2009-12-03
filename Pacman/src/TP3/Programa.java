@@ -2,13 +2,17 @@ package TP3;
 
 import ar.uba.fi.algo3.titiritero.ControladorJuego;
 import Model.Punto;
+import Model.excepciones.PosicionInvalidaException;
 import Model.juego.Juego;
 import Model.tablero.Casillero;
+import Model.viviente.Pacman;
 import View.Mesa;
 import View.VentanaPrincipal;
 import View.VistaLaberinto;
 import View.Pelota;
+import View.VistaPacman;
 import View.VistaPelota;
+import View.PacmanVivo;
 
 public class Programa {
 
@@ -28,16 +32,35 @@ public class Programa {
 		Pelota unaPelota = new Pelota(20,30);
 		unaPelota.setMesa(mesa);
 		
-		VistaPelota vistaPelota = new VistaPelota();
-		vistaPelota.setPosicionable(unaPelota);
 		
-		controlador.agregarObjetoVivo(unaPelota);
 		
-		generarTablero(controlador, juego);
-		//controlador.agregarDibujable(vistaLaberinto);
-		controlador.agregarDibujable(vistaPelota);
-		controlador.setIntervaloSimulacion(20);
-		controlador.comenzarJuego();
+		try{
+			
+			VistaPelota vistaPelota = new VistaPelota();
+			vistaPelota.setPosicionable(unaPelota);
+			
+			
+			PacmanVivo unPacman = new PacmanVivo(new Punto(1,1),juego);
+			unPacman.setMesa(mesa);			
+			
+			VistaPacman vistaPacman = new VistaPacman();
+			vistaPacman.setPosicionable(unPacman);
+			
+			
+			controlador.agregarObjetoVivo(unaPelota);
+			controlador.agregarObjetoVivo(unPacman);
+			
+			generarTablero(controlador, juego);
+			
+			//controlador.agregarDibujable(vistaLaberinto);
+			controlador.agregarDibujable(vistaPelota);
+			controlador.agregarDibujable(vistaPacman);
+			controlador.setIntervaloSimulacion(20);
+			controlador.comenzarJuego();
+		}
+		catch(PosicionInvalidaException e){
+			e.printStackTrace();
+		}
 	}
 	
 	private static void generarTablero(ControladorJuego controlador, Juego juego){

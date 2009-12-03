@@ -59,10 +59,7 @@ public class Tablero {
 			pacman = new Pacman(punto, juego);
 		} catch (PosicionInvalidaException e1) {			
 			e1.printStackTrace();
-		} catch (VelocidadInvalidaException e) {
-			e.printStackTrace();
-		}
-		
+		} 
 		
 		fantasmas = new ArrayList<Fantasma>();
 		cueva = averiguarPuntosFantasma();		

@@ -7,6 +7,7 @@ import ar.uba.fi.algo3.titiritero.vista.Imagen;
 
 public class VistaLaberinto extends Imagen {
 	private int x,y;
+	
 	public VistaLaberinto(int posX, int posY, String nombreImagen){
 		super();
 		
@@ -17,6 +18,6 @@ public class VistaLaberinto extends Imagen {
 	
 	public void dibujar(SuperficieDeDibujo superficeDeDibujo) {
 		Graphics grafico = (Graphics)superficeDeDibujo.getBuffer();
-		grafico.drawImage(this.imagen, this.x, this.y, null);
+		grafico.drawImage(this.getImagen(), this.x, this.y, null);
 	}
 }
