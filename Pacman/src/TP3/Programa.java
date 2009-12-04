@@ -4,16 +4,20 @@ import ar.uba.fi.algo3.titiritero.ControladorJuego;
 import ar.uba.fi.algo3.titiritero.Posicionable;
 import Model.Punto;
 import Model.excepciones.PosicionInvalidaException;
+import Model.excepciones.VelocidadInvalidaException;
 import Model.juego.Juego;
 import Model.tablero.Casillero;
+import View.FantasmaVivo;
 import View.Mesa;
 import View.PosicionableLaberinto;
 import View.VentanaPrincipal;
+import View.VistaFantasma;
 import View.VistaLaberinto;
 import View.Pelota;
 import View.VistaPacman;
 import View.VistaPelota;
 import View.PacmanVivo;
+import View.VistaTablero;
 
 public class Programa {
 
@@ -35,33 +39,48 @@ public class Programa {
 		
 		
 		
-		try{
 			
 			VistaPelota vistaPelota = new VistaPelota();
 			vistaPelota.setPosicionable(unaPelota);
 			
 			
-			PacmanVivo unPacman = new PacmanVivo(new Punto(1,1),juego);
-			unPacman.setMesa(mesa);			
+			PacmanVivo unPacman;
+			FantasmaVivo unFantasma;
+			try {
+				unPacman = new PacmanVivo(new Punto(1,8),juego);
+				unFantasma = new FantasmaVivo(new Punto(1,14), juego);
 			
-			VistaPacman vistaPacman = new VistaPacman();
-			vistaPacman.setPosicionable(unPacman);
+				unPacman.setMesa(mesa);			
 			
+				VistaPacman vistaPacman = new VistaPacman();
+				vistaPacman.setPosicionable(unPacman);
 			
-			controlador.agregarObjetoVivo(unaPelota);
-			controlador.agregarObjetoVivo(unPacman);
+				VistaFantasma vistaFantasma = new VistaFantasma(20,20);
+				vistaFantasma.setPosicionable(unFantasma);
+				
+				controlador.agregarObjetoVivo(unaPelota);
+				controlador.agregarObjetoVivo(unPacman);
+				controlador.agregarObjetoVivo(unFantasma);
 			
-			generarTablero(controlador, juego);
+				VistaTablero vistaTablero = new VistaTablero(512,512);
+				vistaTablero.setPosicionable(mesa);
+				controlador.agregarDibujable(vistaTablero);
 			
-			//controlador.agregarDibujable(vistaLaberinto);
-			controlador.agregarDibujable(vistaPelota);
-			controlador.agregarDibujable(vistaPacman);
-			controlador.setIntervaloSimulacion(20);
-			controlador.comenzarJuego();
-		}
-		catch(PosicionInvalidaException e){
-			e.printStackTrace();
-		}
+				generarTablero(controlador, juego);
+			
+				//controlador.agregarDibujable(vistaLaberinto);
+				controlador.agregarDibujable(vistaPelota);
+				controlador.agregarDibujable(vistaPacman);
+				controlador.agregarDibujable(vistaFantasma);
+				controlador.setIntervaloSimulacion(300);
+				controlador.comenzarJuego();
+			} catch (PosicionInvalidaException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (VelocidadInvalidaException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 	
 	private static void generarTablero(ControladorJuego controlador, Juego juego){
@@ -103,10 +122,7 @@ public class Programa {
 						controlador.agregarDibujable(vistaLaberinto);
 					}
 					if((i==(maxX-1)) && (k==0)){
-						vistaLaberinto = new VistaLaberinto("borde-inferior-izquierdo.jpg");
-						Posicionable posicionable = new PosicionableLaberinto(posX,posY);
-						vistaLaberinto.setPosicionable(posicionable);
-						controlador.agregarDibujable(vistaLaberinto);
+						crearVista(controlador, posX, posY, "borde-inferior-izquierdo.jpg");
 					}
 					if((i==0) && (k==(maxY-1))){
 						vistaLaberinto = new VistaLaberinto("borde-derecho.jpg");
@@ -139,15 +155,21 @@ public class Programa {
 						controlador.agregarDibujable(vistaLaberinto);
 					}
 					if(esBordeIzquierdoInferior(juego,i,k)){
-						vistaLaberinto = new VistaLaberinto("borde-inferior-izquierdo.jpg");
-						Posicionable posicionable = new PosicionableLaberinto(posX,posY);
-						vistaLaberinto.setPosicionable(posicionable);
-						controlador.agregarDibujable(vistaLaberinto);
+						crearVista(controlador, posX, posY, "borde-inferior-izquierdo.jpg");
 					}
 					
 				}
 			}
 		}
+	}
+
+	private static void crearVista(ControladorJuego controlador, int posX,
+			int posY, String imagen) {
+		VistaLaberinto vistaLaberinto;
+		vistaLaberinto = new VistaLaberinto(imagen);
+		Posicionable posicionable = new PosicionableLaberinto(posX,posY);
+		vistaLaberinto.setPosicionable(posicionable);
+		controlador.agregarDibujable(vistaLaberinto);
 	}
 	
 	

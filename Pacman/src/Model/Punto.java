@@ -58,5 +58,9 @@ public class Punto {
 		return false;		
 	}
 
+	public Punto clonar() {
+		return new Punto(x,y);
+	}
+
 
 }

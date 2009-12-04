@@ -56,5 +56,13 @@ public class Fruta extends Item {
 			}
 		}
 	}
+
+	@Override
+	public Item comer() {
+		if (this.activado)
+			return new ItemNulo();
+		else
+			return this;
+	}
 }
  

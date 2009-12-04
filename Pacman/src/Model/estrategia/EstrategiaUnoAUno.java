@@ -21,16 +21,16 @@ public abstract class EstrategiaUnoAUno extends Estrategia {
 			return dirActual;
 		deltaX = posicionEl.x() - posicionYo.x();
 		deltaY = posicionEl.y() - posicionYo.y();
-		dirHorizontal = encontrarDirHorizontal(deltaX, estado);
-		dirVertical = encontrarDirVertical(deltaY, estado);
+		dirHorizontal = encontrarDirHorizontal(deltaY, estado);
+		dirVertical = encontrarDirVertical(deltaX, estado);
 		//En caso de ser posible devuelve la direccion "que apunta"
 		//mejor al objetivo. Si no, devuelve la segunda que mejor apunta.
 		//Si tampoco se puede devuelve cualquier posicion posible.
 		if ( ((deltaX*deltaX - deltaY*deltaY) < 0)
-				&& dirPosibles.contains(dirVertical) )
-			return dirVertical;
-		if (dirPosibles.contains(dirHorizontal))
+				&& dirPosibles.contains(dirHorizontal) )
 			return dirHorizontal;
+		if (dirPosibles.contains(dirVertical))
+			return dirVertical;
 		return dirPosibles.get(0);
 	}
 

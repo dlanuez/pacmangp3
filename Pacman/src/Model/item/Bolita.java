@@ -22,5 +22,10 @@ public class Bolita extends Item {
 		this.getJuego().getJugador().sumarPuntos(Bolita.puntosOtorgados);
 		this.getJuego().getTablero().decrementarContadorBolitas();
 	}
+
+	@Override
+	public Item comer() {
+		return new ItemNulo();
+	}
 }
  

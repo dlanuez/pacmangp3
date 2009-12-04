@@ -19,5 +19,7 @@ public abstract class Item {
 	
 	//Metodo abstracto.
 	public abstract void hacerEfecto() throws tiempoDeEstadoInvalidoException;
+
+	public abstract Item comer();
 }
  

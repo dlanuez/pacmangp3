@@ -28,7 +28,7 @@ public class EstrategiaImpredecible extends Estrategia {
 		
 		dirPosibles = direccionesPosibles(posicionYo, tablero);		
 		if (!puedeDoblar(dirActual, dirPosibles)) return dirActual;
-		eleccion = random.nextInt(dirPosibles.size() - 1);
+		eleccion = random.nextInt(dirPosibles.size());
 		return dirPosibles.get(eleccion);
 	}
 
