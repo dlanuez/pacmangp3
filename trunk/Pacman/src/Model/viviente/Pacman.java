@@ -32,8 +32,8 @@ public class Pacman extends Viviente {
 	}
 
 	public void vivir() {
-		
-		Punto posicionActual =new Punto(this.getPosicion().x(), this.getPosicion().y());
+		Punto posicionActual = this.getPosicion().clonar();
+		//Punto posicionActual =new Punto(this.getPosicion().x(), this.getPosicion().y());
 		Fantasma fantasma;
 
 		if (!this.estaVivo()) {

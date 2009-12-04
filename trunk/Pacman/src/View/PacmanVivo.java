@@ -23,11 +23,11 @@ public class PacmanVivo implements ObjetoVivo, Posicionable{
 	}
 
 	public int getX() {
-		return this.pacman.getPosicion().x();
+		return 32 * this.pacman.getPosicion().y();
 	}
 
 	public int getY() {
-		return this.pacman.getPosicion().y();
+		return 32 * this.pacman.getPosicion().x();
 	}	
 	
 	public Mesa getMesa() {

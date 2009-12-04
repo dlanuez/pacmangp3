@@ -8,4 +8,9 @@ public class ItemNulo extends Item{
 		
 	}
 
+	@Override
+	public Item comer() {
+		return this;
+	}
+
 }

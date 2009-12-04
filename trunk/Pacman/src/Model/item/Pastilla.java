@@ -33,5 +33,11 @@ public class Pastilla extends Item {
 			fantasmas.next().cambiarEstado(this.tiempoDeEstado);
 		}	
 	}
+
+	@Override
+	public Item comer() {
+		
+		return new ItemNulo();
+	}
 }
  

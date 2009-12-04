@@ -8,7 +8,7 @@ public class VistaPacman extends Circulo {
 	
 	public VistaPacman() {
 		super(30);
-		setColor(Color.blue);
+		setColor(Color.yellow);
 	}
 
 }
