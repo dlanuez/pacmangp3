@@ -16,24 +16,25 @@ public class FantasmaVivo implements ObjetoVivo, Posicionable {
 	public FantasmaVivo(Punto posicionInicial, Juego juego) throws PosicionInvalidaException, VelocidadInvalidaException{
 		this.fantasma = new FantasmaAzul(posicionInicial, juego);
 	}
-	@Override
+
 	public void vivir() {
 		this.fantasma.vivir();
 		
 	}
 
-	@Override
+	
 	public int getX() {	
 		return 32 * this.fantasma.getPosicion().y();
 	}
 
-	@Override
 	public int getY() {
 		return 32 * this.fantasma.getPosicion().x();
 	}
+	
 	public void setMesa(Mesa mesa) {
 		this.mesa = mesa;
 	}
+	
 	public Mesa getMesa() {
 		return mesa;
 	}
