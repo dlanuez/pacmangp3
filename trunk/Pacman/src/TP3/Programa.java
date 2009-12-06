@@ -11,10 +11,13 @@ import View.FantasmaVivo;
 import View.Mesa;
 import View.PosicionableLaberinto;
 import View.VentanaPrincipal;
+import View.VistaBolita;
 import View.VistaFantasma;
+import View.VistaFruta;
 import View.VistaLaberinto;
 import View.Pelota;
 import View.VistaPacman;
+import View.VistaPastilla;
 import View.VistaPelota;
 import View.PacmanVivo;
 import View.VistaTablero;
@@ -39,6 +42,7 @@ public class Programa {
 		
 		
 		
+			
 			
 			VistaPelota vistaPelota = new VistaPelota();
 			vistaPelota.setPosicionable(unaPelota);
@@ -159,8 +163,56 @@ public class Programa {
 					}
 					
 				}
+				else{
+					if(esBolita(juego, i, k)){
+						VistaBolita vistaBolita = new VistaBolita();
+						Posicionable posicionable = new PosicionableLaberinto(posX+15,posY+15);
+						vistaBolita.setPosicionable(posicionable);
+						controlador.agregarDibujable(vistaBolita);
+					}
+					if(esPastilla(juego, i, k)){
+						VistaPastilla vistaPastilla = new VistaPastilla();
+						Posicionable posicionable = new PosicionableLaberinto(posX+15,posY+15);
+						vistaPastilla.setPosicionable(posicionable);
+						controlador.agregarDibujable(vistaPastilla);
+						
+					}
+					if(esFruta(juego, i, k)){
+						VistaFruta vistaFruta = new VistaFruta("Fruta.jpg");
+						Posicionable posicionable = new PosicionableLaberinto(posX,posY);
+						vistaFruta.setPosicionable(posicionable);
+						controlador.agregarDibujable(vistaFruta);						
+					}
+				}
+					
 			}
 		}
+	}
+
+	private static boolean esFruta(Juego juego, int i, int k) {
+		if (!esBolita(juego, i, k) && !esPastilla(juego, i, k))
+			return true;
+		return false;
+	}
+
+	private static boolean esPastilla(Juego juego, int i, int k) {
+		if (i == 1 && k == 1)
+			return true;
+		if (i == juego.getTablero().getMaxPosX()-2 && k == juego.getTablero().getMaxPosY()-2)
+			return true;
+		if (i == juego.getTablero().getMaxPosX()-2 && k == 1)
+			return true;
+		if (i == 1 && k == juego.getTablero().getMaxPosY()-2)
+			return true;
+		return false;
+	}
+
+	private static boolean esBolita(Juego juego, int i, int k) {
+		if (i == 10 && k == 8)
+			return false;
+		if(!esPastilla(juego, i, k))
+			return true;
+		return false;
 	}
 
 	private static void crearVista(ControladorJuego controlador, int posX,
