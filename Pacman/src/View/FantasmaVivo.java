@@ -6,7 +6,6 @@ import Model.excepciones.VelocidadInvalidaException;
 import Model.juego.Juego;
 import Model.viviente.Fantasma;
 import Model.viviente.FantasmaAzul;
-import Model.viviente.FantasmaRosa;
 import ar.uba.fi.algo3.titiritero.ObjetoVivo;
 import ar.uba.fi.algo3.titiritero.Posicionable;
 
