@@ -16,6 +16,7 @@ public class Fruta extends Item {
 		this.setJuego(juego);
 		this.tiempoActivo = tiempoActivo;
 		this.tiempoInactivo = tiempoInactivo;
+		this.activado = false;
 	}
 	
 	//Configura los puntos otorgados de la clase Fruta.
@@ -25,13 +26,11 @@ public class Fruta extends Item {
 	
 	//Suma la cantidad de puntos otorgados por comer una fruta a los puntos del jugador.
 	public void hacerEfecto(){
-		this.getJuego().getJugador().sumarPuntos(Fruta.puntosOtorgados);
-		this.getControlador().removerDibujable(this.getDibujableImagen());
+		if (this.activado){
+			this.getJuego().getJugador().sumarPuntos(Fruta.puntosOtorgados);
+			this.getControlador().removerDibujable(this.getDibujableImagen());
+		}
 
-	}
-	
-	public boolean activado(){
-		return activado;
 	}
 
 	public boolean estaActivo() {
@@ -39,10 +38,12 @@ public class Fruta extends Item {
 			if(this.tiempoActivoCorriendo == this.tiempoActivo){
 				this.activado = false;
 				this.tiempoActivoCorriendo = 0;
+				this.getControlador().removerDibujable(this.getDibujableImagen());
 				return false;
 			}
 			else{
 				this.tiempoActivoCorriendo++;
+				this.getControlador().agregarDibujable(this.getDibujableImagen());
 				return true;
 			}			
 		}
@@ -50,10 +51,12 @@ public class Fruta extends Item {
 			if(this.tiempoInactivoCorriendo == this.tiempoInactivo){
 				this.activado = true;
 				this.tiempoInactivoCorriendo = 0;
+				this.getControlador().agregarDibujable(this.getDibujableImagen());
 				return true;
 			}
 			else{
 				this.tiempoInactivoCorriendo++;
+				this.getControlador().removerDibujable(this.getDibujableImagen());
 				return false;
 			}
 		}
@@ -61,10 +64,9 @@ public class Fruta extends Item {
 
 	@Override
 	public Item comer() {
-		if (this.activado)
+		if (this.estaActivo())
 			return new ItemNulo();
-		else
-			return this;
+		return this;
 	}
 }
  

@@ -5,9 +5,11 @@ import ar.uba.fi.algo3.titiritero.Posicionable;
 import Model.Punto;
 import Model.excepciones.PosicionInvalidaException;
 import Model.excepciones.VelocidadInvalidaException;
+import Model.item.Fruta;
 import Model.juego.Juego;
 import Model.tablero.Casillero;
 import View.FantasmaVivo;
+import View.FrutaViva;
 import View.Mesa;
 import View.PosicionableLaberinto;
 import View.VentanaPrincipal;
@@ -184,9 +186,12 @@ public class Programa {
 					if(esFruta(juego, i, k)){
 						VistaFruta vistaFruta = new VistaFruta("Fruta.jpg");
 						Posicionable posicionable = new PosicionableLaberinto(posX,posY);
+						//FrutaViva frutaViva = new FrutaViva(juego.getTablero().getCasillero(new Punto(i, k)).obtenerItem());
 						vistaFruta.setPosicionable(posicionable);
 						juego.getTablero().getCasillero(new Punto(i, k)).obtenerItem().setControlador(controlador);
-						juego.getTablero().getCasillero(new Punto(i, k)).obtenerItem().setDibujableImagen(vistaFruta);					}
+						juego.getTablero().getCasillero(new Punto(i, k)).obtenerItem().setDibujableImagen(vistaFruta);
+						//controlador.agregarObjetoVivo(frutaViva);
+					}
 				}
 					
 			}
