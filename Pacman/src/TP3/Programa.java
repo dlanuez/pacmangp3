@@ -169,20 +169,24 @@ public class Programa {
 						Posicionable posicionable = new PosicionableLaberinto(posX+15,posY+15);
 						vistaBolita.setPosicionable(posicionable);
 						controlador.agregarDibujable(vistaBolita);
+						juego.getTablero().getCasillero(new Punto(i, k)).obtenerItem().setControlador(controlador);
+						juego.getTablero().getCasillero(new Punto(i, k)).obtenerItem().setDibujable(vistaBolita);
 					}
 					if(esPastilla(juego, i, k)){
 						VistaPastilla vistaPastilla = new VistaPastilla();
 						Posicionable posicionable = new PosicionableLaberinto(posX+15,posY+15);
 						vistaPastilla.setPosicionable(posicionable);
 						controlador.agregarDibujable(vistaPastilla);
+						juego.getTablero().getCasillero(new Punto(i, k)).obtenerItem().setControlador(controlador);
+						juego.getTablero().getCasillero(new Punto(i, k)).obtenerItem().setDibujable(vistaPastilla);
 						
 					}
 					if(esFruta(juego, i, k)){
 						VistaFruta vistaFruta = new VistaFruta("Fruta.jpg");
 						Posicionable posicionable = new PosicionableLaberinto(posX,posY);
 						vistaFruta.setPosicionable(posicionable);
-						controlador.agregarDibujable(vistaFruta);						
-					}
+						juego.getTablero().getCasillero(new Punto(i, k)).obtenerItem().setControlador(controlador);
+						juego.getTablero().getCasillero(new Punto(i, k)).obtenerItem().setDibujableImagen(vistaFruta);					}
 				}
 					
 			}

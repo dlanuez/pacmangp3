@@ -1,19 +1,19 @@
 package Model.item;
 
+import ar.uba.fi.algo3.titiritero.vista.Imagen;
 import Model.Punto;
 import Model.juego.Juego;
 
 public class Fruta extends Item {
-	private final int tiempoActivo;
-	private final int tiempoInactivo;
+	private int tiempoActivo;
+	private int tiempoInactivo;
 	private int tiempoActivoCorriendo;
 	private int tiempoInactivoCorriendo;
 	private boolean activado;
-	private static int puntosOtorgados;
+	private static int puntosOtorgados = 20;
 
 	public Fruta(Juego juego, int tiempoActivo, int tiempoInactivo, Punto posicion){
 		this.setJuego(juego);
-		Fruta.puntosOtorgados = 20;
 		this.tiempoActivo = tiempoActivo;
 		this.tiempoInactivo = tiempoInactivo;
 	}
@@ -26,6 +26,8 @@ public class Fruta extends Item {
 	//Suma la cantidad de puntos otorgados por comer una fruta a los puntos del jugador.
 	public void hacerEfecto(){
 		this.getJuego().getJugador().sumarPuntos(Fruta.puntosOtorgados);
+		this.getControlador().removerDibujable(this.getDibujableImagen());
+
 	}
 	
 	public boolean activado(){

@@ -4,12 +4,11 @@ import Model.juego.Juego;
 
 public class Bolita extends Item {
 
-	private static int puntosOtorgados;
+	private static int puntosOtorgados = 10;
 
 	//El puntaje otorgado por defecto es 10.
 	public Bolita(Juego juego){
 		this.setJuego(juego);
-		Bolita.puntosOtorgados = 10;
 	}
 	
 	//Configura los puntos otorgados de la clase Bolita.
@@ -21,6 +20,7 @@ public class Bolita extends Item {
 	public void hacerEfecto(){
 		this.getJuego().getJugador().sumarPuntos(Bolita.puntosOtorgados);
 		this.getJuego().getTablero().decrementarContadorBolitas();
+		this.getControlador().removerDibujable(this.getDibujable());
 	}
 
 	@Override
