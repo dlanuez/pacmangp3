@@ -4,8 +4,7 @@ import Model.Punto;
 import Model.excepciones.PosicionInvalidaException;
 import Model.excepciones.VelocidadInvalidaException;
 import Model.juego.Juego;
-import Model.viviente.Fantasma;
-import Model.viviente.FantasmaAzul;
+import Model.viviente.*;
 import ar.uba.fi.algo3.titiritero.ObjetoVivo;
 import ar.uba.fi.algo3.titiritero.Posicionable;
 
@@ -24,11 +23,11 @@ public class FantasmaVivo implements ObjetoVivo, Posicionable {
 
 	
 	public int getX() {	
-		return 32 * this.fantasma.getPosicion().y();
+		return 32 * this.fantasma.getPosicion().x();
 	}
 
 	public int getY() {
-		return 32 * this.fantasma.getPosicion().x();
+		return 32 * this.fantasma.getPosicion().y();
 	}
 	
 	public void setMesa(Mesa mesa) {
