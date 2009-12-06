@@ -11,12 +11,12 @@ public class PosicionableLaberinto implements Posicionable {
 		this.y = y;
 	}
 
-	@Override
+
 	public int getX() {
 		return this.x;
 	}
 
-	@Override
+
 	public int getY() {		
 		return this.y;
 	}
