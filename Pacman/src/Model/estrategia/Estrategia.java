@@ -49,7 +49,7 @@ public abstract class Estrategia {
 		
 		Punto posicion;
 		
-		posicion = posicionYo;
+		posicion = posicionYo.clonar();
 		posicion.disminuirX();
 		
 		if (posicion.x() >= 0){
@@ -72,7 +72,7 @@ public abstract class Estrategia {
 		
 		Punto posicion;
 		
-		posicion = posicionYo;
+		posicion = posicionYo.clonar();
 		posicion.aumentarX();
 		if (posicion.x() < tablero.getMaxPosX())
 			if(tablero.getCasillero(posicion).casilleroHabilitado())
@@ -85,7 +85,7 @@ public abstract class Estrategia {
 		
 		Punto posicion;
 		
-		posicion = posicionYo;
+		posicion = posicionYo.clonar();
 		posicion.disminuirY();
 		if (posicion.y() >= 0)
 			if(tablero.getCasillero(posicion).casilleroHabilitado())
@@ -98,7 +98,7 @@ public abstract class Estrategia {
 		
 		Punto posicion;
 		
-		posicion = posicionYo;
+		posicion = posicionYo.clonar();
 		posicion.aumentarY();
 		if (posicion.y() < tablero.getMaxPosY())
 			if(tablero.getCasillero(posicion).casilleroHabilitado())
@@ -121,28 +121,28 @@ public abstract class Estrategia {
 		
 		caminos = new ArrayList<ArrayList<Punto>>();
 		
-		proxPunto = inicio;
+		proxPunto = inicio.clonar();
 		proxPunto.disminuirX();
 		recorridoArriba = aEvitar;
 		recorridoArriba.add(proxPunto);
 		recorridoArriba = caminoMasCorto(proxPunto, fin, recorridoArriba);
 		caminos.add(recorridoArriba);
 		
-		proxPunto = inicio;
+		proxPunto = inicio.clonar();
 		proxPunto.aumentarX();
 		recorridoAbajo = aEvitar;
 		recorridoAbajo.add(proxPunto);
 		recorridoAbajo = caminoMasCorto(proxPunto, fin, recorridoAbajo);
 		caminos.add(recorridoAbajo);
 		
-		proxPunto = inicio;
+		proxPunto = inicio.clonar();
 		proxPunto.disminuirY();
 		recorridoIzquierda = aEvitar;
 		recorridoIzquierda.add(proxPunto);
 		recorridoIzquierda = caminoMasCorto(proxPunto, fin, recorridoIzquierda);
 		caminos.add(recorridoIzquierda);
 		
-		proxPunto = inicio;
+		proxPunto = inicio.clonar();
 		proxPunto.aumentarY();
 		recorridoDerecha = aEvitar;
 		recorridoDerecha.add(proxPunto);

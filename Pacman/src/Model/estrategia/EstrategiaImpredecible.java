@@ -30,8 +30,6 @@ public class EstrategiaImpredecible extends Estrategia {
 		if (!puedeDoblar(dirActual, dirPosibles)) return dirActual;
 		
 		eleccion = random.nextInt(dirPosibles.size());
-		//TODO: sacar esta linea
-			System.out.println(dirPosibles.size());
 		return dirPosibles.get(eleccion);
 	}
 

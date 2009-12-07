@@ -34,19 +34,19 @@ public class EstrategiaEmboscadora extends Estrategia {
 		
 		Punto nuevaPosicion;
 		
-		nuevaPosicion = posicionInicial;
+		nuevaPosicion = posicionInicial.clonar();
 		nuevaPosicion.disminuirX();
 		if (nuevaPosicion.equals(posicionFinal))
 			return Direcciones.ARRIBA;
-		nuevaPosicion = posicionInicial;
+		nuevaPosicion = posicionInicial.clonar();
 		nuevaPosicion.aumentarX();
 		if (nuevaPosicion.equals(posicionFinal))
 			return Direcciones.ABAJO;
-		nuevaPosicion = posicionInicial;
+		nuevaPosicion = posicionInicial.clonar();
 		nuevaPosicion.aumentarY();
 		if (nuevaPosicion.equals(posicionFinal))
 			return Direcciones.DERECHA;
-		nuevaPosicion = posicionInicial;
+		nuevaPosicion = posicionInicial.clonar();
 		nuevaPosicion.disminuirY();
 		if (nuevaPosicion.equals(posicionFinal))
 			return Direcciones.IZQUIERDA;
