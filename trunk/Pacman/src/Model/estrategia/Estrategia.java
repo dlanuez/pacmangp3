@@ -52,18 +52,9 @@ public abstract class Estrategia {
 		posicion = posicionYo.clonar();
 		posicion.disminuirX();
 		
-		if (posicion.x() >= 0){
-			if(tablero.getCasillero(posicion).casilleroHabilitado()){
+		if (posicion.x() >= 0)
+			if(tablero.getCasillero(posicion).casilleroHabilitado())
 				dirPosibles.add(Direcciones.ARRIBA);
-				//System.out.print(posicion.toString());
-				//System.out.println(" habilitado");
-			}
-		}
-		else{
-			//System.out.print(posicion.toString());
-			//System.out.println(" NO habilitado");
-		}
-			
 		
 	}
 
