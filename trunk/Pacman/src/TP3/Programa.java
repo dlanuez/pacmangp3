@@ -77,7 +77,7 @@ public class Programa {
 				controlador.agregarDibujable(vistaPelota);
 				controlador.agregarDibujable(vistaPacman);
 				controlador.agregarDibujable(vistaFantasma);
-				controlador.setIntervaloSimulacion(1000);
+				controlador.setIntervaloSimulacion(300);
 				controlador.comenzarJuego();
 			} catch (PosicionInvalidaException e) {
 				// TODO Auto-generated catch block

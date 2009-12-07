@@ -23,11 +23,11 @@ public class FantasmaVivo implements ObjetoVivo, Posicionable {
 
 	
 	public int getX() {	
-		return 32 * this.fantasma.getPosicion().x();
+		return 32 * this.fantasma.getPosicion().y();
 	}
 
 	public int getY() {
-		return 32 * this.fantasma.getPosicion().y();
+		return 32 * this.fantasma.getPosicion().x();
 	}
 	
 	public void setMesa(Mesa mesa) {
