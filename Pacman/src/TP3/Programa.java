@@ -32,6 +32,7 @@ public class Programa {
 		Juego juego = new Juego("src/Model/nivel1.xml");
 		juego.getTablero().inicializar();
 		
+	
 		VentanaPrincipal ventana = new VentanaPrincipal(controlador);
 		ventana.setVisible(true);
 		controlador.setSuperficieDeDibujo(ventana.getSuperficieDeDibujo());
@@ -42,16 +43,14 @@ public class Programa {
 		Pelota unaPelota = new Pelota(20,30);
 		unaPelota.setMesa(mesa);
 		
+	
+		VistaPelota vistaPelota = new VistaPelota();
+		vistaPelota.setPosicionable(unaPelota);
 		
 		
-			
-			
-			VistaPelota vistaPelota = new VistaPelota();
-			vistaPelota.setPosicionable(unaPelota);
-			
-			
-			PacmanVivo unPacman;
-			FantasmaVivo unFantasma;
+		PacmanVivo unPacman;
+		FantasmaVivo unFantasma;
+		
 			try {
 				unPacman = new PacmanVivo(new Punto(1,8),juego);
 				unFantasma = new FantasmaVivo(new Punto(1,14), juego);
@@ -78,7 +77,7 @@ public class Programa {
 				controlador.agregarDibujable(vistaPelota);
 				controlador.agregarDibujable(vistaPacman);
 				controlador.agregarDibujable(vistaFantasma);
-				controlador.setIntervaloSimulacion(300);
+				controlador.setIntervaloSimulacion(1000);
 				controlador.comenzarJuego();
 			} catch (PosicionInvalidaException e) {
 				// TODO Auto-generated catch block
@@ -233,10 +232,6 @@ public class Programa {
 		controlador.agregarDibujable(vistaLaberinto);
 	}
 	
-	
-	
-	
-
 	private static boolean esHorizontal(Juego juego, int x, int y){
 		boolean bandera = false;
 		if(x-1 >= 0){

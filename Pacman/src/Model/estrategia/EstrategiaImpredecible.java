@@ -10,8 +10,7 @@ import Model.tablero.Tablero;
 public class EstrategiaImpredecible extends Estrategia {
 
 	@Override
-	public Direcciones calcularNuevaDireccion(Punto posicionYo,
-			Punto posicionEl, Direcciones dirActual, Tablero tablero) {
+	public Direcciones calcularNuevaDireccion(Punto posicionYo,	Punto posicionEl, Direcciones dirActual, Tablero tablero) {
 		
 		ArrayList<Direcciones> dirPosibles;
 		Random random = new Random();
@@ -28,9 +27,11 @@ public class EstrategiaImpredecible extends Estrategia {
 		
 		dirPosibles = direccionesPosibles(posicionYo, tablero);		
 		
-		//if (!puedeDoblar(dirActual, dirPosibles)) return dirActual;
+		if (!puedeDoblar(dirActual, dirPosibles)) return dirActual;
 		
 		eleccion = random.nextInt(dirPosibles.size());
+		//TODO: sacar esta linea
+			System.out.println(dirPosibles.size());
 		return dirPosibles.get(eleccion);
 	}
 

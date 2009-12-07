@@ -8,4 +8,5 @@ public enum EstadoViviente {
 			return EstadoViviente.PRESA;
 		else return EstadoViviente.CAZADOR;
 	}
+	
 }

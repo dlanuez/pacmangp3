@@ -3,6 +3,7 @@ package Model.viviente;
 import java.util.*;
 
 import Model.Direcciones;
+import Model.EstadoCasillero;
 import Model.EstadoViviente;
 import Model.Punto;
 import Model.estrategia.Estrategia;
@@ -25,19 +26,31 @@ public class Fantasma extends Viviente {
 		
 		Punto posicionPacman = this.getJuego().getTablero().getPacman().getPosicion();
 		
-		if (this.getEstado() == EstadoViviente.CAZADOR)
-			this.irEnDireccion(
-					this.estrategia.calcularNuevaDireccion( this.getPosicion(),
-									posicionPacman, this.getDireccionActual(),
-									this.getJuego().getTablero()));
-		else
-			this.irEnDireccion(
-					(new EstrategiaEscapadora()).calcularNuevaDireccion(
-								this.getPosicion(), posicionPacman,
-								this.getDireccionActual(),
-								this.getJuego().getTablero()));
+		Direcciones dir;
 		
+		if (this.getEstado() == EstadoViviente.CAZADOR)
+			
+			dir = this.estrategia.calcularNuevaDireccion( 
+					this.getPosicion(),
+					posicionPacman,
+					this.getDireccionActual(),
+					this.getJuego().getTablero());
+			
+		
+		else
+			
+			dir =(new EstrategiaEscapadora()).calcularNuevaDireccion(
+					this.getPosicion(), 
+					posicionPacman,
+					this.getDireccionActual(),
+					this.getJuego().getTablero());
+		
+		System.out.println(dir);
+		this.irEnDireccion(dir);
 		this.buscarPacman(posicionPacman);
+		
+		if(this.getJuego().getTablero().getCasillero(this.getPosicion()).casilleroHabilitado() == false)
+			System.out.print("ESTA POSICION NO ESTA HABILITADA!!");
 	}
 
 	public int getPuntosPorEsteFantasmaConCarinioParaCabu(){
