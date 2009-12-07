@@ -52,17 +52,16 @@ public abstract class Estrategia {
 		posicion = posicionYo;
 		posicion.disminuirX();
 		
-		//TODO: he aqui el problema!
 		if (posicion.x() >= 0){
 			if(tablero.getCasillero(posicion).casilleroHabilitado()){
 				dirPosibles.add(Direcciones.ARRIBA);
-				System.out.print(posicion.toString());
-				System.out.println(" habilitado");
+				//System.out.print(posicion.toString());
+				//System.out.println(" habilitado");
 			}
 		}
 		else{
-			System.out.print(posicion.toString());
-			System.out.println(" NO habilitado");
+			//System.out.print(posicion.toString());
+			//System.out.println(" NO habilitado");
 		}
 			
 		

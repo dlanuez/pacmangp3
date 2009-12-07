@@ -94,6 +94,10 @@ public class Tablero {
 		return matriz[punto.x()][punto.y()];
 	}
 	
+	public Casillero getCasillero(int x, int y){
+		return matriz[x][y];
+	}
+	
 	public void resetearPosiciones() throws PosicionInvalidaException{		
 		try{
 			pacman.reEspawnear();
