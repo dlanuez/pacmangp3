@@ -1,5 +1,7 @@
 package Model.viviente;
 
+import java.awt.Color;
+
 import Model.Punto;
 import Model.estrategia.EstrategiaPerseguidora;
 import Model.excepciones.PosicionInvalidaException;
@@ -14,6 +16,7 @@ public class FantasmaVerde extends Fantasma {
 		super(posicionInicial, juego);
 		this.setVelocidad(1); //TODO poner una velocidad real.
 		this.setEstrategia(new EstrategiaPerseguidora());
+		this.setColor(Color.GREEN);
 	}
 	
 	@Override

@@ -22,10 +22,10 @@ public class TableroTest extends TestCase {
 	}
 	//Inicializo el tablero con el laberinto de prueba y chequeo que me cargue todo ok
 	public void testInicializarYGetCasillero() {		
-		assertEquals("Bolita", this.tablero.getCasillero(new Punto(0,0)).obtenerItem().getClass().getSimpleName());
+		assertEquals("ItemNulo", this.tablero.getCasillero(new Punto(0,0)).obtenerItem().getClass().getSimpleName());
 		assertEquals("Pastilla", this.tablero.getCasillero(new Punto(0,1)).obtenerItem().getClass().getSimpleName());
 		assertFalse(this.tablero.getCasillero(new Punto(1,0)).casilleroHabilitado());
-		assertEquals("ItemNulo",this.tablero.getCasillero(new Punto(1,1)).obtenerItem().getClass().getSimpleName());
+		assertEquals("Bolita",this.tablero.getCasillero(new Punto(1,1)).obtenerItem().getClass().getSimpleName());
 		assertEquals("ItemNulo",this.tablero.getCasillero(new Punto(2,0)).obtenerItem().getClass().getSimpleName());
 		assertEquals("ItemNulo",this.tablero.getCasillero(new Punto(2,1)).obtenerItem().getClass().getSimpleName());
 		assertEquals("ItemNulo",this.tablero.getCasillero(new Punto(3,0)).obtenerItem().getClass().getSimpleName());
@@ -36,11 +36,10 @@ public class TableroTest extends TestCase {
 	public void testResetearPosiciones() {
 		try {
 			this.tablero.resetearPosiciones();
-		} catch (PosicionInvalidaException e) {
-			// TODO Auto-generated catch block
+		} catch (PosicionInvalidaException e) {			
 			fail("Tiro excepcion");
 		}
-		this.punto = new Punto(1,1);
+		this.punto = new Punto(0,0);
 		Pacman pacman = this.tablero.getPacman();
 		assertEquals(this.punto,pacman.getPosicion());		
 		Fantasma fantasma;

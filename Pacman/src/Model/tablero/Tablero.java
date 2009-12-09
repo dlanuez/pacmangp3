@@ -53,7 +53,7 @@ public class Tablero {
 		InicializadorTablero inicializador = new InicializadorTablero(nivel, juego, MAX_POS_X, MAX_POS_Y);
 		matriz = inicializador.generarTablero();
 		calcularCantidadDeBolitas();
-		Punto punto = new Punto(1,1);
+		Punto punto = inicializador.getPuntoPacman();
 		
 		try {
 			pacman = new Pacman(punto, juego);

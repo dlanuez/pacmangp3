@@ -1,19 +1,17 @@
 package View;
 
-import Model.Punto;
-import Model.excepciones.PosicionInvalidaException;
-import Model.excepciones.VelocidadInvalidaException;
-import Model.juego.Juego;
+import java.awt.Color;
+
 import Model.viviente.*;
 import ar.uba.fi.algo3.titiritero.ObjetoVivo;
 import ar.uba.fi.algo3.titiritero.Posicionable;
 
 public class FantasmaVivo implements ObjetoVivo, Posicionable {
 	private Fantasma fantasma;
-	private Mesa mesa;
+
 	
-	public FantasmaVivo(Punto posicionInicial, Juego juego) throws PosicionInvalidaException, VelocidadInvalidaException{
-		this.fantasma = new FantasmaAzul(posicionInicial, juego);
+	public FantasmaVivo(Fantasma fantasma){
+		this.fantasma = fantasma;
 	}
 
 	public void vivir() {
@@ -30,12 +28,7 @@ public class FantasmaVivo implements ObjetoVivo, Posicionable {
 		return 32 * this.fantasma.getPosicion().x();
 	}
 	
-	public void setMesa(Mesa mesa) {
-		this.mesa = mesa;
+	public Color getColor(){
+		return this.fantasma.getColor();
 	}
-	
-	public Mesa getMesa() {
-		return mesa;
-	}
-
 }

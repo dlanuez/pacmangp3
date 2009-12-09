@@ -1,9 +1,9 @@
 package Model.viviente;
 
+import java.awt.Color;
 import java.util.*;
 
 import Model.Direcciones;
-import Model.EstadoCasillero;
 import Model.EstadoViviente;
 import Model.Punto;
 import Model.estrategia.Estrategia;
@@ -15,6 +15,7 @@ public class Fantasma extends Viviente {
 	
 	private Estrategia estrategia;
 	private int puntosPorEsteFantasma;
+	private Color color;
 	
 	public Fantasma(Punto posicionInicial, Juego juego) throws PosicionInvalidaException{
 		super(posicionInicial, juego);
@@ -163,6 +164,14 @@ public class Fantasma extends Viviente {
 	
 	public void setEstrategia(Estrategia e){
 		this.estrategia = e;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+	public Color getColor() {
+		return color;
 	}
 	
 }

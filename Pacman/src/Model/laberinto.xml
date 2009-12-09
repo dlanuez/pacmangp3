@@ -2,7 +2,7 @@
 	<casillero>
 		<posicionX>1</posicionX>
 		<posicionY>1</posicionY>
-		<item>1</item>
+		<item>O</item>
 	</casillero>
 	<casillero>
 		<posicionX>1</posicionX>
@@ -17,7 +17,7 @@
 	<casillero>
 		<posicionX>2</posicionX>
 		<posicionY>2</posicionY>
-		<item>0</item>
+		<item>1</item>
 	</casillero>
 	<casillero>
 		<posicionX>3</posicionX>
