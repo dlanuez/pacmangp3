@@ -5,6 +5,7 @@ import Model.Punto;
 import Model.excepciones.ArchivoInvalidoException;
 import Model.excepciones.TipoDeCasilleroInexistenteException;
 import Model.item.Bolita;
+import Model.item.Fruta;
 import Model.item.ItemNulo;
 import Model.item.Pastilla;
 import Model.juego.Juego;
@@ -72,7 +73,10 @@ public class InicializadorTablero {
 	private Casillero getTipoCasillero(String item, int posX, int posY) {
 		Casillero casillero;
 		if(item.equals("1")){
-			casillero = new Casillero(EstadoCasillero.PISO, new Bolita(this.juego));
+			if (posX == 10 && posY == 8)
+				casillero = new Casillero(EstadoCasillero.PISO, new Fruta(this.juego, 10, 20, new Punto(posX, posY)));
+			else
+				casillero = new Casillero(EstadoCasillero.PISO, new Bolita(this.juego));
 			return casillero;
 		}else if(item.equals("2")){
 			casillero = new Casillero(EstadoCasillero.PISO, new Pastilla(this.juego,50));
