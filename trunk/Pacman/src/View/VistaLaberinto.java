@@ -9,4 +9,6 @@ public class VistaLaberinto extends Imagen {
 		this.setNombreArchivoImagen(nombreImagen);
 	}
 	
+	
+	
 }

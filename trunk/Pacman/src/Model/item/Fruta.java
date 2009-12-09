@@ -1,6 +1,5 @@
 package Model.item;
 
-import ar.uba.fi.algo3.titiritero.vista.Imagen;
 import Model.Punto;
 import Model.juego.Juego;
 

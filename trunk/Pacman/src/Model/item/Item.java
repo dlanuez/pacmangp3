@@ -5,8 +5,6 @@ import ar.uba.fi.algo3.titiritero.vista.Figura;
 import ar.uba.fi.algo3.titiritero.vista.Imagen;
 import Model.excepciones.tiempoDeEstadoInvalidoException;
 import Model.juego.Juego;
-import View.VistaBolita;
-import View.VistaFruta;
 
 public abstract class Item {
  

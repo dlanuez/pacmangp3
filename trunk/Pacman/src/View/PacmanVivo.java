@@ -2,19 +2,15 @@ package View;
 
 import ar.uba.fi.algo3.titiritero.ObjetoVivo;
 import ar.uba.fi.algo3.titiritero.Posicionable;
-import Model.excepciones.PosicionInvalidaException;
-import Model.juego.Juego;
 import Model.viviente.Pacman;
-import Model.Punto;
 
 
 public class PacmanVivo implements ObjetoVivo, Posicionable{
 
-	private Pacman pacman;	
-	private Mesa mesa;
+	private Pacman pacman;		
 
-	public PacmanVivo(Punto posicionInicial, Juego juego) throws PosicionInvalidaException{
-		this.pacman = new Pacman(posicionInicial, juego);
+	public PacmanVivo(Pacman pacman){
+		this.pacman = pacman;
 	}
 	
 	public void vivir() {
@@ -30,12 +26,5 @@ public class PacmanVivo implements ObjetoVivo, Posicionable{
 		return 32 * this.pacman.getPosicion().x();
 	}	
 	
-	public Mesa getMesa() {
-		return mesa;
-	}
-
-	public void setMesa(Mesa mesa) {
-		this.mesa = mesa;
-	}
 		
 }

@@ -1,6 +1,7 @@
 package Model.tablero;
 
 import Model.EstadoCasillero;
+import Model.Punto;
 import Model.excepciones.ArchivoInvalidoException;
 import Model.excepciones.TipoDeCasilleroInexistenteException;
 import Model.item.Bolita;
@@ -24,6 +25,7 @@ public class InicializadorTablero {
 	private File archivo;
 	private Casillero casilleros[][];
 	private Juego juego;
+	private Punto puntoPacman;
 	
 	public InicializadorTablero(String archivo, Juego juego, int maxX, int maxY){
 		if((archivo == "") || (archivo == null)){			
@@ -54,7 +56,7 @@ public class InicializadorTablero {
 					posX = convertirAEntero((Node)posicionX.item(0)) - 1;
 					posY = convertirAEntero((Node)posicionY.item(0)) - 1;	
 					itemValor = (String)item.item(0).getNodeValue();					
-					casilleros[posX][posY] = getTipoCasillero(itemValor);
+					casilleros[posX][posY] = getTipoCasillero(itemValor, posX,posY);
 				}
 			}
 		}catch(ParserConfigurationException e){
@@ -67,7 +69,7 @@ public class InicializadorTablero {
 		return casilleros;
 	}
 
-	private Casillero getTipoCasillero(String item) {
+	private Casillero getTipoCasillero(String item, int posX, int posY) {
 		Casillero casillero;
 		if(item.equals("1")){
 			casillero = new Casillero(EstadoCasillero.PISO, new Bolita(this.juego));
@@ -80,6 +82,10 @@ public class InicializadorTablero {
 			return casillero;
 		}else if(item.equals("0")){
 			casillero = new Casillero(EstadoCasillero.PISO, new ItemNulo());
+			return casillero;
+		}else if(item.equals("O")){
+			casillero = new Casillero(EstadoCasillero.PISO, new ItemNulo());
+			setPuntoPacman(new Punto(posX, posY));
 			return casillero;
 		}else{
 			throw new TipoDeCasilleroInexistenteException();
@@ -94,5 +100,13 @@ public class InicializadorTablero {
 		NodeList elementoLista = elemento.getElementsByTagName(tag);
 		Element elementoNodo = (Element) elementoLista.item(0);
 		return elementoNodo.getChildNodes();
+	}
+
+	public void setPuntoPacman(Punto puntoPacman) {
+		this.puntoPacman = puntoPacman;
+	}
+
+	public Punto getPuntoPacman() {
+		return puntoPacman;
 	}
 }

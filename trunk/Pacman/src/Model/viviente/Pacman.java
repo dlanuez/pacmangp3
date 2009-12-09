@@ -2,9 +2,6 @@ package Model.viviente;
 
 import java.util.Iterator;
 
-import ar.uba.fi.algo3.titiritero.ObjetoVivo;
-import ar.uba.fi.algo3.titiritero.Posicionable;
-
 import Model.Direcciones;
 import Model.EstadoViviente;
 import Model.Punto;
@@ -21,7 +18,7 @@ public class Pacman extends Viviente {
 			throws PosicionInvalidaException {
 		super(posicionInicial, juego);
 		try{
-			this.setVelocidad(1); // TODO poner una velocidad real.
+			this.setVelocidad(1); 
 		}
 		catch(VelocidadInvalidaException e){
 			System.out.print(e.toString());
