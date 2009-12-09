@@ -12,12 +12,14 @@ public class Fruta extends Item {
 	private boolean activado;
 	private static int puntosOtorgados = 20;
 	private VistaFruta dibujable;
+	private Punto posicion;
 
 	public Fruta(Juego juego, int tiempoActivo, int tiempoInactivo, Punto posicion){
 		this.setJuego(juego);
 		this.tiempoActivo = tiempoActivo;
 		this.tiempoInactivo = tiempoInactivo;
 		this.activado = false;
+		this.posicion = posicion;
 	}
 	
 	//Configura los puntos otorgados de la clase Fruta.
@@ -29,16 +31,20 @@ public class Fruta extends Item {
 		this.dibujable = dibujable;
 	}
 	
+	public Punto getPosicion(){
+		return this.posicion;
+	}
+	
 	//Suma la cantidad de puntos otorgados por comer una fruta a los puntos del jugador.
 	public void hacerEfecto(){
 		if (this.activado){
 			this.getJuego().getJugador().sumarPuntos(Fruta.puntosOtorgados);
-			this.dibujable.comido();
+			this.dibujable.desactivado();
 		}
 
 	}
 
-	public boolean estaActivo() {
+	public boolean activador() {
 		if (this.activado){
 			if(this.tiempoActivoCorriendo == this.tiempoActivo){
 				this.activado = false;
@@ -69,7 +75,7 @@ public class Fruta extends Item {
 
 	@Override
 	public Item comer() {
-		if (this.estaActivo())
+		if (this.activador())
 			return new ItemNulo();
 		return this;
 	}

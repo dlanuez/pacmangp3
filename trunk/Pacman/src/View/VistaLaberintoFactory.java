@@ -2,6 +2,7 @@ package View;
 
 import java.util.Iterator;
 
+import Controller.FrutaViva;
 import Model.Punto;
 import Model.juego.Juego;
 import Model.tablero.Casillero;
@@ -91,6 +92,13 @@ public class VistaLaberintoFactory {
 						Posicionable posicionable = new PosicionableLaberinto(posX,posY);
 						vistaFruta.setPosicionable(posicionable);
 						try{
+							FrutaViva frutaViva = new FrutaViva(((Fruta) juego.getTablero().getCasillero(new Punto(i, k)).obtenerItem()));
+							controlador.agregarObjetoVivo(frutaViva);
+						}
+						catch(ClassCastException e){
+							
+						}
+						try{
 							((Fruta) juego.getTablero().getCasillero(new Punto(i, k)).obtenerItem()).setVistaFruta(vistaFruta);
 						}
 						catch(ClassCastException e){
@@ -104,8 +112,14 @@ public class VistaLaberintoFactory {
 	}
 
 	private static boolean esFruta(Juego juego, int i, int k) {
-		if (!esBolita(juego, i, k) && !esPastilla(juego, i, k))
-			return true;
+		try{
+			Punto posicion = ((Fruta) juego.getTablero().getCasillero(new Punto(i, k)).obtenerItem()).getPosicion();
+			if (posicion.x() == i && posicion.y() == k)
+				return true;
+		}
+		catch(ClassCastException e){
+			
+		}
 		return false;
 	}
 
@@ -130,6 +144,7 @@ public class VistaLaberintoFactory {
 			}
 		}
 		if(!esPastilla(juego, i, k))
+			if (!esFruta(juego, i, k))
 			return true;
 		return false;
 	}
