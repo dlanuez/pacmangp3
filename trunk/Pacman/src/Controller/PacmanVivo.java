@@ -1,4 +1,4 @@
-package View;
+package Controller;
 
 import ar.uba.fi.algo3.titiritero.ObjetoVivo;
 import ar.uba.fi.algo3.titiritero.Posicionable;
