@@ -2,16 +2,16 @@ package TP3;
 
 import java.util.Iterator;
 
-import ar.uba.fi.algo3.titiritero.ControladorJuego;
+import Controller.FantasmaVivo;
+import Controller.PacmanVivo;
 import Model.juego.Juego;
 import Model.viviente.Fantasma;
-import View.FantasmaVivo;
 import View.VentanaPrincipal;
 import View.VistaFantasma;
 import View.VistaLaberintoFactory;
 import View.VistaPacman;
-import View.PacmanVivo;
 import View.VistaTablero;
+import ar.uba.fi.algo3.titiritero.ControladorJuego;
 
 public class Programa {
 
