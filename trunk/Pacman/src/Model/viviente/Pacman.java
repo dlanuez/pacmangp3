@@ -138,22 +138,22 @@ public class Pacman extends Viviente {
 	public void cambiarDireccion(int codigo) {		
 		if(codigo == 37){
 			if(this.getDireccionActual() != Direcciones.IZQUIERDA){
-				this.irAIzquierda();
+				this.setDireccionActual(Direcciones.IZQUIERDA);
 			}
 		}
 		if(codigo == 38){
 			if(this.getDireccionActual() != Direcciones.ARRIBA){
-				this.irArriba();
+				this.setDireccionActual(Direcciones.ARRIBA);
 			}
 		}
 		if(codigo == 39){
 			if(this.getDireccionActual() != Direcciones.DERECHA){
-				this.irADerecha();
+				this.setDireccionActual(Direcciones.DERECHA);
 			}
 		}
 		if(codigo == 40){
 			if(this.getDireccionActual() != Direcciones.ABAJO){
-				this.irAbajo();
+				this.setDireccionActual(Direcciones.ABAJO);
 			}
 		}
 		
