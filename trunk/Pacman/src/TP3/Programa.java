@@ -50,7 +50,7 @@ public class Programa {
 		}		
 				
 		controlador.agregarDibujable(vistaPacman);		
-		controlador.setIntervaloSimulacion(300);
+		controlador.setIntervaloSimulacion(200);
 		controlador.comenzarJuego();
 	}
 

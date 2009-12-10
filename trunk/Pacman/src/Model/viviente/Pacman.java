@@ -137,27 +137,45 @@ public class Pacman extends Viviente {
 	//Este metodo recibe el codigo de la tecla presionada y cambia la direccion del Pacman
 	public void cambiarDireccion(int codigo) {		
 		if(codigo == 37){
-			if(this.getDireccionActual() != Direcciones.IZQUIERDA){
+			if((this.getDireccionActual() != Direcciones.IZQUIERDA) && (direccionValida(Direcciones.IZQUIERDA))){
 				this.setDireccionActual(Direcciones.IZQUIERDA);
 			}
 		}
 		if(codigo == 38){
-			if(this.getDireccionActual() != Direcciones.ARRIBA){
+			if((this.getDireccionActual() != Direcciones.ARRIBA) && (direccionValida(Direcciones.ARRIBA))){
 				this.setDireccionActual(Direcciones.ARRIBA);
 			}
 		}
 		if(codigo == 39){
-			if(this.getDireccionActual() != Direcciones.DERECHA){
+			if((this.getDireccionActual() != Direcciones.DERECHA) && (direccionValida(Direcciones.DERECHA))){
 				this.setDireccionActual(Direcciones.DERECHA);
 			}
 		}
 		if(codigo == 40){
-			if(this.getDireccionActual() != Direcciones.ABAJO){
+			if((this.getDireccionActual() != Direcciones.ABAJO) && (direccionValida(Direcciones.ABAJO))){
 				this.setDireccionActual(Direcciones.ABAJO);
 			}
 		}
 		
 		
+	}
+
+	private boolean direccionValida(Direcciones direccion) {
+		Punto puntoAuxiliar = this.getPosicion().clonar();
+		if(direccion == Direcciones.ARRIBA){
+			puntoAuxiliar.disminuirX();
+			
+		}
+		if(direccion == Direcciones.DERECHA){
+			puntoAuxiliar.aumentarY();			
+		}
+		if(direccion == Direcciones.ABAJO){
+			puntoAuxiliar.aumentarX();
+		}
+		if(direccion == Direcciones.IZQUIERDA){
+			puntoAuxiliar.disminuirY();
+		}
+		return this.getJuego().getTablero().getCasillero(puntoAuxiliar).casilleroHabilitado();
 	}
 
 }
