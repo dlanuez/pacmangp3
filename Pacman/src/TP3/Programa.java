@@ -35,7 +35,8 @@ public class Programa {
 		VistaPacman vistaPacman = new VistaPacman();
 		vistaPacman.setPosicionable(unPacman);		
 							
-		controlador.agregarObjetoVivo(unPacman);	
+		controlador.agregarObjetoVivo(unPacman);
+		controlador.agregarKeyPressObservador(unPacman);
 
 		VistaTablero vistaTablero = new VistaTablero(512,512);
 		vistaTablero.setPosicionable(vistaTablero);

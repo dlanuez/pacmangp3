@@ -134,4 +134,30 @@ public class Pacman extends Viviente {
 		}
 	}
 
+	//Este metodo recibe el codigo de la tecla presionada y cambia la direccion del Pacman
+	public void cambiarDireccion(int codigo) {		
+		if(codigo == 37){
+			if(this.getDireccionActual() != Direcciones.IZQUIERDA){
+				this.irAIzquierda();
+			}
+		}
+		if(codigo == 38){
+			if(this.getDireccionActual() != Direcciones.ARRIBA){
+				this.irArriba();
+			}
+		}
+		if(codigo == 39){
+			if(this.getDireccionActual() != Direcciones.DERECHA){
+				this.irADerecha();
+			}
+		}
+		if(codigo == 40){
+			if(this.getDireccionActual() != Direcciones.ABAJO){
+				this.irAbajo();
+			}
+		}
+		
+		
+	}
+
 }
