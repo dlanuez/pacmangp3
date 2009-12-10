@@ -15,6 +15,7 @@ public class Fantasma extends Viviente {
 	
 	private Estrategia estrategia;
 	private int puntosPorEsteFantasma;
+	protected static Color colorPresa = Color.DARK_GRAY;
 	private Color color;
 	
 	public Fantasma(Punto posicionInicial, Juego juego) throws PosicionInvalidaException{
@@ -63,6 +64,11 @@ public class Fantasma extends Viviente {
 	public void vivir(){
 		if (!this.estaVivo()){
 			this.revivir();
+		}
+		if(this.getEstado() == EstadoViviente.CAZADOR){
+			this.setColor(this.color);
+		}else{
+			this.setColor(Fantasma.colorPresa);
 		}
 		super.vivir();
 		this.mover();
