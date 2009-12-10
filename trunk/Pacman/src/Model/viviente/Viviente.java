@@ -35,31 +35,44 @@ public abstract class Viviente {
 	}
 	
 	public void irAIzquierda(){
-		if(this.posicion.y() > 0){
+		Punto puntoAuxiliar = this.posicion.clonar();
+		puntoAuxiliar.disminuirY();
+		if((this.posicion.y() > 0) && (posicionValida(puntoAuxiliar))){
 			this.posicion.disminuirY();
 			this.setDireccionActual(Direcciones.IZQUIERDA);
 		}
 	}
 	
 	public void irADerecha(){
-		if(this.posicion.y() < this.juego.getTablero().getMaxPosY()){
+		Punto puntoAuxiliar = this.posicion.clonar();
+		puntoAuxiliar.aumentarY();
+		if((this.posicion.y() < this.juego.getTablero().getMaxPosY()) && (posicionValida(puntoAuxiliar))){
 			this.posicion.aumentarY();
 			this.setDireccionActual(Direcciones.DERECHA);
 		}		
 	}
-	
+		
+
 	public void irArriba(){
-		if(this.posicion.x() > 0){
+		Punto puntoAuxiliar = this.posicion.clonar();
+		puntoAuxiliar.disminuirX();
+		if((this.posicion.x() > 0) && (posicionValida(puntoAuxiliar))){
 			this.posicion.disminuirX();
 			this.setDireccionActual(Direcciones.ARRIBA);
 		}
 	}
 	
 	public void irAbajo(){
-		if(this.posicion.x() < this.juego.getTablero().getMaxPosX()){
+		Punto puntoAuxiliar = this.posicion.clonar();
+		puntoAuxiliar.aumentarX();
+		if((this.posicion.x() < this.juego.getTablero().getMaxPosX()) && (posicionValida(puntoAuxiliar))){
 			this.posicion.aumentarX();
 			this.setDireccionActual(Direcciones.ABAJO);
 		}
+	}
+	
+	private boolean posicionValida(Punto puntoAuxiliar) {
+		return this.juego.getTablero().getCasillero(puntoAuxiliar).casilleroHabilitado();	
 	}
 	
 	public void cambiarEstado(int tiempoDeEstado) throws tiempoDeEstadoInvalidoException{

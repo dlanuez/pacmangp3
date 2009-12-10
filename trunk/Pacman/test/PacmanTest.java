@@ -25,8 +25,7 @@ public class PacmanTest extends TestCase {
 		Punto puntoAuxiliar = pacman.getPosicion();
 		try {
 			this.pacman.setPosicion(new Punto(2,1));
-		} catch (PosicionInvalidaException e) {
-			// TODO Auto-generated catch block
+		} catch (PosicionInvalidaException e) {			
 			e.printStackTrace();
 		}
 		
@@ -51,8 +50,7 @@ public class PacmanTest extends TestCase {
 		Punto puntoAuxiliar = pacman.getPosicion();
 		try {
 			pacman.setPosicion(new Punto(2,1));
-		} catch (PosicionInvalidaException e) {
-			// TODO Auto-generated catch block
+		} catch (PosicionInvalidaException e) {			
 			fail("tiro excepcion");
 		}
 		pacman.fenecer();
