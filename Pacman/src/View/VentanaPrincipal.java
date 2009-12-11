@@ -7,6 +7,7 @@ import java.awt.event.WindowEvent;
 
 import ar.uba.fi.algo3.titiritero.ControladorJuego;
 import ar.uba.fi.algo3.titiritero.SuperficieDeDibujo;
+import ar.uba.fi.algo3.titiritero.vista.KeyPressedController;
 import ar.uba.fi.algo3.titiritero.vista.Panel;
 
 public class VentanaPrincipal extends Frame {
@@ -23,6 +24,7 @@ public class VentanaPrincipal extends Frame {
 		this.panel = new Panel(512,512,this.controladorJuego);
 		panel.setBackground(Color.black);
 		this.add(panel);
+		this.addKeyListener(new KeyPressedController(controlador));
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				dispose();
