@@ -58,6 +58,10 @@ public class Punto {
 		return false;		
 	}
 
+	@Override
+	public String toString(){
+		return "( " + this.x + " , " + this.y + " )";
+	}
 	public Punto clonar() {
 		return new Punto(x,y);
 	}

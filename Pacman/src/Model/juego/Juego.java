@@ -19,6 +19,16 @@ public class Juego {
 		}
 		this.tablero = new Tablero(tablero, this);
 	}
+	
+	public Juego(String tablero, int maxX, int maxY){
+		try{
+			this.jugador = new Jugador(Vidas_Normal);
+		}
+		catch(cantidadDeVidasInvalidaExeption e){
+			e.printStackTrace();
+		}
+		this.tablero = new Tablero(tablero, this, maxX, maxY);
+	}
 
 	public Tablero getTablero() {
 		return this.tablero;

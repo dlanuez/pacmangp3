@@ -37,7 +37,7 @@ public abstract class Viviente {
 	public void irAIzquierda(){
 		Punto puntoAuxiliar = this.posicion.clonar();
 		puntoAuxiliar.disminuirY();
-		if((this.posicion.y() > 0) && (posicionValida(puntoAuxiliar))){
+		if(this.posicionValida(puntoAuxiliar)){
 			this.posicion.disminuirY();
 			this.setDireccionActual(Direcciones.IZQUIERDA);
 		}
@@ -46,9 +46,9 @@ public abstract class Viviente {
 	public void irADerecha(){
 		Punto puntoAuxiliar = this.posicion.clonar();
 		puntoAuxiliar.aumentarY();
-		if((this.posicion.y() < this.juego.getTablero().getMaxPosY()) && (posicionValida(puntoAuxiliar))){
-			this.posicion.aumentarY();
-			this.setDireccionActual(Direcciones.DERECHA);
+		if(this.posicionValida(puntoAuxiliar)){
+				this.posicion.aumentarY();
+				this.setDireccionActual(Direcciones.DERECHA);
 		}		
 	}
 		
@@ -56,7 +56,7 @@ public abstract class Viviente {
 	public void irArriba(){
 		Punto puntoAuxiliar = this.posicion.clonar();
 		puntoAuxiliar.disminuirX();
-		if((this.posicion.x() > 0) && (posicionValida(puntoAuxiliar))){
+		if(this.posicionValida(puntoAuxiliar)){
 			this.posicion.disminuirX();
 			this.setDireccionActual(Direcciones.ARRIBA);
 		}
@@ -65,20 +65,41 @@ public abstract class Viviente {
 	public void irAbajo(){
 		Punto puntoAuxiliar = this.posicion.clonar();
 		puntoAuxiliar.aumentarX();
-		if((this.posicion.x() < this.juego.getTablero().getMaxPosX()) && (posicionValida(puntoAuxiliar))){
+		if( this.posicionValida(puntoAuxiliar)){
 			this.posicion.aumentarX();
 			this.setDireccionActual(Direcciones.ABAJO);
 		}
 	}
 	
-	private boolean posicionValida(Punto puntoAuxiliar) {
+	private boolean posicionValida(Punto puntoAuxiliar){
+		if( this.posicionExiste(puntoAuxiliar) && this.posicionHabilitada(puntoAuxiliar))
+			return true;
+		return false;
+	}
+	
+	private boolean posicionHabilitada(Punto puntoAuxiliar) {
 		return this.juego.getTablero().getCasillero(puntoAuxiliar).casilleroHabilitado();	
+	}
+	
+	private boolean posicionExiste(Punto puntoAuxiliar){
+		if( (puntoAuxiliar.x() >= 0) && (puntoAuxiliar.y() >= 0)){
+			if(	(puntoAuxiliar.x() < this.juego.getTablero().getMaxPosX() ) && 
+				(puntoAuxiliar.y() < this.juego.getTablero().getMaxPosY() ) )
+				return true;
+		}
+		return false;
 	}
 	
 	public void cambiarEstado(int tiempoDeEstado) throws tiempoDeEstadoInvalidoException{
 		if(tiempoDeEstado > 0){	
+			/* Verifica que estuviera en el estado normal. Si tiempoRestanteDeEstado =! 1, 
+			 * entonces todavía no se acabó el efecto de la pelotita anterior, y se reinicia el contador
+			 * pero no se vuelve a cambiar el estado del Viviente. Esto solo ocurre cuando el contador
+			 * llega a 0. 
+			 */
+			if(this.tiempoRestanteDeEstado == -1) 
+				this.toggleState();
 			this.tiempoRestanteDeEstado = tiempoDeEstado;
-			this.toggleState();
 		}
 		else throw new tiempoDeEstadoInvalidoException();
 	}
@@ -89,7 +110,7 @@ public abstract class Viviente {
 	}
 		
 	public void setPosicion(Punto nuevaPosicion) throws PosicionInvalidaException{
-		if( this.validarPosicion(nuevaPosicion) ){
+		if( this.posicionExiste(nuevaPosicion) ){
 				this.posicion.x(nuevaPosicion.x());
 				this.posicion.y(nuevaPosicion.y());
 		}
@@ -112,21 +133,13 @@ public abstract class Viviente {
 	 * no sucede nada.
 	 */	
 	private void decrementarTiempoRestanteDeEstado(){
+		
 		if(this.tiempoRestanteDeEstado > 0) this.tiempoRestanteDeEstado--;
 		
 		if(this.tiempoRestanteDeEstado == 0){
 			this.toggleState();
 			this.tiempoRestanteDeEstado = -1;
 		}
-	}
-	
-	private boolean validarPosicion(Punto posicion){
-		if( (posicion.x() >= 0) && (posicion.y() >= 0)){
-			if(	(posicion.x() <= this.juego.getTablero().getMaxPosX() ) && 
-				(posicion.y() <= this.juego.getTablero().getMaxPosY() ) )
-				return true;
-		}
-		return false;
 	}
 	
 	public void setDireccionActual(Direcciones direccionActual){
