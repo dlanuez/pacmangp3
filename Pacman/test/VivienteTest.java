@@ -119,7 +119,6 @@ public class VivienteTest extends TestCase {
 
 	public void testIrArriba() {
 		viviente.irArriba();
-		System.out.println(viviente.getPosicion());
 		assertEquals(viviente.getPosicion(), new Punto(0,1));
 		assertEquals(viviente.getDireccionActual(), Direcciones.ARRIBA); 
 		

@@ -17,7 +17,6 @@ public class PacmanVivo implements ObjetoVivo, Posicionable, KeyPressedObservado
 	}
 	
 	public void vivir() {
-		//el controlador hace un pacman.ir_a_donde_se_apreto_la_tecla()!!
 		this.pacman.vivir();
 	}
 
@@ -31,7 +30,7 @@ public class PacmanVivo implements ObjetoVivo, Posicionable, KeyPressedObservado
 
 	public void keyPressed(KeyEvent event) {
 		int codigo = event.getKeyCode();
-		System.out.println(codigo);
+		//System.out.println(codigo);
 		this.pacman.cambiarDireccion(codigo);
 	}	
 	
