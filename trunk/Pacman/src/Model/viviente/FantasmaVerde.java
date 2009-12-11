@@ -13,10 +13,8 @@ import Model.juego.Juego;
 public class FantasmaVerde extends Fantasma {
 
 	public FantasmaVerde(Punto posicionInicial, Juego juego) throws PosicionInvalidaException, VelocidadInvalidaException {
-		super(posicionInicial, juego);
-		this.setVelocidad(1); //TODO poner una velocidad real.
+		super(posicionInicial, juego, 8, Color.GREEN);
 		this.setEstrategia(new EstrategiaPerseguidora());
-		this.setColor(Color.GREEN);
 	}
 	
 	@Override

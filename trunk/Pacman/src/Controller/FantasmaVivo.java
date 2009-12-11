@@ -29,6 +29,6 @@ public class FantasmaVivo implements ObjetoVivo, Posicionable {
 	}
 	
 	public Color getColor(){
-		return this.fantasma.getColor();
+		return this.fantasma.getColorActual();
 	}
 }

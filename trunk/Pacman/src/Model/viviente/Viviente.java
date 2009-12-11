@@ -11,21 +11,23 @@ import Model.juego.Juego;
 public abstract class Viviente {
 	
 	private boolean vivo;
-	private double velocidad;
+	private int velocidadActual;
 	private Punto posicion;
 	private Direcciones direccionActual;
 	private Juego juego;
 	private EstadoViviente estado;
 	private int tiempoRestanteDeEstado;
 	
-    /* Se inicializa el tiempo restante de estado en -1. La velocidad inicial y el EstadoViviente del objeto deben
+	private final int VELOCIDAD_MAX = 10;
+	
+    /* Se inicializa el tiempo restante de estado en -1. La velocidadActual inicial y el EstadoViviente del objeto deben
 	 * inicializarse en el constructor de la clase descendiente.
 	 */
 	Viviente(Punto posicionInicial, Juego juego) throws PosicionInvalidaException{
 		this.posicion = posicionInicial;
 		this.juego = juego;
 		this.setVivo();
-		this.velocidad = 0;
+		this.velocidadActual = 0;
 		this.direccionActual = Direcciones.IZQUIERDA;
 		this.tiempoRestanteDeEstado = -1;
 	}
@@ -122,7 +124,7 @@ public abstract class Viviente {
 	}
 	
 		
-	private void toggleState(){
+	protected void toggleState(){
 		if(this.estado != null)
 			this.estado = estado.toggleState();
 		else throw new EstadoNoInicializadoExeption();
@@ -158,12 +160,12 @@ public abstract class Viviente {
 		return this.estado;
 	}
 
-	public double getVelocidad() {
-		return velocidad;
+	public int getVelocidadActual() {
+		return velocidadActual;
 	}
 
-	public void setVelocidad(double velocidad) throws VelocidadInvalidaException {
-		if(velocidad >= 0) this.velocidad = velocidad;
+	public void setVelocidadActual(int velocidad) throws VelocidadInvalidaException {
+		if(velocidad >= 0 && velocidad <= VELOCIDAD_MAX) this.velocidadActual = velocidad;
 		else throw new VelocidadInvalidaException();
 	}
 	

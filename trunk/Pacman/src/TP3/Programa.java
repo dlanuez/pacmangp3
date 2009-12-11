@@ -55,12 +55,11 @@ public class Programa {
 	}
 
 	private static void agregarFantasma(Fantasma fantasma, ControladorJuego controlador) {
-		FantasmaVivo unFantasma = new FantasmaVivo(fantasma);
-		VistaFantasma vistaFantasma = new VistaFantasma(20,20);
-		vistaFantasma.setColor(unFantasma.getColor());
-		vistaFantasma.setPosicionable(unFantasma);
+		FantasmaVivo fantasmaVivo = new FantasmaVivo(fantasma);
+		VistaFantasma vistaFantasma = new VistaFantasma(fantasmaVivo, 20,20);
+		
 		controlador.agregarDibujable(vistaFantasma);
-		controlador.agregarObjetoVivo(unFantasma);
+		controlador.agregarObjetoVivo(fantasmaVivo);
 		
 	}
 	
