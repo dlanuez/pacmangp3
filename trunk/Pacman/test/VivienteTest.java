@@ -3,6 +3,7 @@ import Model.excepciones.PosicionInvalidaException;
 import Model.excepciones.VelocidadInvalidaException;
 import Model.excepciones.tiempoDeEstadoInvalidoException;
 import Model.juego.Juego;
+import Model.tablero.Tablero;
 import Model.viviente.Pacman;
 import Model.viviente.Viviente;
 import junit.framework.TestCase;
@@ -13,11 +14,20 @@ public class VivienteTest extends TestCase {
 	private Viviente viviente;
 	private Juego juego;
 	private Punto punto;
-			
+	
+	/* Laberinto XML:
+	 * --
+	 * P-
+	 * --
+	 * --
+	 * 
+	 * - == nada; P == Pared
+	 */
+	
 	protected void setUp() throws Exception {
 		super.setUp();
 		this.punto = new Punto(1,1);
-		this.juego = new Juego("src/Model/nivel1.xml");
+		this.juego = new Juego("src/Model/laberinto.xml", 4, 2);
 		this.viviente = new Pacman(this.punto, this.juego);
 		this.viviente.setEstado(null);
 		this.juego.getTablero().inicializar();
@@ -44,39 +54,76 @@ public class VivienteTest extends TestCase {
 	}
 
 	public void testIrAIzquierda() {
+		
+		viviente.setDireccionActual(Direcciones.ARRIBA);
+		
+		//en (1,0) hay una pared, por lo tanto no debería poder ir hacia la izquierda.
 		viviente.irAIzquierda();
-		assertEquals(viviente.getPosicion(), new Punto(1,0));
+		assertEquals(viviente.getPosicion(), new Punto(1,1));
+		//su dirección no debería haber cambiado
+		assertEquals(viviente.getDireccionActual(), Direcciones.ARRIBA);
+		
+		//en la línea de x=2 no hay nada
+		try{
+			viviente.setPosicion(2,1);
+		}
+		catch(PosicionInvalidaException e){
+			e.printStackTrace();
+		}
+		
+		assertEquals(viviente.getPosicion(), new Punto(2,1));
+		viviente.irAIzquierda();
+		assertEquals(viviente.getPosicion(), new Punto(2,0));
 		assertEquals(viviente.getDireccionActual(), Direcciones.IZQUIERDA);
-		//si es cero no debe poder moverse más a la izquierda
+		
+		//si su posición es cero no debe poder moverse más a la izquierda
 		viviente.irAIzquierda();
-		assertEquals(viviente.getPosicion(), new Punto(1,0));
+		assertEquals(viviente.getPosicion(), new Punto(2,0));
 		assertEquals(viviente.getDireccionActual(), Direcciones.IZQUIERDA);
 	}
 		
 	public void testIrADerecha() {
-		viviente.irADerecha();
-		assertEquals(viviente.getPosicion(), new Punto(1,2));
-		assertEquals(viviente.getDireccionActual(), Direcciones.DERECHA);
 		
 		//si está en el límite derecho del tablero, no debe poder moverse más a la derecha
+		viviente.irADerecha();
+		assertEquals(viviente.getPosicion(), new Punto(1,1));
+		//y la dirección debe permanecer igual a cuando se instanció el viviente
+		assertEquals(viviente.getDireccionActual(), Direcciones.IZQUIERDA);
+		
+		
+		//El límite en Y del tablero se considera una posición inválida.
 		try {
 			viviente.setPosicion(1, viviente.getJuego().getTablero().getMaxPosY());
-			//la última dirección debe seguir almacenada.
-			assertEquals(viviente.getDireccionActual(), Direcciones.DERECHA); 
+			fail("Debería arrojar excepción, por encontrarse en el límite Y del tablero");
 		} 
 		catch (PosicionInvalidaException e) {
-			fail("El límite en X del tablero se considera una posición válida.");
+			assertTrue(true);
+		}
+		
+		//en la línea de X = 2 no hay nada
+		try{
+			viviente.setPosicion(2,0);
+		}
+		catch(PosicionInvalidaException e){
+			fail("(2,0) es una posición válida en laberinto.xml");
 		}
 		
 		viviente.irADerecha();
-		assertEquals(viviente.getPosicion(), new Punto(1,viviente.getJuego().getTablero().getMaxPosY()));
+		assertEquals(viviente.getPosicion(), new Punto(2,1));
+		assertEquals(viviente.getDireccionActual(), Direcciones.DERECHA); 
+		
+		//No debe poder estar sobre el límite Y = 2.
+		viviente.irADerecha();
+		assertEquals(viviente.getPosicion(), new Punto(2,1));
 		assertEquals(viviente.getDireccionActual(), Direcciones.DERECHA); 
 	}
 
 	public void testIrArriba() {
 		viviente.irArriba();
+		System.out.println(viviente.getPosicion());
 		assertEquals(viviente.getPosicion(), new Punto(0,1));
 		assertEquals(viviente.getDireccionActual(), Direcciones.ARRIBA); 
+		
 		//si es cero no debe poder moverse más a hacia arriba
 		viviente.irArriba();
 		assertEquals(viviente.getPosicion(), new Punto(0,1));
@@ -84,23 +131,37 @@ public class VivienteTest extends TestCase {
 	}
 
 	public void testIrAbajo() {
+		
 		viviente.irAbajo();
 		assertEquals(viviente.getPosicion(), new Punto(2,1));
 		assertEquals(viviente.getDireccionActual(), Direcciones.ABAJO); 
 		
-		//si está en el límite inferior del tablero, no debe poder moverse más hacia abajo
+				
+		//El límite en Y del tablero se considera una posición inválida.
 		try {
-			viviente.setPosicion(viviente.getJuego().getTablero().getMaxPosX(), 1);
-			//la última dirección debe seguir almacenada.
-			assertEquals(viviente.getDireccionActual(), Direcciones.ABAJO); 
+			viviente.setPosicion(1, viviente.getJuego().getTablero().getMaxPosY());
+			fail("Debería arrojar excepción, por encontrarse en el límite Y del tablero");
 		} 
 		catch (PosicionInvalidaException e) {
-			fail("El límite en X del tablero se considera una posición válida.");
+			assertTrue(true);
+		}
+		
+	
+		try{
+			viviente.setPosicion(2,1);
+		}
+		catch(PosicionInvalidaException e){
+			fail("(3,0) es una posición válida en laberinto.xml");
 		}
 		
 		viviente.irAbajo();
-		assertEquals(viviente.getPosicion(), new Punto(viviente.getJuego().getTablero().getMaxPosX(), 1));
+		assertEquals(viviente.getPosicion(), new Punto(3,1));
 		assertEquals(viviente.getDireccionActual(), Direcciones.ABAJO); 
+		
+		//No debe poder estar sobre el límite X = 4.
+		viviente.irAbajo();
+		assertEquals(viviente.getPosicion(), new Punto(3,1));
+		assertEquals(viviente.getDireccionActual(), Direcciones.ABAJO); 		
 	}
 
 	// Verifica que se lance una excepción cuando el estado no esta inicializado
@@ -168,12 +229,13 @@ public class VivienteTest extends TestCase {
 
 	public void testSetPosicionOK() {
 		try{
-			viviente.setPosicion(new Punto(2,2));
+			viviente.setPosicion(new Punto(1,1));
 			viviente.setPosicion(new Punto(0,0));
-			viviente.setPosicion(new Punto(viviente.getJuego().getTablero().getMaxPosX(),0));
-			viviente.setPosicion(new Punto(0,viviente.getJuego().getTablero().getMaxPosY()));
-			viviente.setPosicion(new Punto(viviente.getJuego().getTablero().getMaxPosX(),
-										   viviente.getJuego().getTablero().getMaxPosY()));
+			viviente.setPosicion(new Punto(viviente.getJuego().getTablero().getMaxPosX()-1,0));
+			viviente.setPosicion(new Punto(0,viviente.getJuego().getTablero().getMaxPosY()-1));
+			viviente.setPosicion(new Punto(viviente.getJuego().getTablero().getMaxPosX()-1,
+										   viviente.getJuego().getTablero().getMaxPosY()-1));
+			assertTrue(true);
 		}
 		catch(PosicionInvalidaException e){
 			fail("Las posiciones son válidas, y arroja una excepción de posición inválida");
@@ -214,12 +276,12 @@ public class VivienteTest extends TestCase {
 
 	public void testSetPosicionINT_OK(){
 		try{
-			viviente.setPosicion(2,2);
+			viviente.setPosicion(1,1);
 			viviente.setPosicion(0,0);
-			viviente.setPosicion(viviente.getJuego().getTablero().getMaxPosX(),0);
-			viviente.setPosicion(0,viviente.getJuego().getTablero().getMaxPosY());
-			viviente.setPosicion(viviente.getJuego().getTablero().getMaxPosX(),
-										   viviente.getJuego().getTablero().getMaxPosY());
+			viviente.setPosicion(viviente.getJuego().getTablero().getMaxPosX()-1,0);
+			viviente.setPosicion(0,viviente.getJuego().getTablero().getMaxPosY()-1);
+			viviente.setPosicion(viviente.getJuego().getTablero().getMaxPosX()-1,
+										   viviente.getJuego().getTablero().getMaxPosY()-1);
 		}
 		catch(PosicionInvalidaException e){
 			fail("Las posiciones son válidas, y arroja una excepción de posición inválida");
