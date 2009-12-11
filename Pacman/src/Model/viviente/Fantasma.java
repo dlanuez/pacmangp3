@@ -8,7 +8,9 @@ import Model.EstadoViviente;
 import Model.Punto;
 import Model.estrategia.Estrategia;
 import Model.estrategia.EstrategiaEscapadora;
+import Model.excepciones.EstadoNoInicializadoExeption;
 import Model.excepciones.PosicionInvalidaException;
+import Model.excepciones.VelocidadInvalidaException;
 import Model.juego.Juego;
 
 public class Fantasma extends Viviente {
@@ -16,43 +18,55 @@ public class Fantasma extends Viviente {
 	private Estrategia estrategia;
 	private int puntosPorEsteFantasma;
 	protected static Color colorPresa = Color.DARK_GRAY;
-	private Color color;
+	protected static int velocidadPresa = 8;
+	private int velocidadCazador;
+	private Color colorCazador;
+	private Color colorActual;
+	private int tiempoDeEspera;
 	
-	public Fantasma(Punto posicionInicial, Juego juego) throws PosicionInvalidaException{
+	public Fantasma(Punto posicionInicial, Juego juego, int velocidadCazador, Color colorCazador) throws PosicionInvalidaException, VelocidadInvalidaException{
 		super(posicionInicial, juego);
+		
 		this.setEstado(EstadoViviente.CAZADOR);
+		
+		this.setColorCazador(colorCazador);
+		this.setColorActual(colorCazador);
+		
+		this.setVelocidadCazador(velocidadCazador);
+		this.setVelocidadActual(velocidadCazador);
+		//se setea el tiempo de espera para el movimiento del fantasma, en función de su velocidad
+		this.reiniciarTiempoDeEspera();
 		
 	}
 	
 	public void mover(){
 		
-		Punto posicionPacman = this.getJuego().getTablero().getPacman().getPosicion();
-		
-		Direcciones dir;
-		
-		if (this.getEstado() == EstadoViviente.CAZADOR)
+		if(!esperar()){
+			Punto posicionPacman = this.getJuego().getTablero().getPacman().getPosicion();
 			
-			dir = this.estrategia.calcularNuevaDireccion( 
-					this.getPosicion(),
-					posicionPacman,
-					this.getDireccionActual(),
-					this.getJuego().getTablero());
+			Direcciones dir;
 			
-		
-		else
+			if (this.getEstado() == EstadoViviente.CAZADOR)
+				
+				dir = this.estrategia.calcularNuevaDireccion( 
+						this.getPosicion(),
+						posicionPacman,
+						this.getDireccionActual(),
+						this.getJuego().getTablero());
+				
 			
-			dir =(new EstrategiaEscapadora()).calcularNuevaDireccion(
-					this.getPosicion(), 
-					posicionPacman,
-					this.getDireccionActual(),
-					this.getJuego().getTablero());
+			else
+				
+				dir =(new EstrategiaEscapadora()).calcularNuevaDireccion(
+						this.getPosicion(), 
+						posicionPacman,
+						this.getDireccionActual(),
+						this.getJuego().getTablero());
+			
+			this.irEnDireccion(dir);
+			this.buscarPacman(posicionPacman);
+		}
 		
-		System.out.println(dir);
-		this.irEnDireccion(dir);
-		this.buscarPacman(posicionPacman);
-		
-		if(this.getJuego().getTablero().getCasillero(this.getPosicion()).casilleroHabilitado() == false)
-			System.out.print("ESTA POSICION NO ESTA HABILITADA!!");
 	}
 
 	public int getPuntosPorEsteFantasmaConCarinioParaCabu(){
@@ -65,13 +79,21 @@ public class Fantasma extends Viviente {
 		if (!this.estaVivo()){
 			this.revivir();
 		}
-		if(this.getEstado() == EstadoViviente.CAZADOR){
-			this.setColor(this.color);
-		}else{
-			this.setColor(Fantasma.colorPresa);
-		}
 		super.vivir();
 		this.mover();
+	}
+	
+	private void reiniciarTiempoDeEspera(){
+		this.tiempoDeEspera = 10 - this.getVelocidadActual();
+	}
+	
+	private boolean esperar(){
+		if(this.tiempoDeEspera == 0){
+			this.reiniciarTiempoDeEspera();
+			return false;
+		}
+		this.tiempoDeEspera--;
+		return true;		
 	}
 	
 	public void revivir(){
@@ -172,12 +194,38 @@ public class Fantasma extends Viviente {
 		this.estrategia = e;
 	}
 
-	public void setColor(Color color) {
-		this.color = color;
+	public void setColorActual(Color color) {
+		this.colorActual = color;
 	}
 
-	public Color getColor() {
-		return color;
+	public Color getColorActual() {
+		return colorActual;
+	}
+	
+	@Override
+	protected void toggleState(){
+		super.toggleState();
+		try{
+			if(this.getEstado() == EstadoViviente.CAZADOR){
+				this.setVelocidadActual(this.velocidadCazador);
+				this.setColorActual(this.colorCazador);
+			}
+			else{
+				this.setVelocidadActual(Fantasma.velocidadPresa);
+				this.setColorActual(Fantasma.colorPresa);
+			}
+		}
+		catch(VelocidadInvalidaException e){
+			e.toString();
+		}
+	}
+
+	public void setVelocidadCazador(int velocidadCazador) {
+		this.velocidadCazador = velocidadCazador;
+	}
+
+	public void setColorCazador(Color colorCazador) {
+		this.colorCazador = colorCazador;
 	}
 	
 }

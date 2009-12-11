@@ -18,7 +18,7 @@ public class Pacman extends Viviente {
 			throws PosicionInvalidaException {
 		super(posicionInicial, juego);
 		try{
-			this.setVelocidad(1); 
+			this.setVelocidadActual(10); 
 		}
 		catch(VelocidadInvalidaException e){
 			System.out.print(e.toString());

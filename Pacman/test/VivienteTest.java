@@ -3,7 +3,6 @@ import Model.excepciones.PosicionInvalidaException;
 import Model.excepciones.VelocidadInvalidaException;
 import Model.excepciones.tiempoDeEstadoInvalidoException;
 import Model.juego.Juego;
-import Model.tablero.Tablero;
 import Model.viviente.Pacman;
 import Model.viviente.Viviente;
 import junit.framework.TestCase;
@@ -15,7 +14,7 @@ public class VivienteTest extends TestCase {
 	private Juego juego;
 	private Punto punto;
 	
-	/* Laberinto XML:
+	/* Laberinto XML 4x2:
 	 * --
 	 * P-
 	 * --
@@ -36,7 +35,7 @@ public class VivienteTest extends TestCase {
 	// Controla que todo se inicialice correctamente
 	public void testVivienteOK() {
 		assertTrue(viviente.estaVivo());
-		assertTrue(viviente.getVelocidad() == 1);
+		assertTrue(viviente.getVelocidadActual() == 10);
 		assertTrue(viviente.getDireccionActual() == Direcciones.IZQUIERDA);
 		assertTrue(viviente.getJuego() == this.juego);
 		assertTrue(viviente.getPosicion() == this.punto);
@@ -332,9 +331,9 @@ public class VivienteTest extends TestCase {
 
 	public void testSetVelocidadOK() {
 		try{
-			viviente.setVelocidad(2);
-			viviente.setVelocidad(0);
-			viviente.setVelocidad(5.31);
+			viviente.setVelocidadActual(2);
+			viviente.setVelocidadActual(0);
+			viviente.setVelocidadActual(10);
 		}
 		catch(VelocidadInvalidaException e){
 			fail("Las velocidades son válidas, y arroja una excepción de velocidad inválida");
@@ -343,7 +342,7 @@ public class VivienteTest extends TestCase {
 
 	public void testSetVelocidadERROR() {
 		try{
-			viviente.setVelocidad(-1);
+			viviente.setVelocidadActual(-1);
 			fail("Debería arrojar una exepción: por convención las velocidades sólo pueden ser positivas o nulas.");
 		}
 		catch(VelocidadInvalidaException e){

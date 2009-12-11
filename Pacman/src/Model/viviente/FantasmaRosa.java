@@ -11,10 +11,8 @@ import Model.juego.Juego;
 public class FantasmaRosa extends Fantasma {
 
 	public FantasmaRosa(Punto posicionInicial, Juego juego) throws PosicionInvalidaException, VelocidadInvalidaException {
-		super(posicionInicial, juego);
-		this.setVelocidad(1); //TODO poner una velocidad real.
+		super(posicionInicial, juego, 9, Color.PINK); 
 		this.setEstrategia(new EstrategiaPerseguidora());
-		this.setColor(Color.PINK);
 	}
 
 }
