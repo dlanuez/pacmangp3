@@ -11,7 +11,6 @@ public class FrutaViva implements ObjetoVivo {
 		this.fruta = fruta;
 	}
 
-	@Override
 	public void vivir() {
 		this.fruta.activador();
 	}
