@@ -41,5 +41,15 @@ public class Jugador {
 	public void sumarVida(){
 		this.vidas ++;
 	}
+
+
+	public int getPuntos() {		
+		return this.puntos;
+	}
+
+
+	public int getVidas() {	
+		return this.vidas;
+	}
 	
 }
