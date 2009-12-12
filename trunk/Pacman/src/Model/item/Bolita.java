@@ -25,9 +25,5 @@ public class Bolita extends Item {
 		this.setComido(true);
 	}
 
-	@Override
-	public Item comer() {
-		return new ItemNulo();
-	}
 }
  

@@ -21,10 +21,11 @@ public abstract class Item {
 		return this.juego;
 	}
 	
-	//Metodo abstracto.
 	public abstract void hacerEfecto() throws tiempoDeEstadoInvalidoException;
 
-	public abstract Item comer();
+	public Item comer() {
+		return new ItemNulo();
+	}
 	
 	public void setComido(boolean comido){
 		this.comido = comido;

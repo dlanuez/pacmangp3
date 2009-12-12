@@ -10,7 +10,7 @@ public class PastillaTest extends TestCase {
 	private Juego juego;
 	
 	public void testHacerEfectoOK(){
-		this.juego = new Juego("src/Model/nivel1.xml");
+		this.juego = new Juego("src/Model/nivel1.xml", 16, 16);
 		this.juego.getTablero().inicializar();
 		this.pastilla = new Pastilla(this.juego, 10);
 		try{
@@ -22,7 +22,7 @@ public class PastillaTest extends TestCase {
 	}
 	
 	public void testHacerEfectoErroneo(){
-		this.juego = new Juego("src/Model/nivel1.xml");
+		this.juego = new Juego("src/Model/nivel1.xml", 16, 16);
 		this.juego.getTablero().inicializar();
 		this.pastilla = new Pastilla(this.juego, -5);
 		try{

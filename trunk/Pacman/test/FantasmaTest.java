@@ -33,7 +33,7 @@ public class FantasmaTest extends TestCase {
 	public void testRevivir() {
 		fantasma.fenecer();
 		assertFalse(fantasma.estaVivo());
-		fantasma.revivir();
+		fantasma.revivir(EstadoViviente.CAZADOR);
 		assertTrue(fantasma.estaVivo());
 	}
 

@@ -31,7 +31,7 @@ public class Pacman extends Viviente {
 	public void vivir() {
 		
 		if (!this.estaVivo())
-			this.revivir();
+			this.revivir(EstadoViviente.PRESA);
 
 		super.vivir();
 		
@@ -85,16 +85,6 @@ public class Pacman extends Viviente {
 		}
 	}
 
-	public void revivir() {
-		this.setVivo();
-		try {
-			this.getJuego().getTablero().resetearPosiciones();
-		} catch (PosicionInvalidaException e) {
-			e.printStackTrace();
-		}
-		this.setEstado(EstadoViviente.PRESA);
-
-	}
 	//Metodo que reposiciona al PacMan en su posicion inicial.
 	
 	public void reSpawn(){

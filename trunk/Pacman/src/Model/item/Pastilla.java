@@ -35,10 +35,5 @@ public class Pastilla extends Item {
 		this.setComido(true);
 	}
 
-	@Override
-	public Item comer() {
-		
-		return new ItemNulo();
-	}
 }
  

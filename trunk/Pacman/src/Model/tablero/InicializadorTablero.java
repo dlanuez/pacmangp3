@@ -28,6 +28,8 @@ public class InicializadorTablero {
 	private Juego juego;
 	private Punto puntoPacman;
 	
+	private final int tiempoDeEfectoPastilla = 30;
+	
 	public InicializadorTablero(String archivo, Juego juego, int maxX, int maxY){
 		if((archivo == "") || (archivo == null)){			
 				throw new ArchivoInvalidoException();
@@ -76,7 +78,7 @@ public class InicializadorTablero {
 			casillero = new Casillero(EstadoCasillero.PISO, new Bolita(this.juego));
 			return casillero;
 		}else if(item.equals("2")){
-			casillero = new Casillero(EstadoCasillero.PISO, new Pastilla(this.juego,50));
+			casillero = new Casillero(EstadoCasillero.PISO, new Pastilla(this.juego,this.tiempoDeEfectoPastilla));
 			return casillero;
 		}else if(item.equals("P")){
 			casillero = new Casillero(EstadoCasillero.PARED, new ItemNulo());
