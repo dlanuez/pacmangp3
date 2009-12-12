@@ -77,6 +77,7 @@ public class Fantasma extends Viviente {
 	public void vivir(){
 		if (!this.estaVivo()){
 			this.revivir(EstadoViviente.CAZADOR);
+			this.setColorActual(this.colorCazador);
 		}
 		super.vivir();
 		this.mover();
