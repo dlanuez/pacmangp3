@@ -56,7 +56,10 @@ public class Pacman extends Viviente {
 		if(this.getEstado() == EstadoViviente.PRESA)
 			this.getJuego().pacmanComido();					
 		else
-			this.getJuego().fantasmaComido(fantasma);	
+			if(fantasma.getEstado() == EstadoViviente.CAZADOR)
+				this.getJuego().pacmanComido();
+			else
+				this.getJuego().fantasmaComido(fantasma);	
 	}
 	
 	/*Metedo que recorre la coleccion de fantasmas con un iterador provisto por el tablero para averiguar 
