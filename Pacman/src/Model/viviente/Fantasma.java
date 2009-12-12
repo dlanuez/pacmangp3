@@ -202,5 +202,9 @@ public class Fantasma extends Viviente {
 	public void setColorCazador(Color colorCazador) {
 		this.colorCazador = colorCazador;
 	}
+
+	public void cambiarColorACazador() {
+		this.setColorActual(this.colorCazador);		
+	}
 	
 }
