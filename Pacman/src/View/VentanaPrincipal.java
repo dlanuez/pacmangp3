@@ -18,7 +18,7 @@ public class VentanaPrincipal extends Frame {
 	public VentanaPrincipal(ControladorJuego controlador){
 		this.setTitle("Pacman - Grupo 3");
 		this.controladorJuego = controlador;
-		this.setSize(512,540);
+		this.setSize(512,600);
 		this.setResizable(false);
 		this.setBackground(Color.black);
 		this.panel = new Panel(512,512,this.controladorJuego);
