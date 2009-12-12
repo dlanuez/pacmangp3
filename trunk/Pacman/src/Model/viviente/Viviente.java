@@ -138,7 +138,7 @@ public abstract class Viviente {
 		
 		if(this.tiempoRestanteDeEstado > 0) this.tiempoRestanteDeEstado--;
 		
-		if(this.tiempoRestanteDeEstado == 0){
+		if(this.tiempoRestanteDeEstado == 0){			
 			this.toggleState();
 			this.tiempoRestanteDeEstado = -1;
 		}
