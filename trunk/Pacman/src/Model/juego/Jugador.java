@@ -22,7 +22,9 @@ public class Jugador {
 	
 	//Le suma los puntos otorgados a los puntos del jugador.
 	public void sumarPuntos(int puntosOtorgados) {
-		this.puntos += puntosOtorgados;		
+		this.puntos += puntosOtorgados;
+		if (this.puntos%1000 == 0)
+			this.sumarVida();
 	}
 	
 	//Le quita una vida al jugador y devuelve true si el jugador se quedo sin vidas.

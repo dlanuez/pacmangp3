@@ -18,7 +18,7 @@ public class Programa {
 	public static void main(String[] args) {
 		ControladorJuego controlador = new ControladorJuego();
 		//VistaLaberinto vistaLaberinto = new VistaLaberinto(0,0, "borde-izquierdo.jpg");
-		Juego juego = new Juego("src/Model/nivel1.xml");
+		Juego juego = new Juego("src/Model/nivel1.xml", "", "", controlador);
 		juego.getTablero().inicializar();
 		
 	

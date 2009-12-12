@@ -24,7 +24,7 @@ public class Pacman extends Viviente {
 			System.out.print(e.toString());
 		}
 		this.setEstado(EstadoViviente.PRESA);
-		this.posicionDeRespawn = posicionInicial;
+		this.posicionDeRespawn = posicionInicial.clonar();
 		this.setDireccionActual(Direcciones.IZQUIERDA);
 	}
 

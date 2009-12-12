@@ -139,6 +139,8 @@ public class Tablero {
 
 	public void decrementarContadorBolitas(){
 		this.cantidadDeBolitas--;
+		if (this.cantidadDeBolitas == 0)
+			this.juego.pasarDeNivel();
 	}
 
 	public int getCantidadDeBolitas() {
@@ -153,7 +155,9 @@ public class Tablero {
 		for(int i = 0; i < MAX_POS_X; i++){
 			for(int k = 0; k < MAX_POS_Y; k++){
 				if(!(matriz[i][k].obtenerItem().getClass().getSimpleName().equals("ItemNulo"))){
-					this.cantidadDeBolitas++;
+					if(!(matriz[i][k].obtenerItem().getClass().getSimpleName().equals("Fruta"))){
+						this.cantidadDeBolitas++;
+					}
 				}
 			}
 		}
