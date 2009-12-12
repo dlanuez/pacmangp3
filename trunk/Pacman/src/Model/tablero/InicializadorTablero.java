@@ -72,11 +72,8 @@ public class InicializadorTablero {
 
 	private Casillero getTipoCasillero(String item, int posX, int posY) {
 		Casillero casillero;
-		if(item.equals("1")){
-			if (posX == 10 && posY == 8)
-				casillero = new Casillero(EstadoCasillero.PISO, new Fruta(this.juego, 10, 20, new Punto(posX, posY)));
-			else
-				casillero = new Casillero(EstadoCasillero.PISO, new Bolita(this.juego));
+		if(item.equals("1")){			
+			casillero = new Casillero(EstadoCasillero.PISO, new Bolita(this.juego));
 			return casillero;
 		}else if(item.equals("2")){
 			casillero = new Casillero(EstadoCasillero.PISO, new Pastilla(this.juego,50));
@@ -90,6 +87,9 @@ public class InicializadorTablero {
 		}else if(item.equals("O")){
 			casillero = new Casillero(EstadoCasillero.PISO, new ItemNulo());
 			setPuntoPacman(new Punto(posX, posY));
+			return casillero;
+		}else if(item.equals("3")){
+			casillero = new Casillero(EstadoCasillero.PISO, new Fruta(this.juego, 10, 20, new Punto(posX, posY)));
 			return casillero;
 		}else{
 			throw new TipoDeCasilleroInexistenteException();
