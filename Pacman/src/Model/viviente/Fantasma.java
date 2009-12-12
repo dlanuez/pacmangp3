@@ -8,7 +8,6 @@ import Model.EstadoViviente;
 import Model.Punto;
 import Model.estrategia.Estrategia;
 import Model.estrategia.EstrategiaEscapadora;
-import Model.excepciones.EstadoNoInicializadoExeption;
 import Model.excepciones.PosicionInvalidaException;
 import Model.excepciones.VelocidadInvalidaException;
 import Model.juego.Juego;
@@ -25,7 +24,7 @@ public class Fantasma extends Viviente {
 	private int tiempoDeEspera;
 	
 	public Fantasma(Punto posicionInicial, Juego juego, int velocidadCazador, Color colorCazador) throws PosicionInvalidaException, VelocidadInvalidaException{
-		super(posicionInicial, juego);
+		super(posicionInicial.clonar(), juego);
 		
 		this.setEstado(EstadoViviente.CAZADOR);
 		
