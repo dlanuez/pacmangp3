@@ -1,23 +1,22 @@
 package View;
 
-import ar.uba.fi.algo3.titiritero.ControladorJuego;
+import Model.item.Fruta;
+import ar.uba.fi.algo3.titiritero.SuperficieDeDibujo;
 import ar.uba.fi.algo3.titiritero.vista.Imagen;
 
 public class VistaFruta extends Imagen {
 	
-	private ControladorJuego controlador;
+	private Fruta fruta;
 
-	public VistaFruta(String nombreImagen, ControladorJuego controlador){
+	public VistaFruta(String nombreImagen, Fruta fruta){
 		super();
 		this.setNombreArchivoImagen(nombreImagen);
-		this.controlador = controlador;
+		this.fruta = fruta;
 	}
 
-	public void desactivado() {
-		this.controlador.removerDibujable(this);
-	}
-
-	public void activado() {
-		this.controlador.agregarDibujable(this);
+	public void dibujar(SuperficieDeDibujo superfice){
+		if (!this.fruta.getComido())
+			if (this.fruta.getActivado())
+				super.dibujar(superfice);
 	}
 }

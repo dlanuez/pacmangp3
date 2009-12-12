@@ -2,20 +2,22 @@ package View;
 
 import java.awt.Color;
 
-import ar.uba.fi.algo3.titiritero.ControladorJuego;
+import Model.item.Bolita;
+import ar.uba.fi.algo3.titiritero.SuperficieDeDibujo;
 import ar.uba.fi.algo3.titiritero.vista.Circulo;
 
 public class VistaBolita extends Circulo{
 
-	private ControladorJuego controlador;
+	private Bolita bolita;
 
-	public VistaBolita(ControladorJuego controlador) {
+	public VistaBolita(Bolita bolita) {
 		super(5);
 		this.setColor(Color.white);
-		this.controlador = controlador;
+		this.bolita = bolita;
 	}
 	
-	public void comido(){
-		this.controlador.removerDibujable(this);
+	public void dibujar(SuperficieDeDibujo superfice){
+		if (!this.bolita.getComido())
+			super.dibujar(superfice);
 	}
 }
