@@ -29,65 +29,36 @@ public class Pacman extends Viviente {
 	}
 
 	public void vivir() {
-		Punto posicionActual = this.getPosicion().clonar();
-		//Punto posicionActual =new Punto(this.getPosicion().x(), this.getPosicion().y());
-		Fantasma fantasma;
-
-		if (!this.estaVivo()) {
+		
+		if (!this.estaVivo())
 			this.revivir();
-		}
 
 		super.vivir();
 		
-		if(this.getDireccionActual() != null){
-			
-			switch (this.getDireccionActual()) {
-				case ABAJO: {
-					posicionActual.aumentarX();
-					if (this.validarMovimiento(posicionActual))
-						this.irAbajo();
-					break;
-				}
-				case ARRIBA: {
-					posicionActual.disminuirX();
-					if (this.validarMovimiento(posicionActual))
-						this.irArriba();
-					break;
-				}
-				case DERECHA: {
-					posicionActual.aumentarY();
-					if (this.validarMovimiento(posicionActual))
-						this.irADerecha();
-					break;
-				}
-				case IZQUIERDA: {
-					posicionActual.disminuirY();
-					if (this.validarMovimiento(posicionActual))
-						this.irAIzquierda();
-					break;
-				}
-			}
-		}
+		if(this.getDireccionActual() != null)
+			this.mover();
 		
-		try {
-			this.getJuego().getTablero().getCasillero(this.getPosicion()).getItem().hacerEfecto();
-		} catch (tiempoDeEstadoInvalidoException e) {			
+		try{
+			this.getJuego().getTablero().getCasillero(this.getPosicion())
+										.getItem().hacerEfecto();
+		} 
+		catch (tiempoDeEstadoInvalidoException e) {			
 			e.printStackTrace();
 		}
 
-		fantasma = fantasmaEnMiPosicion();
-		if (fantasma != null) {
-			if (this.getEstado() == EstadoViviente.CAZADOR) {
-				fantasma.fenecer();
-				this.getJuego().fantasmaComido(
-						fantasma.getPuntosPorEsteFantasmaConCarinioParaCabu());
-			} else {
-				this.fenecer();
-				this.getJuego().pacmanComido();
-			}
-		}
+		Fantasma fantasma = this.fantasmaEnMiPosicion();
+		if (fantasma != null)
+				this.encontreFantasma(fantasma);
 	}
 
+	
+	private void encontreFantasma(Fantasma fantasma) {		
+		if(this.getEstado() == EstadoViviente.PRESA)
+			this.getJuego().pacmanComido();					
+		else
+			this.getJuego().fantasmaComido(fantasma);	
+	}
+	
 	/*Metedo que recorre la coleccion de fantasmas con un iterador provisto por el tablero para averiguar 
 	 *si hay algun fantasma en la posicion del pacman
 	 */
@@ -126,7 +97,7 @@ public class Pacman extends Viviente {
 	}
 	//Metodo que reposiciona al PacMan en su posicion inicial.
 	
-	public void reEspawnear(){
+	public void reSpawn(){
 		try {
 			this.setPosicion(this.posicionDeRespawn);
 		} catch (PosicionInvalidaException e) {
@@ -176,6 +147,38 @@ public class Pacman extends Viviente {
 			puntoAuxiliar.disminuirY();
 		}
 		return this.getJuego().getTablero().getCasillero(puntoAuxiliar).casilleroHabilitado();
+	}
+	
+	private void mover(){
+		
+		Punto posicionActual = this.getPosicion().clonar();
+		
+		switch (this.getDireccionActual()) {
+			case ABAJO: {
+				posicionActual.aumentarX();
+				if (this.validarMovimiento(posicionActual))
+					this.irAbajo();
+				break;
+			}
+			case ARRIBA: {
+				posicionActual.disminuirX();
+				if (this.validarMovimiento(posicionActual))
+					this.irArriba();
+				break;
+			}
+			case DERECHA: {
+				posicionActual.aumentarY();
+				if (this.validarMovimiento(posicionActual))
+					this.irADerecha();
+				break;
+			}
+			case IZQUIERDA: {
+				posicionActual.disminuirY();
+				if (this.validarMovimiento(posicionActual))
+					this.irAIzquierda();
+				break;
+			}
+		}
 	}
 
 }
