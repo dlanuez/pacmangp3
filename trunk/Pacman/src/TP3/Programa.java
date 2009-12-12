@@ -3,11 +3,15 @@ package TP3;
 import java.util.Iterator;
 
 import Controller.FantasmaVivo;
+import Controller.JuegoVivo;
 import Controller.PacmanVivo;
 import Model.juego.Juego;
 import Model.viviente.Fantasma;
+import View.PosicionableLaberinto;
 import View.VentanaPrincipal;
+import View.VistaCantidadDeVidas;
 import View.VistaFantasma;
+import View.VistaJuego;
 import View.VistaLaberintoFactory;
 import View.VistaPacman;
 import View.VistaTablero;
@@ -35,7 +39,7 @@ public class Programa {
 		controlador.agregarObjetoVivo(unPacman);
 		controlador.agregarKeyPressObservador(unPacman);
 
-		VistaTablero vistaTablero = new VistaTablero(512,512);
+		VistaTablero vistaTablero = new VistaTablero(512,600);
 		vistaTablero.setPosicionable(vistaTablero);
 		controlador.agregarDibujable(vistaTablero);
 
@@ -46,7 +50,15 @@ public class Programa {
 			agregarFantasma(fantasmaIterator.next(), controlador);
 		}		
 				
-		controlador.agregarDibujable(vistaPacman);		
+		controlador.agregarDibujable(vistaPacman);
+		JuegoVivo juegoVivo = new JuegoVivo(juego);
+		VistaJuego vistaJuego = new VistaJuego(juegoVivo);
+		VistaCantidadDeVidas vistaCantidadDeVidas = new VistaCantidadDeVidas(30,juegoVivo);
+		PosicionableLaberinto posicionable = new PosicionableLaberinto(20,530);
+		vistaJuego.setPosicionable(posicionable);
+		controlador.agregarDibujable(vistaJuego);
+		controlador.agregarDibujable(vistaCantidadDeVidas);
+		
 		controlador.setIntervaloSimulacion(150);
 		controlador.comenzarJuego();
 	}

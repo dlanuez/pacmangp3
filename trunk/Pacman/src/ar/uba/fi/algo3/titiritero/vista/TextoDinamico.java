@@ -16,6 +16,7 @@ public class TextoDinamico extends Texto {
 		super(color, fuente);
 		this.objetoDeTexto = objetoDeTexto;
 	}
+	
 
 	@Override
 	protected String getTexto() {
