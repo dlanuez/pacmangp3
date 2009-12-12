@@ -63,43 +63,35 @@ public class VistaLaberintoFactory {
 				}
 				else{
 					if(esBolita(juego, i, k)){
-						VistaBolita vistaBolita = new VistaBolita(controlador);
+						try{
+						VistaBolita vistaBolita = new VistaBolita(((Bolita) juego.getTablero().getCasillero(new Punto(i, k)).obtenerItem()));
 						Posicionable posicionable = new PosicionableLaberinto(posX+15,posY+15);
 						vistaBolita.setPosicionable(posicionable);
 						controlador.agregarDibujable(vistaBolita);
-						try{
-							((Bolita) juego.getTablero().getCasillero(new Punto(i, k)).obtenerItem()).setVistaBolita(vistaBolita);
-
 						}
 						catch(ClassCastException e){
 							
 						}
 					}
 					if(esPastilla(juego, i, k)){
-						VistaPastilla vistaPastilla = new VistaPastilla(controlador);
+						try{
+						VistaPastilla vistaPastilla = new VistaPastilla(((Pastilla) juego.getTablero().getCasillero(new Punto(i, k)).obtenerItem()));
 						Posicionable posicionable = new PosicionableLaberinto(posX+15,posY+15);
 						vistaPastilla.setPosicionable(posicionable);
 						controlador.agregarDibujable(vistaPastilla);
-						try{
-							((Pastilla) juego.getTablero().getCasillero(new Punto(i, k)).obtenerItem()).setVistaPastilla(vistaPastilla);
 						}
 						catch(ClassCastException e){
 							
 						}
 					}
 					if(esFruta(juego, i, k)){
-						VistaFruta vistaFruta = new VistaFruta("Fruta.jpg", controlador);
+						try{
+						VistaFruta vistaFruta = new VistaFruta("Fruta.jpg", ((Fruta) juego.getTablero().getCasillero(new Punto(i, k)).obtenerItem()));
 						Posicionable posicionable = new PosicionableLaberinto(posX,posY);
 						vistaFruta.setPosicionable(posicionable);
-						try{
-							FrutaViva frutaViva = new FrutaViva(((Fruta) juego.getTablero().getCasillero(new Punto(i, k)).obtenerItem()));
-							controlador.agregarObjetoVivo(frutaViva);
-						}
-						catch(ClassCastException e){
-							
-						}
-						try{
-							((Fruta) juego.getTablero().getCasillero(new Punto(i, k)).obtenerItem()).setVistaFruta(vistaFruta);
+						FrutaViva frutaViva = new FrutaViva(((Fruta) juego.getTablero().getCasillero(new Punto(i, k)).obtenerItem()));
+						controlador.agregarObjetoVivo(frutaViva);
+						controlador.agregarDibujable(vistaFruta);
 						}
 						catch(ClassCastException e){
 							

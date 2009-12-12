@@ -9,6 +9,7 @@ import Model.juego.Juego;
 public abstract class Item {
  
 	private Juego juego;
+	private boolean comido;
 	
 	//Configura la referencia al juego por la que se pasa por argumento.
 	protected void setJuego(Juego juego){
@@ -24,5 +25,13 @@ public abstract class Item {
 	public abstract void hacerEfecto() throws tiempoDeEstadoInvalidoException;
 
 	public abstract Item comer();
+	
+	public void setComido(boolean comido){
+		this.comido = comido;
+	}
+	
+	public boolean getComido() {
+		return this.comido;
+	}
 }
  

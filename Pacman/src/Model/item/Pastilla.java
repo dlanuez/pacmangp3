@@ -5,26 +5,21 @@ import java.util.Iterator;
 import Model.excepciones.tiempoDeEstadoInvalidoException;
 import Model.juego.Juego;
 import Model.viviente.Fantasma;
-import View.VistaPastilla;
 
 public class Pastilla extends Item {
 	
 	private int tiempoDeEstado;
 	private static int puntosOtorgados = 5;
-	private VistaPastilla dibujable;
 
 	public Pastilla(Juego juego, int tiempoDeEstado){
 		this.setJuego(juego);
 		this.tiempoDeEstado = tiempoDeEstado;
+		this.setComido(false);
 	}
 	
 	//Configura los puntos otorgados de la clase Pastilla.
 	public final void setPuntosOtorgados(int puntos){
 		Pastilla.puntosOtorgados = puntos;
-	}
-	
-	public void setVistaPastilla(VistaPastilla dibujable){
-		this.dibujable = dibujable;
 	}
 	
 	//Suma la cantidad de puntos otorgados por comer una bolita a los puntos del jugador
@@ -37,7 +32,7 @@ public class Pastilla extends Item {
 		while(fantasmas.hasNext()){
 			fantasmas.next().cambiarEstado(this.tiempoDeEstado);
 		}
-		this.dibujable.comido();
+		this.setComido(true);
 	}
 
 	@Override
