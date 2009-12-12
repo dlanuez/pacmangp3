@@ -10,6 +10,7 @@ package Model.tablero;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import Model.EstadoViviente;
 import Model.Punto;
 import Model.excepciones.PosicionInvalidaException;
 import Model.excepciones.VelocidadInvalidaException;
