@@ -13,7 +13,7 @@ public class PacmanTest extends TestCase {
 			
 	protected void setUp() throws Exception {
 		super.setUp();		
-		this.juego = new Juego("src/Model/nivel1.xml");
+		this.juego = new Juego("src/Model/nivel1.xml", 16, 16);
 		this.punto = new Punto(1,1);
 		this.juego.getTablero().inicializar();
 		this.pacman = this.juego.getTablero().getPacman();
@@ -62,7 +62,7 @@ public class PacmanTest extends TestCase {
 		assertEquals(puntoAuxiliar, pacman.getPosicion());
 	}
 	
-	public void testReEspawnear(){
+	public void testReSpawn(){
 		Punto puntoAuxiliar = pacman.getPosicion();
 		try {
 			pacman.setPosicion(new Punto(2,1));
@@ -70,7 +70,7 @@ public class PacmanTest extends TestCase {
 			// TODO Auto-generated catch block
 			fail("Tiro excepcion");
 		}
-		pacman.reEspawnear();
+		pacman.reSpawn();
 		assertEquals(puntoAuxiliar, pacman.getPosicion());
 	}
 }

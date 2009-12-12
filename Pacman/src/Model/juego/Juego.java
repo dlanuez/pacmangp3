@@ -1,8 +1,10 @@
 package Model.juego;
 
 import ar.uba.fi.algo3.titiritero.ControladorJuego;
+import Model.excepciones.PosicionInvalidaException;
 import Model.excepciones.cantidadDeVidasInvalidaExeption;
 import Model.tablero.Tablero;
+import Model.viviente.Fantasma;
 
 public class Juego {
 
@@ -53,12 +55,32 @@ public class Juego {
 	}
 
 	public void pacmanComido() {
+		this.getTablero().getPacman().fenecer();
 		if (this.getJugador().restarVida())
 			this.controlador.detenerJuego();
+		else{
+			try {
+				this.getTablero().resetearPosiciones();
+			} catch (PosicionInvalidaException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
-	public void fantasmaComido(int puntosPorEsteFantasma) {
-		this.getJugador().sumarPuntos(puntosPorEsteFantasma);		
+	public void fantasmaComido(Fantasma fantasma) {
+		this.getJugador().sumarPuntos(fantasma.getPuntosPorEsteFantasmaConCarinioParaCabu());
+		fantasma.fenecer();
+        try {
+        	fantasma.setPosicion(fantasma.getPosicionDeRespawn());
+        }
+        catch (PosicionInvalidaException e) {
+                /* Las posiciones de respawn deberían ser válidas, ya que se leen del archivo
+                 * laberinto.xml. Si se llega a esta exepción, lo más probable es que
+                 * getPosicionDeRespawn() haya devuelto un valor nulo.
+                 */
+                e.printStackTrace();
+        }
+		
 	}
 
 	public void pasarDeNivel() {

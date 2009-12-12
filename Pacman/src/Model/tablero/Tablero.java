@@ -100,12 +100,10 @@ public class Tablero {
 	
 	public void resetearPosiciones() throws PosicionInvalidaException{		
 		try{
-			pacman.reEspawnear();
-			int i = 0;
+			pacman.reSpawn();
 			for (Fantasma f : fantasmas){				
-				f.setPosicion(cueva.get(i));
+				f.setPosicion(f.getPosicionDeRespawn());
 				f.revivir();
-				i++;
 			}
 		}catch(PosicionInvalidaException e){
 			throw new PosicionInvalidaException();

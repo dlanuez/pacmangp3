@@ -25,11 +25,8 @@ public class Programa {
 		VentanaPrincipal ventana = new VentanaPrincipal(controlador);
 		ventana.setVisible(true);
 		controlador.setSuperficieDeDibujo(ventana.getSuperficieDeDibujo());
-				
-		
 		
 		PacmanVivo unPacman;
-
 		
 		unPacman = new PacmanVivo(juego.getTablero().getPacman());	
 		VistaPacman vistaPacman = new VistaPacman();

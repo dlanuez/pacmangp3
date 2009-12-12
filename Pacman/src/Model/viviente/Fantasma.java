@@ -125,38 +125,18 @@ public class Fantasma extends Viviente {
 			}		
 		}
 	
-	private void encontrePacman() {
-		
-		if(this.getEstado() == EstadoViviente.CAZADOR){
-			this.getJuego().pacmanComido();
-			this.getJuego().getTablero().getPacman().fenecer();
-			try {
-				this.getJuego().getTablero().resetearPosiciones();
-			} catch (PosicionInvalidaException e) {
-				e.printStackTrace();
-			}
-		}
-		else{
-			this.getJuego().fantasmaComido(this.puntosPorEsteFantasma);
-			this.fenecer();
-			try {
-				this.setPosicion(this.getPosicionDeRespawn());
-			} catch (PosicionInvalidaException e) {
-				/* Las posiciones de respawn deberían ser válidas, ya que se leen del archivo
-				 * laberinto.xml. Si se llega a esta exepción, lo más probable es que
-				 * getPosicionDeRespawn() haya devuelto un valor nulo.
-				 */
-				e.printStackTrace();
-			}
-		}
-		
+	private void encontrePacman() {		
+		if(this.getEstado() == EstadoViviente.CAZADOR)
+			this.getJuego().pacmanComido();					
+		else
+			this.getJuego().fantasmaComido(this);	
 	}
 
 	/* Este método busca y devuelve  una posición en la cueva que sea distinta
 	 * de las posiciones de todos los fantasmas. Si no se encuentra ninguna
 	 * posición libre en la cueva, devuelve null. 
 	 */
-	private Punto getPosicionDeRespawn() {
+	public Punto getPosicionDeRespawn() {
 		
 		//lista con las posiciones de la cueva
 
