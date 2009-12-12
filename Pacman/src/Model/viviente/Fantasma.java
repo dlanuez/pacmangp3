@@ -97,7 +97,9 @@ public class Fantasma extends Viviente {
 	
 	public void revivir(){
 		this.setVivo();
-		this.setEstado(EstadoViviente.CAZADOR);
+		if(this.getEstado() == EstadoViviente.PRESA){
+			this.toggleState();
+		}
 	}
 	
 	private void buscarPacman(Punto posicionPacman) {
