@@ -76,7 +76,7 @@ public class Fantasma extends Viviente {
 	@Override
 	public void vivir(){
 		if (!this.estaVivo()){
-			this.revivir();
+			this.revivir(EstadoViviente.CAZADOR);
 		}
 		super.vivir();
 		this.mover();
@@ -93,13 +93,6 @@ public class Fantasma extends Viviente {
 		}
 		this.tiempoDeEspera--;
 		return true;		
-	}
-	
-	public void revivir(){
-		this.setVivo();
-		if(this.getEstado() == EstadoViviente.PRESA){
-			this.toggleState();
-		}
 	}
 	
 	private void buscarPacman(Punto posicionPacman) {

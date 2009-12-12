@@ -55,7 +55,7 @@ public class PacmanTest extends TestCase {
 		}
 		pacman.fenecer();
 		assertFalse(pacman.estaVivo());
-		pacman.revivir();
+		pacman.revivir(EstadoViviente.PRESA);
 		assertTrue(pacman.estaVivo());
 		assertEquals(pacman.getEstado(), EstadoViviente.PRESA);
 		//Chequeo que se resetee la posicion

@@ -103,7 +103,7 @@ public class Tablero {
 			pacman.reSpawn();
 			for (Fantasma f : fantasmas){				
 				f.setPosicion(f.getPosicionDeRespawn());
-				f.revivir();
+				f.revivir(EstadoViviente.CAZADOR);
 			}
 		}catch(PosicionInvalidaException e){
 			throw new PosicionInvalidaException();

@@ -94,7 +94,7 @@ public abstract class Viviente {
 	
 	public void cambiarEstado(int tiempoDeEstado) throws tiempoDeEstadoInvalidoException{
 		if(tiempoDeEstado > 0){	
-			/* Verifica que estuviera en el estado normal. Si tiempoRestanteDeEstado =! 1, 
+			/* Verifica que estuviera en el estado normal. Si tiempoRestanteDeEstado =! -1, 
 			 * entonces todavía no se acabó el efecto de la pelotita anterior, y se reinicia el contador
 			 * pero no se vuelve a cambiar el estado del Viviente. Esto solo ocurre cuando el contador
 			 * llega a 0. 
@@ -131,6 +131,10 @@ public abstract class Viviente {
 	}
 		
 
+	protected void reiniciarTiempoRestanteDeEstado(){
+		this.tiempoRestanteDeEstado = -1;
+	}
+	
 	/* Con cada turno se decrementa el tiempo restante del estado. En caso de ser -1,
 	 * no sucede nada.
 	 */	
@@ -188,6 +192,12 @@ public abstract class Viviente {
 
 	public void setJuego(Juego juego) {
 		this.juego = juego;
+	}
+	
+	public void revivir(EstadoViviente estadoViviente) {
+		this.setVivo();
+		this.setEstado(estadoViviente);
+		this.reiniciarTiempoRestanteDeEstado();
 	}
 	
 }
