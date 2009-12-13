@@ -44,6 +44,15 @@ public class Juego {
 		}
 		this.tablero = new Tablero(tablero, this, maxX, maxY);
 	}
+	
+	public Juego(String tablero){
+		try{
+			this.jugador = new Jugador(Vidas_Normal);
+		}catch(cantidadDeVidasInvalidaExeption e){
+			e.printStackTrace();
+		}
+		this.tablero = new Tablero(tablero, this, 16, 16);
+	}
 
 	public Tablero getTablero() {
 		return this.tablero;
