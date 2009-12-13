@@ -46,7 +46,8 @@ public class Juego {
 	}
 
 	public void pacmanComido() {
-		this.getTablero().getPacman().fenecer();		
+		this.getTablero().getPacman().fenecer();
+		this.getJugador().restarVida();
 		try {
 			this.getTablero().resetearPosiciones();
 		} catch (PosicionInvalidaException e) {
@@ -74,6 +75,10 @@ public class Juego {
 		this.nivelActual++;
 		this.tablero = new Tablero("src/Model/nivel"+Integer.toString(this.nivelActual)+".xml", this);
 		this.tablero.inicializar();
+	}
+
+	public int getNivel() {	
+		return this.nivelActual;
 	}
 	
 	
