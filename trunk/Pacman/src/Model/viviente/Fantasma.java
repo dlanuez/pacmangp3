@@ -126,44 +126,7 @@ public class Fantasma extends Viviente {
 		else
 			this.getJuego().fantasmaComido(this);	
 	}
-
-	/* Este método busca y devuelve  una posición en la cueva que sea distinta
-	 * de las posiciones de todos los fantasmas. Si no se encuentra ninguna
-	 * posición libre en la cueva, devuelve null. 
-	 */
-	/*public Punto getPosicionDeRespawn() {
-		
-		//lista con las posiciones de la cueva
-
-		Iterator<Fantasma> fantasmas = this.getJuego().getTablero().getFantasmasIterador();
-		
-		//lista con las posiciones de los fantasmas
-		ArrayList<Punto> posicionesFantasmas = new ArrayList<Punto>();
-		
-		while(fantasmas.hasNext()){
-			posicionesFantasmas.add(fantasmas.next().getPosicion());
-		}		
-		
-		
-		//-----------------------------------------------
-		
-		Iterator<Punto> itPC =this.getJuego().getTablero().getPosicionesCuevaIterador();
-		
-		while(itPC.hasNext()){
-			int valorDeRetorno = 0;
-			Punto posicionCuevaActual = itPC.next();
-			//busca si la posicion de la cueva coincide con la de algún fantasma
-			//si devuelve -1, entonces no se encontró, y la posición está disponible.
-			valorDeRetorno = posicionesFantasmas.indexOf(posicionCuevaActual);
-			
-			if(valorDeRetorno == -1) //posicion disponible
-				return posicionCuevaActual;
-				
-		}
-		
-		return null;
-	}
-	*/
+	
 	public void setEstrategia(Estrategia e){
 		this.estrategia = e;
 	}
