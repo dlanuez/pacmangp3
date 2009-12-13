@@ -1,5 +1,6 @@
 package Controller;
 
+import java.awt.Color;
 import java.util.Iterator;
 
 import Model.juego.Juego;
@@ -21,10 +22,12 @@ public class JuegoVivo implements ObjetoVivo {
 	private ControladorJuego controlador;
 	private VentanaPrincipal ventana;
 	private int contador = 0;
+	private Color color;
 
 	public JuegoVivo(Juego juego, VentanaPrincipal ventana){
 		this.juego = juego;
 		this.ventana = ventana;
+		this.color = Color.RED;
 	}
 	
 	public void vivir() {
@@ -56,7 +59,7 @@ public class JuegoVivo implements ObjetoVivo {
 		VistaTablero vistaTablero = new VistaTablero(512,600);
 		vistaTablero.setPosicionable(vistaTablero);
 		this.controlador.agregarDibujable(vistaTablero);
-		VistaLaberintoFactory.generarTablero(this.controlador, this.juego);
+		VistaLaberintoFactory.generarTablero(this.controlador, this.juego, this.color);
 		
 		Iterator<Fantasma> fantasmaIterator = this.juego.getTablero().getFantasmasIterador();
 		while(fantasmaIterator.hasNext()){
@@ -73,6 +76,12 @@ public class JuegoVivo implements ObjetoVivo {
 		this.controlador.agregarDibujable(vistaJuego);
 		this.controlador.agregarDibujable(vistaCantidadDeVidas);
 		
+		if(this.juego.getNivel() % 2 == 0){
+			this.color = Color.RED;
+		}else{
+			this.color = Color.BLUE;
+		}
+		
 	}
 		
 	private void agregarFantasma(Fantasma fantasma, ControladorJuego controlador) {
@@ -85,11 +94,12 @@ public class JuegoVivo implements ObjetoVivo {
 	}
 
 	public String getTexto() {
-		String texto = "Puntaje: ";
-		texto += (Integer.toString(this.juego.getTablero().getCantidadDeBolitas()));
-		//texto += (Integer.toString(this.juego.getJugador().getPuntos()));
+		String texto = "Puntaje: ";		
+		texto += (Integer.toString(this.juego.getJugador().getPuntos()));
 		return texto;
 	}
+	
+	
 
 	public int getCantidadDeVidas() {		
 		return this.juego.getJugador().getVidas();
