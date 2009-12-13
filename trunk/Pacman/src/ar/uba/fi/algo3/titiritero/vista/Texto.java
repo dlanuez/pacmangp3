@@ -27,8 +27,8 @@ public abstract class Texto extends Figura {
 		this.fuente = fuente;
 	}
 	
-	public void setFuente(String fuente, int tamaño){
-		this.fuente = new Font(fuente,Font.BOLD,tamaño);
+	public void setFuente(String fuente, int tamanio){
+		this.fuente = new Font(fuente,Font.BOLD,tamanio);
 	}
 	
 	public void dibujar(SuperficieDeDibujo superfice) {
