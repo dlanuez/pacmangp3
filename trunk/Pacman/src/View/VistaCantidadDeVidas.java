@@ -33,13 +33,13 @@ public class VistaCantidadDeVidas extends Circulo implements Posicionable {
 		return this;
 	}
 
-	@Override
+
 	public int getX() {		
 		return x;
 	}
 
 
-	@Override
+
 	public int getY() {		
 		return 520;
 	}
