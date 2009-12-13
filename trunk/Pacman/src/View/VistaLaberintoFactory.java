@@ -14,7 +14,7 @@ import ar.uba.fi.algo3.titiritero.Posicionable;
 
 public class VistaLaberintoFactory {
 
-	public static void generarTablero(ControladorJuego controlador, Juego juego){
+	public static void generarTablero(ControladorJuego controlador, Juego juego, Color color){
 		Punto punto = new Punto(0,0);
 		int maxX = juego.getTablero().getMaxPosX();
 		int maxY = juego.getTablero().getMaxPosY();
@@ -28,7 +28,7 @@ public class VistaLaberintoFactory {
 				posY = 32 * i;
 				if(!casillero.casilleroHabilitado()){
 					VistaPared vistaPared = new VistaPared(30, 30);
-					vistaPared.setColor(Color.RED);
+					vistaPared.setColor(color);
 					Posicionable posicionable = new PosicionableLaberinto(posX,posY);
 					vistaPared.setPosicionable(posicionable);
 					controlador.agregarDibujable(vistaPared);					
