@@ -1,3 +1,4 @@
+import Model.EstadoViviente;
 import Model.Punto;
 import Model.juego.Juego;
 import Model.viviente.Fantasma;

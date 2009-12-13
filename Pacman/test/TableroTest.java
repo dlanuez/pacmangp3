@@ -16,8 +16,8 @@ public class TableroTest extends TestCase {
 
 	protected void setUp() throws Exception{
 		super.setUp();
-		this.juego = new Juego("src/Model/laberinto.xml");
-		this.tablero = new Tablero("src/Model/laberinto.xml",juego, 4,2);	
+		this.juego = new Juego("src/Model/laberinto.xml", 4,2);
+		this.tablero = this.juego.getTablero();	
 		this.tablero.inicializar();
 	}
 	//Inicializo el tablero con el laberinto de prueba y chequeo que me cargue todo ok
