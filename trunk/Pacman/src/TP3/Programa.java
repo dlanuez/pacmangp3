@@ -22,13 +22,18 @@ public class Programa {
 	public static void main(String[] args) {
 		ControladorJuego controlador = new ControladorJuego();
 		//VistaLaberinto vistaLaberinto = new VistaLaberinto(0,0, "borde-izquierdo.jpg");
-		Juego juego = new Juego("src/Model/nivel1.xml", "", "", controlador);
-		juego.getTablero().inicializar();
-		
+		Juego juego = new Juego("src/Model/nivel1.xml");
+		juego.getTablero().inicializar();		
 	
 		VentanaPrincipal ventana = new VentanaPrincipal(controlador);
 		ventana.setVisible(true);
+		
+		JuegoVivo juegoVivo = new JuegoVivo(juego, ventana);
+		juegoVivo.inicializarControlador();
+		juegoVivo.getControladorJuego().comenzarJuego();
+		/*
 		controlador.setSuperficieDeDibujo(ventana.getSuperficieDeDibujo());
+		
 		
 		PacmanVivo unPacman;
 		
@@ -51,7 +56,7 @@ public class Programa {
 		}		
 				
 		controlador.agregarDibujable(vistaPacman);
-		JuegoVivo juegoVivo = new JuegoVivo(juego);
+		
 		VistaJuego vistaJuego = new VistaJuego(juegoVivo);
 		VistaCantidadDeVidas vistaCantidadDeVidas = new VistaCantidadDeVidas(30,juegoVivo);
 		PosicionableLaberinto posicionable = new PosicionableLaberinto(20,530);
@@ -61,6 +66,7 @@ public class Programa {
 		
 		controlador.setIntervaloSimulacion(150);
 		controlador.comenzarJuego();
+		*/
 	}
 
 	private static void agregarFantasma(Fantasma fantasma, ControladorJuego controlador) {

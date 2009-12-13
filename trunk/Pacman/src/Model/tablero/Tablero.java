@@ -103,7 +103,7 @@ public class Tablero {
 		try{
 			pacman.reSpawn();
 			for (Fantasma f : fantasmas){				
-				f.setPosicion(f.getPosicionDeRespawn());
+				f.setPosicion(f.getPuntoDeRespawn());
 				f.cambiarColorACazador();
 				f.revivir(EstadoViviente.CAZADOR);
 			}
@@ -138,9 +138,7 @@ public class Tablero {
 	
 
 	public void decrementarContadorBolitas(){
-		this.cantidadDeBolitas--;
-		if (this.cantidadDeBolitas == 0)
-			this.juego.pasarDeNivel();
+		this.cantidadDeBolitas--;		
 	}
 
 	public int getCantidadDeBolitas() {

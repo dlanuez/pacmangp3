@@ -1,6 +1,5 @@
 package Model.juego;
 
-import ar.uba.fi.algo3.titiritero.ControladorJuego;
 import Model.excepciones.PosicionInvalidaException;
 import Model.excepciones.cantidadDeVidasInvalidaExeption;
 import Model.tablero.Tablero;
@@ -13,27 +12,8 @@ public class Juego {
 	private Tablero tablero;
 	private Jugador jugador;
 
-	private ControladorJuego controlador;
-
-	private String[] niveles;
-
 	private int nivelActual;
-		
-	public Juego(String nivel0, String nivel1, String nivel2, ControladorJuego controlador) {
-		this.niveles = new String[3];
-		try{
-			this.jugador = new Jugador(Vidas_Normal);
-		}
-		catch(cantidadDeVidasInvalidaExeption e){
-			e.printStackTrace();
-		}
-		this.tablero = new Tablero(nivel0, this);
-		this.controlador = controlador;
-		this.niveles[0] = nivel0;
-		this.niveles[1] = nivel1;
-		this.niveles[2] = nivel2;
-		this.nivelActual = 0;
-	}
+			
 	
 	public Juego(String tablero, int maxX, int maxY){
 		try{
@@ -43,6 +23,7 @@ public class Juego {
 			e.printStackTrace();
 		}
 		this.tablero = new Tablero(tablero, this, maxX, maxY);
+		this.nivelActual = 1;
 	}
 	
 	public Juego(String tablero){
@@ -52,6 +33,7 @@ public class Juego {
 			e.printStackTrace();
 		}
 		this.tablero = new Tablero(tablero, this, 16, 16);
+		this.nivelActual = 1;
 	}
 
 	public Tablero getTablero() {
@@ -64,15 +46,11 @@ public class Juego {
 	}
 
 	public void pacmanComido() {
-		this.getTablero().getPacman().fenecer();
-		if (this.getJugador().restarVida())
-			this.controlador.detenerJuego();
-		else{
-			try {
-				this.getTablero().resetearPosiciones();
-			} catch (PosicionInvalidaException e) {
-				e.printStackTrace();
-			}
+		this.getTablero().getPacman().fenecer();		
+		try {
+			this.getTablero().resetearPosiciones();
+		} catch (PosicionInvalidaException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -80,7 +58,7 @@ public class Juego {
 		this.getJugador().sumarPuntos(fantasma.getPuntosPorEsteFantasmaConCarinioParaCabu());
 		fantasma.fenecer();
         try {
-        	fantasma.setPosicion(fantasma.getPosicionDeRespawn());
+        	fantasma.setPosicion(fantasma.getPuntoDeRespawn());
         }
         catch (PosicionInvalidaException e) {
                 /* Las posiciones de respawn deberían ser válidas, ya que se leen del archivo
@@ -94,7 +72,7 @@ public class Juego {
 
 	public void pasarDeNivel() {
 		this.nivelActual++;
-		this.tablero = new Tablero(this.niveles[this.nivelActual], this);
+		this.tablero = new Tablero("src/Model/nivel"+Integer.toString(this.nivelActual)+".xml", this);
 		this.tablero.inicializar();
 	}
 	
