@@ -36,4 +36,5 @@ public class VentanaPrincipal extends Frame {
 	public SuperficieDeDibujo getSuperficieDeDibujo(){
 		return this.panel;
 	}
+	
 }

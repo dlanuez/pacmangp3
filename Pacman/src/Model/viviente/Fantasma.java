@@ -1,7 +1,6 @@
 package Model.viviente;
 
 import java.awt.Color;
-import java.util.*;
 
 import Model.Direcciones;
 import Model.EstadoViviente;
@@ -16,7 +15,7 @@ public class Fantasma extends Viviente {
 	
 	private Estrategia estrategia;
 	private int puntosPorEsteFantasma;
-	protected static Color colorPresa = Color.DARK_GRAY;
+	protected static Color colorPresa = Color.BLUE;
 	protected static int velocidadPresa = 8;
 	private int velocidadCazador;
 	private Color colorCazador;
@@ -132,7 +131,7 @@ public class Fantasma extends Viviente {
 	 * de las posiciones de todos los fantasmas. Si no se encuentra ninguna
 	 * posición libre en la cueva, devuelve null. 
 	 */
-	public Punto getPosicionDeRespawn() {
+	/*public Punto getPosicionDeRespawn() {
 		
 		//lista con las posiciones de la cueva
 
@@ -164,7 +163,7 @@ public class Fantasma extends Viviente {
 		
 		return null;
 	}
-	
+	*/
 	public void setEstrategia(Estrategia e){
 		this.estrategia = e;
 	}

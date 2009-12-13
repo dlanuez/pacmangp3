@@ -12,7 +12,6 @@ import Model.juego.Juego;
 
 public class Pacman extends Viviente {
 	
-	private Punto posicionDeRespawn;
 	
 	public Pacman(Punto posicionInicial, Juego juego)
 			throws PosicionInvalidaException {
@@ -23,8 +22,7 @@ public class Pacman extends Viviente {
 		catch(VelocidadInvalidaException e){
 			System.out.print(e.toString());
 		}
-		this.setEstado(EstadoViviente.PRESA);
-		this.posicionDeRespawn = posicionInicial.clonar();
+		this.setEstado(EstadoViviente.PRESA);		
 		this.setDireccionActual(Direcciones.IZQUIERDA);
 	}
 
@@ -92,7 +90,7 @@ public class Pacman extends Viviente {
 	
 	public void reSpawn(){
 		try {
-			this.setPosicion(this.posicionDeRespawn);
+			this.setPosicion(this.getPuntoDeRespawn());
 		} catch (PosicionInvalidaException e) {
 			e.printStackTrace();
 		}

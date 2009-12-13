@@ -11,7 +11,7 @@ import Model.juego.Juego;
 public class FantasmaAzul extends Fantasma {
 
 	public FantasmaAzul(Punto posicionInicial, Juego juego) throws PosicionInvalidaException, VelocidadInvalidaException {
-		super(posicionInicial, juego, 10, Color.BLUE);
+		super(posicionInicial, juego, 10, Color.CYAN);
 		this.setEstrategia(new EstrategiaImpredecible());
 	}
 

@@ -12,7 +12,7 @@ public abstract class Viviente {
 	
 	private boolean vivo;
 	private int velocidadActual;
-	private Punto posicion;
+	private Punto posicion, posicionDeRespawn;
 	private Direcciones direccionActual;
 	private Juego juego;
 	private EstadoViviente estado;
@@ -25,6 +25,7 @@ public abstract class Viviente {
 	 */
 	Viviente(Punto posicionInicial, Juego juego) throws PosicionInvalidaException{
 		this.posicion = posicionInicial;
+		this.posicionDeRespawn = posicionInicial.clonar();
 		this.juego = juego;
 		this.setVivo();
 		this.velocidadActual = 0;
@@ -200,4 +201,7 @@ public abstract class Viviente {
 		this.reiniciarTiempoRestanteDeEstado();
 	}
 	
+	public Punto getPuntoDeRespawn(){
+		return this.posicionDeRespawn;
+	}
 }
