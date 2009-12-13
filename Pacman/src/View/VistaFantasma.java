@@ -1,7 +1,6 @@
 package View;
 
 import java.awt.Color;
-import java.awt.Graphics;
 
 import Controller.FantasmaVivo;
 import ar.uba.fi.algo3.titiritero.SuperficieDeDibujo;

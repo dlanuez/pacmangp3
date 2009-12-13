@@ -23,7 +23,7 @@ public class VistaCantidadDeVidas extends Circulo implements Posicionable {
 	public void dibujar(SuperficieDeDibujo superfice) {
 		int cantidadDeVidas = this.juegoVivo.getCantidadDeVidas();
 		for(int i = 0; i < cantidadDeVidas; i++){
-			this.x = i * 30;
+			this.x = 470 - i * 30;
 			super.dibujar(superfice);
 		}
 		
@@ -41,7 +41,7 @@ public class VistaCantidadDeVidas extends Circulo implements Posicionable {
 
 	@Override
 	public int getY() {		
-		return 570;
+		return 520;
 	}
 
 }
