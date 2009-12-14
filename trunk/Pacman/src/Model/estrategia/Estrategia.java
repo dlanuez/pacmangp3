@@ -11,9 +11,27 @@ public abstract class Estrategia {
 	
 	//Devuelve una direccion de movimiento hacia el proximo casillero.
 	//La direccion es hacia un casillero cuya validez ya esta chequeada.
-	public abstract Direcciones calcularNuevaDireccion(Punto posicionYo,
-			Punto posicionEl, Direcciones dirActual, Tablero tablero);
+	public Direcciones calcularNuevaDireccion(Punto posicionYo,
+			Punto posicionEl, Direcciones dirActual, Tablero tablero){
+		
+		if (posicionYo == null)
+			throw new NullPointerException();
+		if (posicionEl == null)
+			throw new NullPointerException();
+		if (tablero == null)
+			throw new NullPointerException();
+		if (dirActual == null){
+			return null;
+		}
+		
+		return hacerCalcularNuevaDireccion(posicionYo,
+				posicionEl, dirActual, tablero);
+		
+	}
 	
+	protected abstract Direcciones hacerCalcularNuevaDireccion(Punto posicionYo,
+			Punto posicionEl, Direcciones dirActual, Tablero tablero);
+
 	protected ArrayList<Direcciones> direccionesPosibles(Punto posicionYo, Tablero tablero){
 		
 		ArrayList<Direcciones> dirPosibles = new ArrayList<Direcciones>();
