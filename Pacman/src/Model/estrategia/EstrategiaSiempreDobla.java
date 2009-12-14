@@ -16,18 +16,8 @@ public class EstrategiaSiempreDobla extends Estrategia {
 	//al ultimo giro realizado. En caso de no poder hacerlo, se mueve a
 	//cualquier casillero posible.
 	@Override
-	public Direcciones calcularNuevaDireccion(Punto posicionYo,
+	public Direcciones hacerCalcularNuevaDireccion(Punto posicionYo,
 			Punto posicionEl, Direcciones dirActual, Tablero tablero) {
-		
-		if (posicionYo == null)
-			throw new NullPointerException();
-		if (posicionEl == null)
-			throw new NullPointerException();
-		if (tablero == null)
-			throw new NullPointerException();
-		if (dirActual == null){
-			return direccionesPosibles(posicionYo, tablero).get(0);
-		}
 		
 		dirPosibles = direccionesPosibles(posicionYo, tablero);
 		if (!puedeDoblar(dirActual, dirPosibles)) return dirActual;

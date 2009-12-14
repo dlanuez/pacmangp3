@@ -11,7 +11,7 @@ import Model.viviente.Fantasma;
 public class EstrategiaEmboscadora extends Estrategia {
 
 	@Override
-	public Direcciones calcularNuevaDireccion(Punto posicionYo,
+	public Direcciones hacerCalcularNuevaDireccion(Punto posicionYo,
 			Punto posicionEl, Direcciones dirActual, Tablero tablero) {
 
 		ArrayList<Direcciones> dirPosibles = direccionesPosibles(posicionYo, tablero);
