@@ -7,6 +7,7 @@ package Model.tablero;
  * 
  *******************************************************/
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -50,7 +51,7 @@ public class Tablero {
 		this.cantidadDeBolitas = 0;
 	}
 
-	public void inicializar() {
+	public void inicializar() throws FileNotFoundException {
 		InicializadorTablero inicializador = new InicializadorTablero(nivel, juego, MAX_POS_X, MAX_POS_Y);
 		matriz = inicializador.generarTablero();
 		calcularCantidadDeBolitas();

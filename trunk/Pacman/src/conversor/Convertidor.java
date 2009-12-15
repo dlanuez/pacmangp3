@@ -1,6 +1,6 @@
 package conversor;
 
-public class Programa {
+public class Convertidor {
 
 	/**
 	 * @param args

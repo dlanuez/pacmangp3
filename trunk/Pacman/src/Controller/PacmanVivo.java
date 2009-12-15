@@ -10,14 +10,15 @@ import Model.viviente.Pacman;
 
 public class PacmanVivo implements ObjetoVivo, Posicionable, KeyPressedObservador{
 
-	private Pacman pacman;		
+	private Pacman pacman;	
+
 
 	public PacmanVivo(Pacman pacman){
-		this.pacman = pacman;
+		this.pacman = pacman;		
 	}
 	
-	public void vivir() {
-		this.pacman.vivir();
+	public void vivir() {			
+		this.pacman.vivir();				
 	}
 
 	public int getX() {

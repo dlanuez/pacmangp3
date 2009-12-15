@@ -1,5 +1,7 @@
 package Model.juego;
 
+import java.io.FileNotFoundException;
+
 import Model.excepciones.PosicionInvalidaException;
 import Model.excepciones.cantidadDeVidasInvalidaExeption;
 import Model.tablero.Tablero;
@@ -71,7 +73,7 @@ public class Juego {
 		
 	}
 
-	public void pasarDeNivel() {
+	public void pasarDeNivel() throws FileNotFoundException {
 		this.nivelActual++;
 		this.tablero = new Tablero("src/Model/nivel"+Integer.toString(this.nivelActual)+".xml", this);
 		this.tablero.inicializar();
