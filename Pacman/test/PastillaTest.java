@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+
 import Model.excepciones.tiempoDeEstadoInvalidoException;
 import Model.item.Pastilla;
 import Model.juego.Juego;
@@ -11,7 +13,11 @@ public class PastillaTest extends TestCase {
 	
 	public void testHacerEfectoOK(){
 		this.juego = new Juego("src/Model/nivel1.xml", 16, 16);
-		this.juego.getTablero().inicializar();
+		try {
+			this.juego.getTablero().inicializar();
+		} catch (FileNotFoundException e1) {
+			fail("Arrojo Excepcion FileNotFound");
+		}
 		this.pastilla = new Pastilla(this.juego, 10);
 		try{
 			this.pastilla.hacerEfecto();
@@ -23,7 +29,11 @@ public class PastillaTest extends TestCase {
 	
 	public void testHacerEfectoErroneo(){
 		this.juego = new Juego("src/Model/nivel1.xml", 16, 16);
-		this.juego.getTablero().inicializar();
+		try {
+			this.juego.getTablero().inicializar();
+		} catch (FileNotFoundException e1) {
+			fail("Arrojo Excepcion FileNotFound");
+		}
 		this.pastilla = new Pastilla(this.juego, -5);
 		try{
 			this.pastilla.hacerEfecto();
