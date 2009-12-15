@@ -26,11 +26,14 @@ public class InicializadorJuego {
 	private static Playback playback;
 	private static File file;
 	
-	public InicializadorJuego(VentanaPrincipal ventana){
+	public InicializadorJuego(VentanaPrincipal ventana, ControladorJuego controlador){
 		
-		controlador = new ControladorJuego();
+		InicializadorJuego.controlador = controlador;
 		InicializadorJuego.ventana = ventana;
 		
+		controlador.detenerJuego();
+		controlador.borrarObjetos();
+	
 		Juego juego = new Juego("src/Model/nivel1.xml");
 		try {
 			juego.getTablero().inicializar();
@@ -47,7 +50,7 @@ public class InicializadorJuego {
 	
 	public static void inicializarControladorJuego(Color color, Juego juego, JuegoVivo juegoVivo){		
 		
-		controlador = new ControladorJuego();
+		//controlador = new ControladorJuego();
 		playback.start();		
 		controlador.setIntervaloSimulacion(150);
 		controlador.setSuperficieDeDibujo(ventana.getSuperficieDeDibujo());

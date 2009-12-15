@@ -2,6 +2,8 @@ package Model.juego;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+
+import ar.uba.fi.algo3.titiritero.ControladorJuego;
 import Controller.InicializadorJuego;
 import View.VentanaPrincipal;
 
@@ -11,10 +13,11 @@ public class Menu {
 	private ArrayList<String> opciones;
 	private int opcionActual;
 	private VentanaPrincipal ventana;
+	private ControladorJuego controlador;
 		
 	//TODO agregar constantes para texto de las opciones.
 	
-	public Menu(String titulo, VentanaPrincipal ventana){
+	public Menu(String titulo, VentanaPrincipal ventana, ControladorJuego controlador){
 		this.titulo = titulo;
 		this.opcionActual = 0;
 		this.opciones = new ArrayList<String>();
@@ -23,6 +26,7 @@ public class Menu {
 		this.agregarOpcion("Salir");
 		
 		this.ventana = ventana;
+		this.controlador = controlador;
 	}
 	
 	public void agregarOpcion(String opcion){
@@ -94,7 +98,7 @@ public class Menu {
 	}
 
 	private void jugar(){
-		InicializadorJuego inicializadorJuego = new InicializadorJuego(this.ventana);		
+		InicializadorJuego inicializadorJuego = new InicializadorJuego(this.ventana, this.controlador);		
 		inicializadorJuego.comenzarJuego();
 	}
 }
