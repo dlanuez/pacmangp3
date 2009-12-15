@@ -19,7 +19,7 @@ public class Programa {
 		
 		instanciarVentana();
 		
-		Menu menu = new Menu("Algo-Man", ventana);
+		Menu menu = new Menu("Algo-Man", ventana, controlador);
 		MenuKPObservador menuKPObservador = new MenuKPObservador(menu);
 		VistaMenu vistaMenu = new VistaMenu(463,530, menu, 20, 22);
 				
