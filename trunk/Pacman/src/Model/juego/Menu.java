@@ -2,20 +2,27 @@ package Model.juego;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import Controller.InicializadorJuego;
+import View.VentanaPrincipal;
 
 public class Menu {
 	
 	private String titulo;
 	private ArrayList<String> opciones;
 	private int opcionActual;
-				
-	public Menu(String titulo){
+	private VentanaPrincipal ventana;
+		
+	//TODO agregar constantes para texto de las opciones.
+	
+	public Menu(String titulo, VentanaPrincipal ventana){
 		this.titulo = titulo;
 		this.opcionActual = 0;
 		this.opciones = new ArrayList<String>();
 		this.agregarOpcion("Jugar");
-		this.agregarOpcion("HighScores");
+		this.agregarOpcion("Info");
 		this.agregarOpcion("Salir");
+		
+		this.ventana = ventana;
 	}
 	
 	public void agregarOpcion(String opcion){
@@ -58,17 +65,11 @@ public class Menu {
 		String eleccion = this.getOpcion(this.opcionActual);
 		
 		if(eleccion == "Jugar"){
-			//TODO
-			/*Juego juego = new Juego("src/Model/nivel1.xml");
-			juego.getTablero().inicializar();	
-			
-			JuegoVivo juegoVivo = new JuegoVivo(juego, ventana);
-			juegoVivo.inicializarControlador();
-			juegoVivo.getControladorJuego().comenzarJuego();*/
 			System.out.println("JUGAR!");
+			this.jugar();		
 		}
 		
-		if(eleccion == "HighScores"){
+		if(eleccion == "Info"){
 			System.out.println("HS!!");
 		}
 		
@@ -92,4 +93,8 @@ public class Menu {
 		return titulo;
 	}
 
+	private void jugar(){
+		InicializadorJuego inicializadorJuego = new InicializadorJuego(this.ventana);		
+		inicializadorJuego.comenzarJuego();
+	}
 }

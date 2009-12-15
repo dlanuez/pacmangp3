@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.io.FileNotFoundException;
 
 import Model.juego.Juego;
-import TP3.Programa;
 import ar.uba.fi.algo3.titiritero.ControladorJuego;
 import ar.uba.fi.algo3.titiritero.ObjetoVivo;
 
@@ -37,7 +36,7 @@ public class JuegoVivo implements ObjetoVivo {
 			}else{
 				color = Color.RED;
 			}
-			Programa.inicializarControladorJuego(color, this.juego, this);
+			InicializadorJuego.inicializarControladorJuego(color, this.juego, this);
 			this.controlador.comenzarJuego();
 		}
 	}

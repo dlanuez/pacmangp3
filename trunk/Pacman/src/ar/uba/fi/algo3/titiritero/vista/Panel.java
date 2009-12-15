@@ -30,9 +30,9 @@ public class Panel extends java.awt.Panel implements SuperficieDeDibujo {
 		if(this.imagen == null)
 			this.imagen = this.createImage(getSize().width, getSize().height);
 		Graphics superficieParaDibujar =  this.imagen.getGraphics();
-		superficieParaDibujar.setColor(Color.YELLOW);// 
+		superficieParaDibujar.setColor(Color.WHITE);// 
 		superficieParaDibujar.fillRect(0, 0, this.getSize().width, this.getSize().height);
-		this.setBackground(Color.RED);
+		this.setBackground(Color.WHITE);
 	}
 
 	public Object getBuffer(){
