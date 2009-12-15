@@ -6,8 +6,10 @@ import java.util.Iterator;
 
 import Controller.FantasmaVivo;
 import Controller.JuegoVivo;
+import Controller.MenuKPObservador;
 import Controller.PacmanVivo;
 import Model.juego.Juego;
+import Model.juego.Menu;
 import Model.viviente.Fantasma;
 import View.PosicionableLaberinto;
 import View.VentanaPrincipal;
@@ -15,6 +17,7 @@ import View.VistaCantidadDeVidas;
 import View.VistaFantasma;
 import View.VistaJuego;
 import View.VistaLaberintoFactory;
+import View.VistaMenu;
 import View.VistaPacman;
 import View.VistaTablero;
 import ar.uba.fi.algo3.titiritero.ControladorJuego;
@@ -29,6 +32,21 @@ public class Programa {
 	
 
 	public static void main(String[] args) {
+		
+		/*ControladorJuego controlador = new ControladorJuego();
+		
+		Menu menu = new Menu("Algo-Man");
+		MenuKPObservador menuKPObservador = new MenuKPObservador(menu);
+		VistaMenu vistaMenu = new VistaMenu(463,530, menu, 20, 22);
+			
+		VentanaPrincipal ventana = new VentanaPrincipal(controlador);
+		ventana.setVisible(true);
+		
+		inicializarControladorMenu(controlador, ventana, menuKPObservador, vistaMenu);
+		controlador.comenzarJuego();	*/
+		
+		//------------------------------------------------------------
+		
 		controlador = new ControladorJuego();
 		//VistaLaberinto vistaLaberinto = new VistaLaberinto(0,0, "borde-izquierdo.jpg");
 		Juego juego = new Juego("src/Model/nivel1.xml");
@@ -42,12 +60,22 @@ public class Programa {
 		playback = new Playback(file);
 		
 		JuegoVivo juegoVivo = new JuegoVivo(juego, controlador);
-		inicializarControlador(Color.RED, juego, juegoVivo);
+		inicializarControladorJuego(Color.RED, juego, juegoVivo);
 		controlador.comenzarJuego();
 		
 	}
 	
-	public static void inicializarControlador(Color color, Juego juego, JuegoVivo juegoVivo){		
+	public static void inicializarControladorMenu(ControladorJuego controlador, VentanaPrincipal ventana, MenuKPObservador menuKPObservador, VistaMenu vistaMenu){
+		
+		controlador.setIntervaloSimulacion(150);
+		controlador.setSuperficieDeDibujo(ventana.getSuperficieDeDibujo());
+		
+		controlador.agregarKeyPressObservador(menuKPObservador);
+	
+		controlador.agregarDibujable(vistaMenu);
+	}
+	
+	public static void inicializarControladorJuego(Color color, Juego juego, JuegoVivo juegoVivo){		
 		controlador = new ControladorJuego();
 		instanciarVentana();
 		playback.start();		
