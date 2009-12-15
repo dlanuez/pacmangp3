@@ -11,7 +11,7 @@ import Model.item.Pastilla;
 import Model.juego.Juego;
 
 import java.io.File;
-import java.io.IOException;
+import java.io.FileNotFoundException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -39,7 +39,7 @@ public class InicializadorTablero {
 		casilleros = new Casillero[maxX][maxY];
 	}
 	
-	public Casillero[][] generarTablero(){
+	public Casillero[][] generarTablero() throws FileNotFoundException{
 		int posX,posY;
 		String itemValor;
 
@@ -64,8 +64,6 @@ public class InicializadorTablero {
 			}
 		}catch(ParserConfigurationException e){
 			
-		}catch(IOException e){
-			e.printStackTrace();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
