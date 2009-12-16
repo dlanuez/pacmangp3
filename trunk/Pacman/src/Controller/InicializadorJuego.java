@@ -5,8 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Iterator;
 
-import menu.VentanaPrincipal;
 
+import Controller.menu.VentanaPrincipal;
 import Model.juego.Juego;
 import Model.viviente.Fantasma;
 import View.PosicionableLaberinto;
