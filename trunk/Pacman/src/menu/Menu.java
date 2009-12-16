@@ -13,7 +13,7 @@ public class Menu extends Panel {
 	private static final long serialVersionUID = 1L;
 	protected JButton bJugar, bInfo, bSalir;
 
-    public Menu(int ancho, int alto) {
+    public Menu(int ancho, int alto, VentanaPrincipal ventana) {
     	
     	super(ancho, alto);
        // ImageIcon leftButtonIcon = createImageIcon("images/right.gif");
@@ -23,20 +23,20 @@ public class Menu extends Panel {
         bJugar = new JButton("Jugar"/*, leftButtonIcon*/);
         bJugar.setVerticalTextPosition(AbstractButton.CENTER);
         bJugar.setHorizontalTextPosition(AbstractButton.LEADING); 
-        bJugar.setMnemonic(KeyEvent.VK_D);
+        bJugar.setMnemonic(KeyEvent.VK_J);
         bJugar.setAlignmentY(200);
        
 
         bInfo = new JButton("Info"/*, middleButtonIcon*/);
         bInfo.setVerticalTextPosition(AbstractButton.BOTTOM);
         bInfo.setHorizontalTextPosition(AbstractButton.CENTER);
-        bInfo.setMnemonic(KeyEvent.VK_M);
+        bInfo.setMnemonic(KeyEvent.VK_I);
 
         bSalir = new JButton("Salir"/*, rightButtonIcon*/);
-        bSalir.setMnemonic(KeyEvent.VK_E);
+        bSalir.setMnemonic(KeyEvent.VK_S);
    
         //Listen for actions on buttons 1 and 3.
-        bJugar.addActionListener(new AccionJugar());
+        bJugar.addActionListener(new AccionJugar(ventana));
         bInfo.addActionListener(new AccionInfo());
         bSalir.addActionListener(new AccionSalir());
         

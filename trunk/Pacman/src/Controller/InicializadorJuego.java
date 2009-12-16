@@ -5,10 +5,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Iterator;
 
+import menu.VentanaPrincipal;
+
 import Model.juego.Juego;
 import Model.viviente.Fantasma;
 import View.PosicionableLaberinto;
-import View.VentanaPrincipalJuego;
 import View.VistaCantidadDeVidas;
 import View.VistaFantasma;
 import View.VistaJuego;
@@ -17,21 +18,19 @@ import View.VistaPacman;
 import View.VistaTablero;
 import ar.uba.fi.algo3.titiritero.ControladorJuego;
 import ar.uba.fi.algo3.titiritero.Playback;
-import ar.uba.fi.algo3.titiritero.vista.KeyPressedController;
 
 public class InicializadorJuego {
 	
 	private  ControladorJuego controlador;
-	private  VentanaPrincipalJuego ventana;
+	private  VentanaPrincipal ventana;
 	private static Playback playback;
 	private File file;
 	
-	public InicializadorJuego(VentanaPrincipalJuego ventana){
+	public InicializadorJuego(VentanaPrincipal ventana){
 		
 		this.controlador = new ControladorJuego();
 		this.ventana = ventana;
-		this.ventana.setVisible(true);
-	
+			
 		Juego juego = new Juego("src/Model/nivel1.xml");
 		try {
 			juego.getTablero().inicializar();
@@ -48,13 +47,12 @@ public class InicializadorJuego {
 	
 	public  void inicializarControladorJuego(Color color, Juego juego, JuegoVivo juegoVivo){		
 		
-		controlador = new ControladorJuego();
+	
 		playback.start();		
 		controlador.setIntervaloSimulacion(150);
+		this.ventana.inicializarParaJuego(controlador);
 		controlador.setSuperficieDeDibujo(ventana.getSuperficieDeDibujo());
-		this.ventana.borrarKeyListeners();
-		this.ventana.addKeyListener(new KeyPressedController(controlador));
-		this.ventana.setControlador(controlador);
+		
 		PacmanVivo unPacman = new PacmanVivo(juego.getTablero().getPacman());
 		VistaPacman vistaPacman = new VistaPacman();
 		vistaPacman.setPosicionable(unPacman);		
@@ -97,4 +95,5 @@ public class InicializadorJuego {
 	public void comenzarJuegoAsyn(){
 		controlador.comenzarJuegoAsyn();
 	}
+
 }

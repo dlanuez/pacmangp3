@@ -52,5 +52,11 @@ public class Panel extends java.awt.Panel implements SuperficieDeDibujo {
 		this.setSize(ancho, alto);
 		this.setVisible(true);
 	}
+	
+	public void setControlador(ControladorJuego unControlador){
+		this.addMouseListener(new MouseClickController(unControlador));
+		this.addKeyListener(new KeyPressedController(unControlador));
+		this.setVisible(true);
+	}
 
 }
