@@ -23,10 +23,11 @@ public class JuegoVivo implements ObjetoVivo {
 	public void vivir() {
 		contador++;
 		if(this.juego.getJugador().getVidas() == 0){
-			//this.controlador.detenerJuego();	
+			this.controlador.detenerJuego();	
 		}
 		if(this.juego.getTablero().getCantidadDeBolitas() == 0){
 			this.controlador.detenerJuego();
+			
 			try {
 				this.juego.pasarDeNivel();
 			} catch (FileNotFoundException e) {				
@@ -39,7 +40,7 @@ public class JuegoVivo implements ObjetoVivo {
 				color = Color.RED;
 			}
 			inicializador.inicializarControladorJuego(color, this.juego, this);
-			this.controlador.comenzarJuegoAsyn();
+			this.controlador.comenzarJuego();
 		}
 	}
 	
