@@ -46,7 +46,7 @@ public class InicializadorJuego {
 	}
 	
 	public  void inicializarControladorJuego(Color color, Juego juego, JuegoVivo juegoVivo){		
-		
+		controlador = new ControladorJuego();
 	
 		playback.start();		
 		controlador.setIntervaloSimulacion(150);
