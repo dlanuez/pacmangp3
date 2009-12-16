@@ -1,21 +1,14 @@
 package TP3;
 
 
-import menu.Menu;
-import menu.VentanaPrincipalMenu;
+
+import menu.VentanaPrincipal;
 
 public class Programa {
 
-		
 	public static void main(String[] args) {
-
-		VentanaPrincipalMenu ventana = new VentanaPrincipalMenu();
-		Menu menu = new Menu(200, 200);
-		ventana.setContentPane(menu);
+		VentanaPrincipal ventana = new VentanaPrincipal();
 		ventana.setVisible(true);
 	}
-	
-
-
-		
+			
 }

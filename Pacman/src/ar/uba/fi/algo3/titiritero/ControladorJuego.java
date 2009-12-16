@@ -179,4 +179,8 @@ public class ControladorJuego implements Runnable {
 	public void run() {
 		this.comenzarJuego();
 	}	
+	
+	public void removerMouseClickObservadores(){
+		this.mouseClickObservadores.clear();
+	}
 }
