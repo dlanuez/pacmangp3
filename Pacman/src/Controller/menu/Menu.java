@@ -1,11 +1,15 @@
 package Controller.menu;
 
 import javax.swing.AbstractButton;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 
 public class Menu extends JPanel {
@@ -15,15 +19,21 @@ public class Menu extends JPanel {
 
     public Menu(int ancho, int alto, VentanaPrincipal ventana) {
     	    	
-       // ImageIcon leftButtonIcon = createImageIcon("images/right.gif");
+        ImageIcon tituloIcon = createImageIcon("titulo.gif");
        // ImageIcon middleButtonIcon = createImageIcon("images/middle.gif");
        // ImageIcon rightButtonIcon = createImageIcon("images/left.gif");
-
+    	
+    	this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+    	
+    	JButton titulo = new JButton(tituloIcon);
+    	titulo.setBackground(Color.YELLOW);
+    	
+    	
         bJugar = new JButton("Jugar"/*, leftButtonIcon*/);
         bJugar.setVerticalTextPosition(AbstractButton.CENTER);
         bJugar.setHorizontalTextPosition(AbstractButton.LEADING); 
         bJugar.setMnemonic(KeyEvent.VK_J);
-        bJugar.setAlignmentY(200);
+       
        
 
         bInfo = new JButton("Info"/*, middleButtonIcon*/);
@@ -39,25 +49,35 @@ public class Menu extends JPanel {
         bInfo.addActionListener(new AccionInfo());
         bSalir.addActionListener(new AccionSalir());
         
-        bJugar.setOpaque(true);
-        bInfo.setOpaque(true);
-        bSalir.setOpaque(true);
-        //bJugar.setToolTipText("Click this button to disable the middle button.");
-        //bInfo.setToolTipText("This middle button does nothing when you click it.");
-        //bSalir.setToolTipText("Click this button to enable the middle button.");
+       
         
-        bJugar.setFocusable(false);
-        bInfo.setFocusable(false);
-        bSalir.setFocusable(false);
+        bJugar.setToolTipText("Comenzar juego");
+        bInfo.setToolTipText("Informacion inutil");
+        bSalir.setToolTipText("...");
         
-        bJugar.setVisible(true);
-        bInfo.setVisible(true);
-        bSalir.setVisible(true);
-
+        setFocusableOpaqueVisible(bJugar);
+        setFocusableOpaqueVisible(bInfo);
+        setFocusableOpaqueVisible(bSalir);
+        
+        titulo.setAlignmentX(CENTER_ALIGNMENT);
+        bJugar.setAlignmentX(CENTER_ALIGNMENT);
+        bInfo.setAlignmentX(CENTER_ALIGNMENT);
+        bSalir.setAlignmentX(CENTER_ALIGNMENT);
+        
         //Add Components to this container, using the default FlowLayout.
+        add(titulo);
+        add(Box.createRigidArea(new Dimension(0,150)));
         add(bJugar);
+        add(Box.createRigidArea(new Dimension(0,20)));
         add(bInfo);
+        add(Box.createRigidArea(new Dimension(0,20)));
         add(bSalir);
+    }
+    
+    private void setFocusableOpaqueVisible(JButton boton){
+    	boton.setOpaque(true);
+    	boton.setFocusable(false);
+    	boton.setVisible(true);
     }
 
     /** Returns an ImageIcon, or null if the path was invalid. */
@@ -70,49 +90,5 @@ public class Menu extends JPanel {
             return null;
         }
     }
-
-    /**
-     * Create the GUI and show it.  For thread safety, 
-     * this method should be invoked from the 
-     * event-dispatching thread.
-     */
-
-    /*public void actionPerformed(ActionEvent e) {
-    if ("disable".equals(e.getActionCommand())) {
-        bInfo.setEnabled(false);
-        bJugar.setEnabled(false);
-        bSalir.setEnabled(true);
-    } else {
-        bInfo.setEnabled(true);
-        bJugar.setEnabled(true);
-        bSalir.setEnabled(false);
-    }
-	}*/
-    
-    
-    /* private static void createAndShowGUI() {
-
-        //Create and set up the window.
-        JFrame frame = new JFrame("ButtonDemo");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        //Create and set up the content pane.
-        Menu newContentPane = new Menu();
-        newContentPane.setOpaque(true); //content panes must be opaque
-        frame.setContentPane(newContentPane);
-
-        //Display the window.
-        frame.pack();
-        frame.setVisible(true);
-    }*/
-
-    /*public static void main(String[] args) {
-        //Schedule a job for the event-dispatching thread:
-        //creating and showing this application's GUI.
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowGUI(); 
-            }
-        });
-    }*/
+  
 }
