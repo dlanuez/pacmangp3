@@ -7,7 +7,7 @@ import java.awt.Image;
 import ar.uba.fi.algo3.titiritero.ControladorJuego;
 import ar.uba.fi.algo3.titiritero.SuperficieDeDibujo;
 
-public class Panel extends java.awt.Panel implements SuperficieDeDibujo {
+public class Panel extends javax.swing.JPanel implements SuperficieDeDibujo {
 
 
 	private static final long serialVersionUID = -5159188497592488407L;
