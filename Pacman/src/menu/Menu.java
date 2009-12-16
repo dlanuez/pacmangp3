@@ -46,6 +46,10 @@ public class Menu extends Panel {
         //bJugar.setToolTipText("Click this button to disable the middle button.");
         //bInfo.setToolTipText("This middle button does nothing when you click it.");
         //bSalir.setToolTipText("Click this button to enable the middle button.");
+        
+        bJugar.setFocusable(false);
+        bInfo.setFocusable(false);
+        bSalir.setFocusable(false);
 
         //Add Components to this container, using the default FlowLayout.
         add(bJugar);
