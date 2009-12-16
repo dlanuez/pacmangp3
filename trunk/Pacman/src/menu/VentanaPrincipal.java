@@ -38,12 +38,12 @@ public class VentanaPrincipal extends JFrame {
 	
 	public void inicializarParaJuego(ControladorJuego controlador){
 		
-		
 		this.setControlador(controlador);
 		
-		this.getControladorJuego().removerMouseClickObservadores();
-		this.borrarKeyListeners();
 		this.addKeyListener(new KeyPressedController(this.getControladorJuego()));
+		
+		this.setFocusable(true);
+		this.setVisible(true);
 		
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -51,10 +51,7 @@ public class VentanaPrincipal extends JFrame {
 				System.exit(0);
 			}
 		});
-		
-		this.setVisible(true);
-		
-		
+				
 	}
 
 	
