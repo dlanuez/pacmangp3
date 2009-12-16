@@ -54,7 +54,7 @@ public class AccionJugar implements ActionListener {
 		JuegoVivo juegoVivo = new JuegoVivo(juego, controlador);
 		inicializarControladorJuego(Color.RED, juego, juegoVivo);
 		
-		controlador.comenzarJuego();
+		controlador.comenzarJuegoAsyn();
 	}
 	
 	public void inicializarControladorJuego(Color color, Juego juego, JuegoVivo juegoVivo){		

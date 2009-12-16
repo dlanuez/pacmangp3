@@ -39,7 +39,10 @@ public class Menu extends Panel {
         bJugar.addActionListener(new AccionJugar());
         bInfo.addActionListener(new AccionInfo());
         bSalir.addActionListener(new AccionSalir());
-
+        
+        bJugar.setOpaque(true);
+        bInfo.setOpaque(true);
+        bSalir.setOpaque(true);
         //bJugar.setToolTipText("Click this button to disable the middle button.");
         //bInfo.setToolTipText("This middle button does nothing when you click it.");
         //bSalir.setToolTipText("Click this button to enable the middle button.");

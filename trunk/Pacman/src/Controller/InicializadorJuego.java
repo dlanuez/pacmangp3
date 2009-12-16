@@ -18,21 +18,20 @@ import View.VistaTablero;
 import ar.uba.fi.algo3.titiritero.ControladorJuego;
 import ar.uba.fi.algo3.titiritero.Playback;
 import ar.uba.fi.algo3.titiritero.vista.KeyPressedController;
+import ar.uba.fi.algo3.titiritero.vista.Panel;
 
 public class InicializadorJuego {
 	
-	private static ControladorJuego controlador;
-	private static VentanaPrincipal ventana;
+	private  ControladorJuego controlador;
+	private  VentanaPrincipal ventana;
 	private static Playback playback;
-	private static File file;
+	private File file;
 	
-	public InicializadorJuego(VentanaPrincipal ventana, ControladorJuego controlador){
+	public InicializadorJuego(VentanaPrincipal ventana){
 		
-		InicializadorJuego.controlador = controlador;
-		InicializadorJuego.ventana = ventana;
-		
-		controlador.detenerJuego();
-		controlador.borrarObjetos();
+		this.controlador = new ControladorJuego();
+		this.ventana = ventana;
+		this.ventana.setVisible(true);
 	
 		Juego juego = new Juego("src/Model/nivel1.xml");
 		try {
@@ -48,14 +47,14 @@ public class InicializadorJuego {
 		inicializarControladorJuego(Color.RED, juego, juegoVivo);
 	}
 	
-	public static void inicializarControladorJuego(Color color, Juego juego, JuegoVivo juegoVivo){		
+	public  void inicializarControladorJuego(Color color, Juego juego, JuegoVivo juegoVivo){		
 		
-		//controlador = new ControladorJuego();
+		controlador = new ControladorJuego();
 		playback.start();		
 		controlador.setIntervaloSimulacion(150);
 		controlador.setSuperficieDeDibujo(ventana.getSuperficieDeDibujo());
-		ventana.addKeyListener(new KeyPressedController(controlador));
-				
+		this.ventana.addKeyListener(new KeyPressedController(controlador));
+		this.ventana.setControlador(controlador);
 		PacmanVivo unPacman = new PacmanVivo(juego.getTablero().getPacman());
 		VistaPacman vistaPacman = new VistaPacman();
 		vistaPacman.setPosicionable(unPacman);		
