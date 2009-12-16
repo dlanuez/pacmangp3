@@ -1,6 +1,7 @@
 package View;
 
 import java.awt.Color;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -41,6 +42,19 @@ public class VentanaPrincipalJuego extends JFrame {
 
 	public SuperficieDeDibujo getSuperficieDeDibujo(){
 		return this.panel;
+	}
+
+	public void setControlador(ControladorJuego controlador) {
+		this.controladorJuego = controlador;
+		
+	}
+
+	public void borrarKeyListeners() {
+		KeyListener[] keyListener = this.getKeyListeners();
+		for(int i = 0; i < keyListener.length; i ++){
+			this.removeKeyListener(keyListener[i]);
+		}
+		
 	}
 	
 }

@@ -11,17 +11,19 @@ public class JuegoVivo implements ObjetoVivo {
 	private Juego juego;
 	private ControladorJuego controlador;
 	private int contador = 0;
+	private InicializadorJuego inicializador;
 
-	public JuegoVivo(Juego juego, ControladorJuego controlador){
+	public JuegoVivo(Juego juego, ControladorJuego controlador, InicializadorJuego inicializador){
 		this.juego = juego;	
 		this.controlador = controlador;
+		this.inicializador = inicializador;
 	
 	}
 	
 	public void vivir() {
 		contador++;
 		if(this.juego.getJugador().getVidas() == 0){
-			this.controlador.detenerJuego();	
+			//this.controlador.detenerJuego();	
 		}
 		if(this.juego.getTablero().getCantidadDeBolitas() == 0){
 			this.controlador.detenerJuego();
@@ -36,8 +38,8 @@ public class JuegoVivo implements ObjetoVivo {
 			}else{
 				color = Color.RED;
 			}
-			//InicializadorJuego.inicializarControladorJuego(color, this.juego, this);
-			//this.controlador.comenzarJuego();
+			inicializador.inicializarControladorJuego(color, this.juego, this);
+			this.controlador.comenzarJuegoAsyn();
 		}
 	}
 	

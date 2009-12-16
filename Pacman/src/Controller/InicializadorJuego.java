@@ -8,7 +8,7 @@ import java.util.Iterator;
 import Model.juego.Juego;
 import Model.viviente.Fantasma;
 import View.PosicionableLaberinto;
-import View.VentanaPrincipal;
+import View.VentanaPrincipalJuego;
 import View.VistaCantidadDeVidas;
 import View.VistaFantasma;
 import View.VistaJuego;
@@ -18,16 +18,15 @@ import View.VistaTablero;
 import ar.uba.fi.algo3.titiritero.ControladorJuego;
 import ar.uba.fi.algo3.titiritero.Playback;
 import ar.uba.fi.algo3.titiritero.vista.KeyPressedController;
-import ar.uba.fi.algo3.titiritero.vista.Panel;
 
 public class InicializadorJuego {
 	
 	private  ControladorJuego controlador;
-	private  VentanaPrincipal ventana;
+	private  VentanaPrincipalJuego ventana;
 	private static Playback playback;
 	private File file;
 	
-	public InicializadorJuego(VentanaPrincipal ventana){
+	public InicializadorJuego(VentanaPrincipalJuego ventana){
 		
 		this.controlador = new ControladorJuego();
 		this.ventana = ventana;
@@ -43,7 +42,7 @@ public class InicializadorJuego {
 		file = new File("src/View/start.wav");
 		playback = new Playback(file);
 		
-		JuegoVivo juegoVivo = new JuegoVivo(juego, controlador);
+		JuegoVivo juegoVivo = new JuegoVivo(juego, controlador, this);
 		inicializarControladorJuego(Color.RED, juego, juegoVivo);
 	}
 	
@@ -53,6 +52,7 @@ public class InicializadorJuego {
 		playback.start();		
 		controlador.setIntervaloSimulacion(150);
 		controlador.setSuperficieDeDibujo(ventana.getSuperficieDeDibujo());
+		this.ventana.borrarKeyListeners();
 		this.ventana.addKeyListener(new KeyPressedController(controlador));
 		this.ventana.setControlador(controlador);
 		PacmanVivo unPacman = new PacmanVivo(juego.getTablero().getPacman());
@@ -94,7 +94,7 @@ public class InicializadorJuego {
 		
 	}
 
-	public void comenzarJuego(){
-		controlador.comenzarJuego();
+	public void comenzarJuegoAsyn(){
+		controlador.comenzarJuegoAsyn();
 	}
 }
