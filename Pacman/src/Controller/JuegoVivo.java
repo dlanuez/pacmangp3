@@ -36,8 +36,8 @@ public class JuegoVivo implements ObjetoVivo {
 			}else{
 				color = Color.RED;
 			}
-			InicializadorJuego.inicializarControladorJuego(color, this.juego, this);
-			this.controlador.comenzarJuego();
+			//InicializadorJuego.inicializarControladorJuego(color, this.juego, this);
+			//this.controlador.comenzarJuego();
 		}
 	}
 	

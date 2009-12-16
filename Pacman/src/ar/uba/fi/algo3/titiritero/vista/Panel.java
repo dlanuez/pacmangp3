@@ -27,8 +27,10 @@ public class Panel extends java.awt.Panel implements SuperficieDeDibujo {
 	}
 
 	public void limpiar() {
-		if(this.imagen == null)
-			this.imagen = this.createImage(getSize().width, getSize().height);
+		int ancho = this.getSize().width;
+		int alto = this.getSize().height;
+		if(this.imagen == null)		
+			this.imagen = this.createImage(ancho, alto);
 		Graphics superficieParaDibujar =  this.imagen.getGraphics();
 		superficieParaDibujar.setColor(Color.WHITE);// 
 		superficieParaDibujar.fillRect(0, 0, this.getSize().width, this.getSize().height);
