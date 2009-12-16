@@ -50,6 +50,10 @@ public class Menu extends Panel {
         bJugar.setFocusable(false);
         bInfo.setFocusable(false);
         bSalir.setFocusable(false);
+        
+        bJugar.setVisible(true);
+        bInfo.setVisible(true);
+        bSalir.setVisible(true);
 
         //Add Components to this container, using the default FlowLayout.
         add(bJugar);
