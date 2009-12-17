@@ -13,6 +13,8 @@ import Model.juego.Juego;
 public class Pacman extends Viviente {
 	
 	
+	private Direcciones siguienteDireccion;
+
 	public Pacman(Punto posicionInicial, Juego juego)
 			throws PosicionInvalidaException {
 		super(posicionInicial, juego);
@@ -24,6 +26,7 @@ public class Pacman extends Viviente {
 		}
 		this.setEstado(EstadoViviente.PRESA);		
 		this.setDireccionActual(Direcciones.IZQUIERDA);
+		this.siguienteDireccion = Direcciones.IZQUIERDA;
 	}
 
 	public void vivir() {
@@ -97,25 +100,45 @@ public class Pacman extends Viviente {
 	}
 
 	//Este metodo recibe el codigo de la tecla presionada y cambia la direccion del Pacman
-	public void cambiarDireccion(int codigo) {		
+	public void cambiarDireccion(int codigo) {				
 		if(codigo == 37){
-			if((this.getDireccionActual() != Direcciones.IZQUIERDA) && (direccionValida(Direcciones.IZQUIERDA))){
-				this.setDireccionActual(Direcciones.IZQUIERDA);
+			if((this.getDireccionActual() != Direcciones.IZQUIERDA)){
+					if (direccionValida(Direcciones.IZQUIERDA)){
+						this.setDireccionActual(Direcciones.IZQUIERDA);
+						this.siguienteDireccion = Direcciones.IZQUIERDA;
+					}
+					else
+						this.siguienteDireccion = Direcciones.IZQUIERDA;
 			}
 		}
 		if(codigo == 38){
-			if((this.getDireccionActual() != Direcciones.ARRIBA) && (direccionValida(Direcciones.ARRIBA))){
-				this.setDireccionActual(Direcciones.ARRIBA);
+			if(this.getDireccionActual() != Direcciones.ARRIBA){
+				if (direccionValida(Direcciones.ARRIBA)){
+					this.setDireccionActual(Direcciones.ARRIBA);
+					this.siguienteDireccion = Direcciones.ARRIBA;
+				}
+				else
+					this.siguienteDireccion = Direcciones.ARRIBA;
 			}
 		}
 		if(codigo == 39){
-			if((this.getDireccionActual() != Direcciones.DERECHA) && (direccionValida(Direcciones.DERECHA))){
-				this.setDireccionActual(Direcciones.DERECHA);
+			if(this.getDireccionActual() != Direcciones.DERECHA){
+				if (direccionValida(Direcciones.DERECHA)){
+					this.setDireccionActual(Direcciones.DERECHA);
+					this.siguienteDireccion = Direcciones.DERECHA;
+				}
+				else
+					this.siguienteDireccion = Direcciones.DERECHA;
 			}
 		}
 		if(codigo == 40){
-			if((this.getDireccionActual() != Direcciones.ABAJO) && (direccionValida(Direcciones.ABAJO))){
-				this.setDireccionActual(Direcciones.ABAJO);
+			if(this.getDireccionActual() != Direcciones.ABAJO){
+				if (direccionValida(Direcciones.ABAJO)){
+					this.setDireccionActual(Direcciones.ABAJO);
+					this.siguienteDireccion = Direcciones.ABAJO;
+				}
+				else
+					this.siguienteDireccion = Direcciones.ABAJO;
 			}
 		}
 		
@@ -123,6 +146,7 @@ public class Pacman extends Viviente {
 	}
 
 	private boolean direccionValida(Direcciones direccion) {
+		
 		Punto puntoAuxiliar = this.getPosicion().clonar();
 		if(direccion == Direcciones.ARRIBA){
 			puntoAuxiliar.disminuirX();
@@ -143,6 +167,9 @@ public class Pacman extends Viviente {
 	private void mover(){
 		
 		Punto posicionActual = this.getPosicion().clonar();
+		
+		if ((this.getDireccionActual() != this.siguienteDireccion) && (direccionValida(this.siguienteDireccion)))
+			this.setDireccionActual(this.siguienteDireccion);
 		
 		switch (this.getDireccionActual()) {
 			case ABAJO: {
