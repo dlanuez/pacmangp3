@@ -1,8 +1,6 @@
 package Controller;
 
 import java.awt.Color;
-import java.io.FileNotFoundException;
-
 import Controller.menu.PanelFinDelJuego;
 import Controller.menu.VentanaPrincipal;
 import Model.juego.Juego;
@@ -29,22 +27,21 @@ public class JuegoVivo implements ObjetoVivo {
 		if(this.juego.getJugador().getVidas() == 0){
 			this.finalizarJuego(this.ventana);	
 		}
+		
 		if(this.juego.getTablero().getCantidadDeBolitas() == 0){
 			this.controlador.detenerJuego();
 			
-			try {
-				this.juego.pasarDeNivel();
-			} catch (FileNotFoundException e) {				
-				finalizarJuego(ventana);
+			if(this.juego.pasarDeNivel()){
+				
+				Color color;
+				if(juego.getNivel() % 2 == 0) color = Color.BLUE;
+				else color = Color.RED;
+				
+				inicializador.inicializarControladorJuego(color, this.juego, this);
+				this.controlador.comenzarJuego();
 			}
-			Color color;
-			if(juego.getNivel() % 2 == 0){
-				color = Color.BLUE;
-			}else{
-				color = Color.RED;
-			}
-			inicializador.inicializarControladorJuego(color, this.juego, this);
-			this.controlador.comenzarJuego();
+				
+			else finalizarJuego(ventana);
 		}
 	}
 	

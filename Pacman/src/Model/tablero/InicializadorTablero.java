@@ -39,7 +39,7 @@ public class InicializadorTablero {
 		casilleros = new Casillero[maxX][maxY];
 	}
 	
-	public Casillero[][] generarTablero() throws FileNotFoundException{
+	public Casillero[][] generarTablero(){
 		int posX,posY;
 		String itemValor;
 
@@ -47,8 +47,11 @@ public class InicializadorTablero {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db = dbf.newDocumentBuilder();
 			Document doc = db.parse(archivo);
+		
 			doc.getDocumentElement().normalize();
+			
 			NodeList listaDeNodos = doc.getElementsByTagName("casillero");
+			
 			for(int i = 0; i < listaDeNodos.getLength(); i++){
 				Node nodo = listaDeNodos.item(i);
 				if(nodo.getNodeType() == Node.ELEMENT_NODE){

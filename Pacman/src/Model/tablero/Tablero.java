@@ -51,7 +51,7 @@ public class Tablero {
 		this.cantidadDeBolitas = 0;
 	}
 
-	public void inicializar() throws FileNotFoundException {
+	public void inicializar(){
 		InicializadorTablero inicializador = new InicializadorTablero(nivel, juego, MAX_POS_X, MAX_POS_Y);
 		matriz = inicializador.generarTablero();
 		calcularCantidadDeBolitas();
