@@ -21,6 +21,7 @@ public class EstrategiaImpredecible extends Estrategia {
 		
 		if (!puedeDoblar(dirActual, dirPosibles)) return dirActual;
 		
+		dirPosibles.remove(dirActual.masNoventaAntiHorario().masNoventaAntiHorario());
 		eleccion = random.nextInt(dirPosibles.size());
 		return dirPosibles.get(eleccion);
 	}
