@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 public class AccionInfo implements ActionListener {
 
+	//Texto para mostrar en el boton "Info"
 	public void actionPerformed(ActionEvent ae) {
 		JOptionPane.showMessageDialog(null,
 				"Trabajo Practico Algoritmos y Programacion III\n" + "\n"

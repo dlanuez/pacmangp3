@@ -15,6 +15,8 @@ public class AccionJugar implements ActionListener {
 		this.ventana = ventana;
 	}
 
+	
+	//Acción de "jugar": aca es donde ocurre la magia.
 	public void actionPerformed(ActionEvent arg0) {
 		inicializador = new InicializadorJuego(this.ventana);
 		this.inicializador.comenzarJuegoAsyn();		

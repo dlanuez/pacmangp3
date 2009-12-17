@@ -13,6 +13,9 @@ public class Conversor {
 		this.archivoEscritura = new File(archivoEscritura+".xml");
 	}
 	
+	/* Esta clase se usa para pasar los niveles hechos en txt a xml.
+	 * (Los archivos txt deben seguir los estandares definidos en el informe!)
+	 */
 	public void convertirTxtAXml(){
 		try {
 			FileInputStream archivo = new FileInputStream(this.archivo);

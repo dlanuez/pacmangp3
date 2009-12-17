@@ -18,6 +18,9 @@ public class VentanaPrincipal extends JFrame {
 	private ControladorJuego controladorJuego;
 	private Panel panel;
 	
+	/* Esta clase contiene todos los paneles y elementos que se utilizan durante el juego.
+	 * 
+	 */
 	public VentanaPrincipal(int ancho, int alto){
 			
 		this.setTitle("Pacman - Grupo 3");
@@ -32,6 +35,7 @@ public class VentanaPrincipal extends JFrame {
 		return this.panel;
 	}
 	
+	//Cambia el panel de inicio (Menu) por un panel que es actualizado por el controlador durante la simulación.
 	public void inicializarParaJuego(ControladorJuego controlador){
 		
 		this.panel = new Panel(Programa.ANCHO_PANEL_JUEGO, Programa.ALTO_PANEL_JUEGO, controlador);

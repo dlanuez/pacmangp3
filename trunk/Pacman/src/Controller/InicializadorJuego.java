@@ -30,6 +30,9 @@ public class InicializadorJuego {
 	private static Playback playback;
 	private File file;
 	
+	/* Esta clase se la instancia desde AccionJugar para inicializar todas las clases relacionadas con el juego
+	 * y el controlador.
+	 */
 	public InicializadorJuego(VentanaPrincipal ventana){
 		
 		this.controlador = new ControladorJuego();
@@ -50,9 +53,13 @@ public class InicializadorJuego {
 	
 		playback.start();		
 		controlador.setIntervaloSimulacion(150);
+		
 		this.ventana.inicializarParaJuego(controlador);
 		controlador.setSuperficieDeDibujo(ventana.getSuperficieDeDibujo());
 		
+		/* Se crean las Vistas y los ObjetosVivos a partir de las instancias de los objetos del modelo
+		 * creadas en la inicializacion del tablero.
+		 */
 		PacmanVivo unPacman = new PacmanVivo(juego.getTablero().getPacman());
 		VistaPacman vistaPacman = new VistaPacman();
 		vistaPacman.setPosicionable(unPacman);		
@@ -82,7 +89,8 @@ public class InicializadorJuego {
 		juegoVivo.setControlador(controlador);		
 		
 	}
-		
+	
+	//Agrega los fantasmas como ObjetosVivos y como Dibujables al controlador, cada uno con la imagen correspondiente.
 	private static void agregarFantasma(Fantasma fantasma, ControladorJuego controlador) {
 		FantasmaVivo fantasmaVivo = new FantasmaVivo(fantasma);
 		VistaFantasma vistaFantasma = null;
@@ -109,6 +117,7 @@ public class InicializadorJuego {
 		
 	}
 
+	//Sin esto el juego no nos andaba... un groso este metodo.
 	public void comenzarJuegoAsyn(){
 		controlador.comenzarJuegoAsyn();
 	}
