@@ -1,4 +1,3 @@
-import java.io.FileNotFoundException;
 import java.util.Iterator;
 
 import Model.*;
@@ -83,11 +82,7 @@ public class TableroTest extends TestCase {
 	
 	public void testTableroConNivel(){
 		Tablero otroTablero = new Tablero("src/Model/nivel1.xml", juego, 16,16);
-		try {
-			otroTablero.inicializar();
-		} catch (FileNotFoundException e) {
-			fail("Arrojo Excepcion FileNotFound");
-		}
+		otroTablero.inicializar();
 		
 	}
 }

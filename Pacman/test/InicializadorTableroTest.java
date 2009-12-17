@@ -1,4 +1,4 @@
-import java.io.FileNotFoundException;
+
 
 import junit.framework.TestCase;
 import Model.juego.Juego;
@@ -10,11 +10,7 @@ public class InicializadorTableroTest extends TestCase {
 		Casillero casilleros[][] = null;
 		Juego juego = new Juego("src/Model/nivel1.xml");
 		InicializadorTablero inicializador = new InicializadorTablero("src/Model/laberinto.xml", juego, 4, 2);
-		try {
-			casilleros = inicializador.generarTablero();
-		} catch (FileNotFoundException e) {			
-			fail("arrojo Excepcion FileNotFound");
-		}
+		casilleros = inicializador.generarTablero();
 		assertEquals(4,casilleros.length);		
 		assertEquals("ItemNulo", casilleros[0][0].getItem().getClass().getSimpleName());
 		assertEquals("Pastilla", casilleros[0][1].getItem().getClass().getSimpleName());
