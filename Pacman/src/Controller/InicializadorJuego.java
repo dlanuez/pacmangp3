@@ -9,6 +9,11 @@ import java.util.Iterator;
 import Controller.menu.VentanaPrincipal;
 import Model.juego.Juego;
 import Model.viviente.Fantasma;
+import Model.viviente.FantasmaAzul;
+import Model.viviente.FantasmaNaranja;
+import Model.viviente.FantasmaRojo;
+import Model.viviente.FantasmaRosa;
+import Model.viviente.FantasmaVerde;
 import View.PosicionableLaberinto;
 import View.VistaCantidadDeVidas;
 import View.VistaFantasma;
@@ -85,7 +90,24 @@ public class InicializadorJuego {
 		
 	private static void agregarFantasma(Fantasma fantasma, ControladorJuego controlador) {
 		FantasmaVivo fantasmaVivo = new FantasmaVivo(fantasma);
-		VistaFantasma vistaFantasma = new VistaFantasma(fantasmaVivo, 20,20);
+		VistaFantasma vistaFantasma = null;
+	
+		if (fantasma instanceof FantasmaVerde)		
+			vistaFantasma = new VistaFantasma(fantasmaVivo,"imagenes/FantasmaVerde.jpg");
+		
+		if (fantasma instanceof FantasmaRojo)		
+			vistaFantasma = new VistaFantasma(fantasmaVivo,"imagenes/FantasmaRojo.jpg");
+		
+		if (fantasma instanceof FantasmaAzul)		
+			vistaFantasma = new VistaFantasma(fantasmaVivo,"imagenes/FantasmaAzul.jpg");
+		
+		if (fantasma instanceof FantasmaNaranja)		
+			vistaFantasma = new VistaFantasma(fantasmaVivo,"imagenes/FantasmaNaranja.jpg");
+		
+		if (fantasma instanceof FantasmaRosa)		
+			vistaFantasma = new VistaFantasma(fantasmaVivo,"imagenes/FantasmaRosa.jpg");
+		
+		if (vistaFantasma == null) throw new RuntimeException("NO SE ENCONTRO LA INSTANCIA DEL FANTASMA");
 		
 		controlador.agregarDibujable(vistaFantasma);
 		controlador.agregarObjetoVivo(fantasmaVivo);

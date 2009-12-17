@@ -2,6 +2,7 @@ package Controller;
 
 import java.awt.Color;
 
+import Model.EstadoViviente;
 import Model.viviente.*;
 import ar.uba.fi.algo3.titiritero.ObjetoVivo;
 import ar.uba.fi.algo3.titiritero.Posicionable;
@@ -30,5 +31,10 @@ public class FantasmaVivo implements ObjetoVivo, Posicionable {
 	
 	public Color getColor(){
 		return this.fantasma.getColorActual();
+	}
+
+	public boolean estaCazando() {
+		if(this.fantasma.getEstado() == EstadoViviente.CAZADOR) return true;
+		return false;
 	}
 }
