@@ -31,6 +31,7 @@ public class EstrategiaSiempreDobla extends Estrategia {
 			ultimoGiro = ultimoGiro.masNoventaAntiHorario().masNoventaAntiHorario();
 			return dirDeseada;
 		}
+		dirPosibles.remove(dirActual.masNoventaAntiHorario().masNoventaAntiHorario());
 		return dirPosibles.get(0);
 	}
 

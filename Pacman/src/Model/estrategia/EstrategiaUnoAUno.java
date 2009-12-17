@@ -1,6 +1,7 @@
 package Model.estrategia;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import Model.Direcciones;
 import Model.EstadoViviente;
@@ -15,6 +16,7 @@ public abstract class EstrategiaUnoAUno extends Estrategia {
 		ArrayList<Direcciones> dirPosibles = new ArrayList<Direcciones>();
 		int deltaX, deltaY;
 		Direcciones dirHorizontal, dirVertical;
+		Random random = new Random();
 		
 		dirPosibles = direccionesPosibles(posicionYo, tablero);
 		if (!puedeDoblar(dirActual, dirPosibles))
@@ -31,7 +33,7 @@ public abstract class EstrategiaUnoAUno extends Estrategia {
 			return dirHorizontal;
 		if (dirPosibles.contains(dirVertical))
 			return dirVertical;
-		return dirPosibles.get(0);
+		return dirPosibles.get(random.nextInt(dirPosibles.size()));
 	}
 
 	private Direcciones encontrarDirVertical(int deltaY, EstadoViviente estado) {

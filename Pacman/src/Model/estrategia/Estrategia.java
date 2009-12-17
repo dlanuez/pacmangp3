@@ -185,4 +185,27 @@ public abstract class Estrategia {
 		
 	}
 	
+	protected Direcciones direccion(Punto posicionInicial, Punto posicionFinal){
+		
+		Punto nuevaPosicion;
+		
+		nuevaPosicion = posicionInicial.clonar();
+		nuevaPosicion.disminuirX();
+		if (nuevaPosicion.equals(posicionFinal))
+			return Direcciones.ARRIBA;
+		nuevaPosicion = posicionInicial.clonar();
+		nuevaPosicion.aumentarX();
+		if (nuevaPosicion.equals(posicionFinal))
+			return Direcciones.ABAJO;
+		nuevaPosicion = posicionInicial.clonar();
+		nuevaPosicion.aumentarY();
+		if (nuevaPosicion.equals(posicionFinal))
+			return Direcciones.DERECHA;
+		nuevaPosicion = posicionInicial.clonar();
+		nuevaPosicion.disminuirY();
+		if (nuevaPosicion.equals(posicionFinal))
+			return Direcciones.IZQUIERDA;
+		return null;
+	}
+	
 }
