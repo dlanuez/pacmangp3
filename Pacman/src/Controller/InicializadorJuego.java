@@ -46,7 +46,7 @@ public class InicializadorJuego {
 		file = new File("src/View/start.wav");
 		playback = new Playback(file);
 		
-		JuegoVivo juegoVivo = new JuegoVivo(juego, controlador, this);
+		JuegoVivo juegoVivo = new JuegoVivo(juego, controlador, ventana, this);
 		inicializarControladorJuego(Color.RED, juego, juegoVivo);
 	}
 	
