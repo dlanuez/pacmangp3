@@ -20,8 +20,8 @@ public class Menu extends JPanel {
 
     public Menu(int ancho, int alto, VentanaPrincipal ventana) {
     	    	
-        ImageIcon tituloIcon = createImageIcon("images/titulo.gif");
-        ImageIcon bannerIcon = createImageIcon("images/pacman-y-fantasmas.gif");
+        ImageIcon tituloIcon = createImageIcon("imagenes/titulo.gif");
+        ImageIcon bannerIcon = createImageIcon("imagenes/pacman-y-fantasmas.gif");
        // ImageIcon rightButtonIcon = createImageIcon("images/left.gif");
     	
     	this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
