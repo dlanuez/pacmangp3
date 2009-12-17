@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project basedir="." default="Programa" name="Pacman">   	
+	<target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>                
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="test">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+	<target name="build" depends="init">
+		<javac source="1.6" target="1.6" destdir="bin">
+			<src path="src"/>
+			<classpath path="junit.jar" />
+		</javac>
+		<javac source="1.6" target="1.6" destdir="bin">
+			<src path="test"/>
+			<classpath path="junit.jar" />
+		</javac>
+	</target>	
+	<target name="test" depends="build">      
+        <junit>
+			<classpath>
+				<path location="junit.jar" /> 
+				<path location="bin" />
+			</classpath>        
+			<formatter type="brief"	usefile="false" /> 			
+            <test name="BolitaTest"/>
+            <test name="CasilleroTest"/>
+            <test name="EstadoVivienteTest"/>
+            <test name="EstrategiaEscapadoraTest"/>
+            <test name="EstrategiaImpredecibleTest"/>
+            <test name="EstrategiaPerseguidoraTest"/>
+            <test name="EstrategiaSiempreDoblaTest"/>
+            <test name="FantasmaTest"/>
+            <test name="FrutaTest"/>
+            <test name="InicializadorTableroTest"/>
+            <test name="PacmanTest"/>
+            <test name="PastillaTest"/>
+            <test name="PuntoTest"/>
+            <test name="TableroTest"/>
+            <test name="VivienteTest"/>          
+        </junit>
+    </target>
+	<target name="Programa" depends="test">
+        <java classname="TP3.Programa" failonerror="true" fork="yes">
+            <classpath>
+				<path location="bin"/>
+			</classpath>
+        </java>
+    </target>
+</project>
+	
