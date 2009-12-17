@@ -17,40 +17,37 @@ public class Menu extends JPanel {
 	private static final long serialVersionUID = 1L;
 	protected JButton bJugar, bInfo, bSalir;
 
-    public Menu(int ancho, int alto, VentanaPrincipal ventana) {
+    public Menu(VentanaPrincipal ventana) {
     	    	
         ImageIcon tituloIcon = createImageIcon("imagenes/titulo.gif");
         ImageIcon bannerIcon = createImageIcon("imagenes/pacman-y-fantasmas.gif");
-       // ImageIcon rightButtonIcon = createImageIcon("images/left.gif");
-    	
+          	
     	this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     	
         	
     	JLabel titulo = new JLabel(tituloIcon); 
     	JLabel banner = new JLabel(bannerIcon); 
    
-        bJugar = new JButton("Jugar"/*, leftButtonIcon*/);
+        bJugar = new JButton("Jugar");
         bJugar.setVerticalTextPosition(AbstractButton.CENTER);
         bJugar.setHorizontalTextPosition(AbstractButton.LEADING); 
         bJugar.setMnemonic(KeyEvent.VK_J);
        
        
 
-        bInfo = new JButton("Info"/*, middleButtonIcon*/);
+        bInfo = new JButton("Info");
         bInfo.setVerticalTextPosition(AbstractButton.BOTTOM);
         bInfo.setHorizontalTextPosition(AbstractButton.CENTER);
         bInfo.setMnemonic(KeyEvent.VK_I);
 
-        bSalir = new JButton("Salir"/*, rightButtonIcon*/);
+        bSalir = new JButton("Salir");
         bSalir.setMnemonic(KeyEvent.VK_S);
    
         //Listen for actions on buttons 1 and 3.
         bJugar.addActionListener(new AccionJugar(ventana));
         bInfo.addActionListener(new AccionInfo());
         bSalir.addActionListener(new AccionSalir());
-        
-       
-        
+                
         bJugar.setToolTipText("Comenzar juego");
         bInfo.setToolTipText("Informacion inutil");
         bSalir.setToolTipText("...");

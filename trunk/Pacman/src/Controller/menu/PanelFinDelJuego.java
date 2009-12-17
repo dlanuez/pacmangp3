@@ -19,7 +19,7 @@ public class PanelFinDelJuego extends JPanel {
 	private static final long serialVersionUID = 1L;
 	protected JButton bJugar, bSalir;
 
-    public PanelFinDelJuego(int ancho, int alto, VentanaPrincipal ventana, Jugador jugador) {
+    public PanelFinDelJuego(VentanaPrincipal ventana, Jugador jugador) {
     	    	
         ImageIcon bottomIcon = createImageIcon("imagenes/game-over.jpg");
         ImageIcon pacmanIcon = createImageIcon("imagenes/black-pacman.jpg");
@@ -46,12 +46,12 @@ public class PanelFinDelJuego extends JPanel {
     	
     	//--------------------------------------------------------
    
-        bJugar = new JButton("Volver a jugar!"/*, leftButtonIcon*/);
+        bJugar = new JButton("Volver a jugar!");
         bJugar.setVerticalTextPosition(AbstractButton.CENTER);
         bJugar.setHorizontalTextPosition(AbstractButton.LEADING); 
         bJugar.setMnemonic(KeyEvent.VK_J);
        
-        bSalir = new JButton("Salir..."/*, rightButtonIcon*/);
+        bSalir = new JButton("Salir...");
         bSalir.setMnemonic(KeyEvent.VK_S);
    
         //Listen for actions
