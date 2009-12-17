@@ -1,8 +1,6 @@
 package Controller.menu;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Insets;
 import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractButton;
@@ -12,7 +10,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import Model.juego.Jugador;
