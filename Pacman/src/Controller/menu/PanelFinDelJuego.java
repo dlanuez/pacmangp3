@@ -19,14 +19,19 @@ public class PanelFinDelJuego extends JPanel {
 	private static final long serialVersionUID = 1L;
 	protected JButton bJugar, bSalir;
 
+	/* Esta clase se usa como panel para la ventana principal al finalizar la ejecución del programa.
+	 * Se presenta tanto cuando el jugador pierde como cuando gana.
+	 * Contiene los botones, el texto, y las imagenes.
+	 */
     public PanelFinDelJuego(VentanaPrincipal ventana, Jugador jugador) {
     	    	
         ImageIcon bottomIcon = createImageIcon("imagenes/game-over.jpg");
         ImageIcon pacmanIcon = createImageIcon("imagenes/black-pacman.jpg");
-           	
+         
+        //Se crea el LayOut de manera que los componentes se acomoden verticalmente.
     	this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     	
-    	//--------------------------------------------------------
+    	//-------Asignacion de texto en funcion de los atributos del jugador---
     	String mensaje;
     	if(jugador.restarVida()) mensaje = "PERDISTE!";
     	else mensaje = "GANASTE!";
@@ -39,12 +44,12 @@ public class PanelFinDelJuego extends JPanel {
         bInfoJugador.setHorizontalAlignment(JTextField.CENTER);
         bInfoPuntaje.setHorizontalAlignment(JTextField.CENTER);
         
-        //--------------------------------------------------------
+        //------Asignacion de iconos a los componentes contenedores de imagenes--
         	
     	JLabel gameOver = new JLabel(bottomIcon); 
     	JLabel blackPacman = new JLabel(pacmanIcon); 
     	
-    	//--------------------------------------------------------
+    	//----------------Botones---------------------------------
    
         bJugar = new JButton("Volver a jugar!");
         bJugar.setVerticalTextPosition(AbstractButton.CENTER);
@@ -54,15 +59,16 @@ public class PanelFinDelJuego extends JPanel {
         bSalir = new JButton("Salir...");
         bSalir.setMnemonic(KeyEvent.VK_S);
    
-        //Listen for actions
+        //Agregado de acciones a los botones
         bJugar.addActionListener(new AccionJugar(ventana));
         bSalir.addActionListener(new AccionSalir());
                
         //ToolTipText
         bJugar.setToolTipText("Empezar un juego nuevo");
         bInfoPuntaje.setToolTipText("Puntuacion total");
-        bSalir.setToolTipText("Salir");
+        bSalir.setToolTipText("Exit");
         
+        //-----------------------------------------------
         
         setFocusableOpaqueVisible(bJugar);
         setFocusableOpaqueVisible(bSalir);
@@ -98,12 +104,13 @@ public class PanelFinDelJuego extends JPanel {
         
     }
     
+    // Se declaran visibles y no "Focusables" para que al iniciarse el controlador, no capturen los eventos.
     private void setFocusableOpaqueVisible(JButton boton){
     	boton.setOpaque(true);
     	boton.setFocusable(false);
     	boton.setVisible(true);
     }
-
+    //Idem
     private void setFocusableOpaqueVisible(JTextField boton){
     	boton.setOpaque(true);
     	boton.setFocusable(false);

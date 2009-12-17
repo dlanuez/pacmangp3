@@ -22,6 +22,7 @@ public class JuegoVivo implements ObjetoVivo {
 	
 	}
 	
+	// Controla la finalizacion del juego y el pasaje de niveles
 	public void vivir() {
 		contador++;
 		if(this.juego.getJugador().getVidas() == 0){
@@ -31,6 +32,7 @@ public class JuegoVivo implements ObjetoVivo {
 		if(this.juego.getTablero().getCantidadDeBolitas() == 0){
 			this.controlador.detenerJuego();
 			
+			//Se verifica que se pueda pasar de nivel (que exista un nivel con un numero superior al actual)
 			if(this.juego.pasarDeNivel()){
 				
 				Color color;
@@ -46,7 +48,7 @@ public class JuegoVivo implements ObjetoVivo {
 	}
 	
 		
-
+	//Detiene el controlador, y presenta el panel de Fin de Juego
 	private void finalizarJuego(VentanaPrincipal ventana) {
 		this.controlador.detenerJuego();
 		PanelFinDelJuego panelFDJ = new PanelFinDelJuego(ventana,this.juego.getJugador());	
@@ -57,6 +59,7 @@ public class JuegoVivo implements ObjetoVivo {
 		this.ventana.setVisible(true);
 	}
 
+	
 	public String getTexto() {
 		String texto = "Puntaje: ";		
 		texto += (Integer.toString(this.juego.getJugador().getPuntos()));
@@ -64,7 +67,6 @@ public class JuegoVivo implements ObjetoVivo {
 	}
 	
 	
-
 	public int getCantidadDeVidas() {		
 		return this.juego.getJugador().getVidas();
 	}

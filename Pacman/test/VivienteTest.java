@@ -20,7 +20,7 @@ public class VivienteTest extends TestCase {
 	 * --
 	 * --
 	 * 
-	 * - == nada; P == Pared
+	 * ( - ) == nada; ( P ) == Pared
 	 */
 	
 	protected void setUp() throws Exception {
