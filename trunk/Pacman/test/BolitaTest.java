@@ -1,4 +1,3 @@
-import java.io.FileNotFoundException;
 
 import Model.item.Bolita;
 import Model.juego.Juego;
@@ -12,11 +11,7 @@ public class BolitaTest extends TestCase {
 	
 	public void testHacerEfectoOK(){
 		this.juego = new Juego("src/Model/nivel1.xml", 16, 16);
-		try {
-			this.juego.getTablero().inicializar();
-		} catch (FileNotFoundException e1) {
-			fail("Arrojo Excepcion FileNotFound");
-		}
+		this.juego.getTablero().inicializar();
 		this.bolita = new Bolita(this.juego);
 		int puntosAntes = this.juego.getJugador().getPuntos();
 		this.bolita.hacerEfecto();
@@ -25,11 +20,7 @@ public class BolitaTest extends TestCase {
 	
 	public void testHacerEfectoErroneo(){
 		this.juego = new Juego("src/Model/nivel1.xml", 16, 16);
-		try {
-			this.juego.getTablero().inicializar();
-		} catch (FileNotFoundException e1) {
-			fail("Arrojo Excepcion FileNotFound");
-		}
+		this.juego.getTablero().inicializar();
 		this.bolita = new Bolita(this.juego);
 		int puntosAntes = this.juego.getJugador().getPuntos();
 		this.bolita.hacerEfecto();
