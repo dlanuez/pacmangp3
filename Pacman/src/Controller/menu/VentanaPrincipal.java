@@ -7,6 +7,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 
+import TP3.Programa;
 import ar.uba.fi.algo3.titiritero.ControladorJuego;
 import ar.uba.fi.algo3.titiritero.SuperficieDeDibujo;
 import ar.uba.fi.algo3.titiritero.vista.KeyPressedController;
@@ -17,10 +18,10 @@ public class VentanaPrincipal extends JFrame {
 	private ControladorJuego controladorJuego;
 	private Panel panel;
 	
-	public VentanaPrincipal(){
+	public VentanaPrincipal(int ancho, int alto){
 			
 		this.setTitle("Pacman - Grupo 3");
-		this.setSize(512,600);
+		this.setSize(ancho,alto);
 		this.setResizable(false);
 		this.setBackground(Color.black);		
 		
@@ -33,7 +34,7 @@ public class VentanaPrincipal extends JFrame {
 	
 	public void inicializarParaJuego(ControladorJuego controlador){
 		
-		this.panel = new Panel(512,512, controlador);
+		this.panel = new Panel(Programa.ANCHO_PANEL_JUEGO, Programa.ALTO_PANEL_JUEGO, controlador);
 		this.setContentPane(this.panel);		
 		
 		this.setControlador(controlador);

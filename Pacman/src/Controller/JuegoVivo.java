@@ -49,7 +49,7 @@ public class JuegoVivo implements ObjetoVivo {
 
 	private void finalizarJuego(VentanaPrincipal ventana) {
 		this.controlador.detenerJuego();
-		PanelFinDelJuego panelFDJ = new PanelFinDelJuego(10,40, ventana, this.juego.getJugador());	
+		PanelFinDelJuego panelFDJ = new PanelFinDelJuego(ventana,this.juego.getJugador());	
 		//this.ventana.setFocusable(true);
 		panelFDJ.setBackground(Color.BLACK);
 		panelFDJ.setOpaque(true);

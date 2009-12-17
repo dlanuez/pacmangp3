@@ -10,9 +10,14 @@ import Controller.menu.VentanaPrincipal;
 
 public class Programa {
 
+	public static final int ANCHO_VENTANA_PRINCIPAL = 512;
+	public static final int ALTO_VENTANA_PRINCIPAL = 600;
+	public static final int ANCHO_PANEL_JUEGO = 512;
+	public static final int ALTO_PANEL_JUEGO = 512;
+	
 	public static void main(String[] args) {
-		VentanaPrincipal ventana = new VentanaPrincipal();
-		Menu menu = new Menu (10,40, ventana);
+		VentanaPrincipal ventana = new VentanaPrincipal(ANCHO_VENTANA_PRINCIPAL, ALTO_VENTANA_PRINCIPAL);
+		Menu menu = new Menu (ventana);
 		menu.setBackground(Color.BLACK);
 		menu.setOpaque(true);
 		ventana.setContentPane(menu);
