@@ -58,7 +58,7 @@ public class VistaLaberintoFactory {
 					}
 					if(esFruta(juego, i, k)){
 						try{
-						VistaFruta vistaFruta = new VistaFruta("Fruta.jpg", ((Fruta) juego.getTablero().getCasillero(new Punto(i, k)).obtenerItem()));
+						VistaFruta vistaFruta = new VistaFruta("imagenes/Fruta.jpg", ((Fruta) juego.getTablero().getCasillero(new Punto(i, k)).obtenerItem()));
 						Posicionable posicionable = new PosicionableLaberinto(posX,posY);
 						vistaFruta.setPosicionable(posicionable);
 						FrutaViva frutaViva = new FrutaViva(((Fruta) juego.getTablero().getCasillero(new Punto(i, k)).obtenerItem()));
