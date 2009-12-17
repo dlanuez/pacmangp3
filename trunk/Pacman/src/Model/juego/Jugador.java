@@ -29,7 +29,7 @@ public class Jugador {
 	
 	//Le quita una vida al jugador y devuelve true si el jugador se quedo sin vidas.
 	public boolean restarVida(){
-		this.vidas--;
+		//this.vidas--;
 		if (this.vidas <= 0){
 			return true;
 		}

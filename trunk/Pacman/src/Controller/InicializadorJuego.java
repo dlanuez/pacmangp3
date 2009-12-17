@@ -37,12 +37,8 @@ public class InicializadorJuego {
 		this.ventana = ventana;
 			
 		Juego juego = new Juego("src/Model/nivel1.xml");
-		try {
-			juego.getTablero().inicializar();
-		} catch (FileNotFoundException e) {			
-			e.printStackTrace();
-		}				
-		
+		juego.getTablero().inicializar();
+			
 		file = new File("src/View/start.wav");
 		playback = new Playback(file);
 		
