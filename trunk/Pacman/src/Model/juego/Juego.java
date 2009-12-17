@@ -6,8 +6,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.w3c.dom.Document;
-
 import Model.excepciones.ArchivoInvalidoException;
 import Model.excepciones.PosicionInvalidaException;
 import Model.excepciones.cantidadDeVidasInvalidaExeption;
@@ -97,6 +95,9 @@ public class Juego {
 		return this.nivelActual;
 	}
 	
+	
+
+
 	private boolean existeElNivel(String archivo){
 		if((archivo == "") || (archivo == null)){			
 			throw new ArchivoInvalidoException();
@@ -106,7 +107,7 @@ public class Juego {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		try{
 			DocumentBuilder db = dbf.newDocumentBuilder();
-			Document doc = db.parse(fArchivo);			
+			db.parse(fArchivo);			
 			return true;
 		}
 		catch(ParserConfigurationException e){
