@@ -5,6 +5,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
@@ -19,16 +20,16 @@ public class Menu extends JPanel {
 
     public Menu(int ancho, int alto, VentanaPrincipal ventana) {
     	    	
-        ImageIcon tituloIcon = createImageIcon("titulo.gif");
-       // ImageIcon middleButtonIcon = createImageIcon("images/middle.gif");
+        ImageIcon tituloIcon = createImageIcon("images/titulo.gif");
+        ImageIcon bannerIcon = createImageIcon("images/pacman-y-fantasmas.gif");
        // ImageIcon rightButtonIcon = createImageIcon("images/left.gif");
     	
     	this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     	
-    	JButton titulo = new JButton(tituloIcon);
-    	titulo.setBackground(Color.YELLOW);
-    	
-    	
+        	
+    	JLabel titulo = new JLabel(tituloIcon); 
+    	JLabel banner = new JLabel(bannerIcon); 
+   
         bJugar = new JButton("Jugar"/*, leftButtonIcon*/);
         bJugar.setVerticalTextPosition(AbstractButton.CENTER);
         bJugar.setHorizontalTextPosition(AbstractButton.LEADING); 
@@ -60,18 +61,23 @@ public class Menu extends JPanel {
         setFocusableOpaqueVisible(bSalir);
         
         titulo.setAlignmentX(CENTER_ALIGNMENT);
+        banner.setAlignmentX(CENTER_ALIGNMENT);
         bJugar.setAlignmentX(CENTER_ALIGNMENT);
         bInfo.setAlignmentX(CENTER_ALIGNMENT);
         bSalir.setAlignmentX(CENTER_ALIGNMENT);
         
         //Add Components to this container, using the default FlowLayout.
+        add(Box.createRigidArea(new Dimension(0,20)));
         add(titulo);
-        add(Box.createRigidArea(new Dimension(0,150)));
+        add(Box.createRigidArea(new Dimension(0,100)));
         add(bJugar);
         add(Box.createRigidArea(new Dimension(0,20)));
         add(bInfo);
         add(Box.createRigidArea(new Dimension(0,20)));
         add(bSalir);
+        add(Box.createRigidArea(new Dimension(0,100)));
+        add(banner);
+        
     }
     
     private void setFocusableOpaqueVisible(JButton boton){
