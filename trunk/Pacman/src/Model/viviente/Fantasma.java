@@ -77,6 +77,11 @@ public class Fantasma extends Viviente {
 		if (!this.estaVivo()){
 			this.revivir(EstadoViviente.CAZADOR);
 			this.setColorActual(this.colorCazador);
+			try {
+				this.setVelocidadActual(this.velocidadCazador);
+			} catch (VelocidadInvalidaException e) {
+				e.printStackTrace();
+			}
 		}
 		super.vivir();
 		this.mover();
