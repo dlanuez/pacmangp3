@@ -1,7 +1,6 @@
 package Model.juego;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -107,7 +106,7 @@ public class Juego {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		try{
 			DocumentBuilder db = dbf.newDocumentBuilder();
-			Document doc = db.parse(fArchivo);
+			Document doc = db.parse(fArchivo);			
 			return true;
 		}
 		catch(ParserConfigurationException e){
