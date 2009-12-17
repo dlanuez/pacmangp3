@@ -11,7 +11,6 @@ import Model.item.Pastilla;
 import Model.juego.Juego;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
